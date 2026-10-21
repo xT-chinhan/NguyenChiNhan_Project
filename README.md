@@ -9,7 +9,7 @@
 
 [**Tải APK**](https://github.com/xT-chinhan/NguyenChiNhan_Project/releases/latest) · [**Bản web (iPhone)**](https://nguyenchinhan-app.vercel.app) · [Web API](https://nguyenchinhan-webapi.vercel.app/swagger) · [Hướng dẫn](HUONG_DAN.md) · [Checklist](CHECKLIST.txt)
 
-<a href="https://github.com/xT-chinhan/NguyenChiNhan_Project/blob/main/docs/demo.mp4"><img src="docs/demo-poster.jpg" width="640" alt="Video demo"></a>
+<a href="https://nguyenchinhan-app.vercel.app/demo.html"><img src="docs/demo-poster.jpg" width="640" alt="Video demo"></a>
 
 <sub>Bấm vào ảnh để xem video demo</sub>
 
