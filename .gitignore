@@ -33,3 +33,6 @@ skills-lock.json
 
 # Ảnh lỗi của flutter test (golden)
 **/test/failures/
+
+# Video demo: bản lưu ở docs/, chỉ copy vào web/ để deploy Vercel
+nguyen_chi_nhan_app/web/*.mp4

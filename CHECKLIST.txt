@@ -6,6 +6,7 @@ Tải APK : https://github.com/xT-chinhan/NguyenChiNhan_Project/releases/latest
 Bản web : https://nguyenchinhan-app.vercel.app  (iPhone: Safari > Chia sẻ > Thêm vào MH chính)
 Web API : https://nguyenchinhan-webapi.vercel.app/swagger
 Mã nguồn: https://github.com/xT-chinhan/NguyenChiNhan_Project
+Video   : https://nguyenchinhan-app.vercel.app/demo.html
 
 
 TÀI KHOẢN (OTP gửi về hutech.vn.online@gmail.com)
@@ -69,6 +70,16 @@ Khách hàng  baongoc   User@123
 [x] Chặn vị trí giả lập, GPS sai số lớn, ở ngoài khu vực
 [x] Bảng công tháng: ngày công, tổng giờ, số lần trễ
 [x] Admin: xem chấm công theo ngày, đặt mốc + bán kính
+
+
+
++ YÊU CẦU THÊM: APP HƯỚNG DẪN ĐƯỜNG ĐI CHO NGƯỜI MÙ
+-----------------------------------------------------
+Mã nguồn: nhánh app-huong-dan-nguoi-mu
+Video   : https://nguyenchinhan-app.vercel.app/demo-nguoi-mu.html
+[x] Web app 1 nút chạy trên điện thoại, thông báo bằng giọng nói
+[x] Phát hiện vật cản + chọn hướng trống (Depth Anything V2)
+[x] Gọi tên vật (YOLO), thông báo không chồng câu
 
 
 7. GIAO DIỆN

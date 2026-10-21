@@ -32,6 +32,24 @@
 | 7 | Giao diện đẹp, dễ dùng, cả nhóm chạy được | 1 | ✅ Thiết kế mockup trước · APK + bản web cho iPhone |
 | ! | Tên project, WebAPI, CSDL bắt buộc tên cá nhân | | ✅ `NguyenChiNhan_Project` · `NguyenChiNhan_WebAPI` · `nguyenchinhan_db` |
 
+## Yêu cầu thêm: App hướng dẫn đường đi cho người mù
+
+<div align="center">
+
+<a href="https://nguyenchinhan-app.vercel.app/demo-nguoi-mu.html"><img src="docs/demo-nguoi-mu-poster.jpg" width="640" alt="Video demo app cho người mù"></a>
+
+<sub>Bấm vào ảnh để xem video demo</sub>
+
+</div>
+
+| | |
+|---|---|
+| Mã nguồn | Nhánh [`app-huong-dan-nguoi-mu`](https://github.com/xT-chinhan/NguyenChiNhan_Project/tree/app-huong-dan-nguoi-mu) |
+| Cách dùng | Mở web app trên điện thoại, chỉ **1 nút** · camera nhìn phía trước, thông báo bằng giọng nói |
+| Phát hiện vật cản | Depth Anything V2 (trong nhà) đo khoảng cách mọi vật cản, chọn hướng còn trống: *“Dừng lại. Vật cản rất gần phía trước. Đi sang phải.”* |
+| Gọi tên vật | YOLO nhận diện vật (laptop, cốc, tủ lạnh…), thông báo không chồng câu |
+| Thành phần | `backend/` FastAPI + PostgreSQL · `NAVI/` Flutter · `BlindNav/` Raspberry Pi / ESP32 · `docs/` |
+
 ## Tài khoản
 
 | Vai trò | Tên đăng nhập | Mật khẩu |
