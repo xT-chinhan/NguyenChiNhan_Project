@@ -9,9 +9,28 @@
 
 [**Tải APK**](https://github.com/xT-chinhan/NguyenChiNhan_Project/releases/latest) · [**Bản web (iPhone)**](https://nguyenchinhan-app.vercel.app) · [Web API](https://nguyenchinhan-webapi.vercel.app/swagger) · [Hướng dẫn](HUONG_DAN.md) · [Checklist](CHECKLIST.txt)
 
+<a href="https://github.com/xT-chinhan/NguyenChiNhan_Project/blob/main/docs/demo.mp4"><img src="docs/demo-poster.jpg" width="640" alt="Video demo"></a>
+
+<sub>Bấm vào ảnh để xem video demo</sub>
+
 <img src="design/mockup/shots/01-dang-nhap.png" width="160"> <img src="design/mockup/shots/10-kh-cua-hang.png" width="160"> <img src="design/mockup/shots/70-cc-chua-vao-ca.png" width="160"> <img src="design/mockup/shots/40-ad-tong-quan.png" width="160">
 
 </div>
+
+## Yêu cầu của thầy
+
+> **Đề 2: App chấm công cho nhân viên** · Nhóm NgọngNL
+
+| # | Yêu cầu | Điểm | Đã làm |
+|:-:|---|:-:|---|
+| 1 | Đăng ký tài khoản qua email | | ✅ Đăng ký → OTP 6 số gửi email → kích hoạt |
+| 2 | Đăng nhập: tên đăng nhập + mật khẩu + OTP | | ✅ 2 bước, OTP email 5 phút, quên mật khẩu |
+| 3 | Phân quyền: Admin → quản trị · Nhân viên → Dashboard · Khách hàng → trang tương ứng | | ✅ 3 vai trò, API kiểm tra quyền từng chức năng |
+| 4 | Các chức năng CRUD | 5.5 | ✅ Danh mục · Sản phẩm · Người dùng · **Chấm công GPS** |
+| 5 | Chọn 3/6 chức năng thuyết trình: **b** Chia sẻ vị trí · **d** Đo tiếng ồn · **f** Dịch realtime, ảnh chụp | 3.5 | ✅ Cả 3 |
+| 6 | Tính năng mới các app hiện tại chưa có | 1 | ✅ **Email cảnh báo đăng nhập** · “Không phải tôi” khóa tài khoản, báo Admin |
+| 7 | Giao diện đẹp, dễ dùng, cả nhóm chạy được | 1 | ✅ Thiết kế mockup trước · APK + bản web cho iPhone |
+| ! | Tên project, WebAPI, CSDL bắt buộc tên cá nhân | | ✅ `NguyenChiNhan_Project` · `NguyenChiNhan_WebAPI` · `nguyenchinhan_db` |
 
 ## Tài khoản
 
@@ -23,25 +42,13 @@
 
 > OTP gửi về `hutech.vn.online@gmail.com`. Muốn tự nhận mã: **Tạo tài khoản mới** bằng email của bạn.
 
-## Chức năng
-
-- [x] **Đăng ký qua email** · OTP kích hoạt
-- [x] **Đăng nhập** · tên + mật khẩu + OTP email
-- [x] **Phân quyền** · Quản trị / Nhân viên / Khách hàng
-- [x] **CRUD** · Danh mục · Sản phẩm · Người dùng
-- [x] **Dịch realtime** · camera + ảnh chụp
-- [x] **Đo tiếng ồn** · dB realtime, cảnh báo > 85 dB
-- [x] **Chia sẻ vị trí** · GPS → link Google Maps
-- [x] **Email cảnh báo đăng nhập** · “Không phải tôi” khóa tài khoản *(tính năng mới)*
-- [x] **Chấm công GPS** · vào / tan ca trong bán kính cửa hàng
-- [x] **Giao diện** · theo mockup, sáng / tối
-
 ## Cấu trúc
 
 ```
 NguyenChiNhan_WebAPI/   Web API Node.js · CSDL nguyenchinhan_db
-nguyen_chi_nhan_app/    App Flutter (chỉ giao diện)
-design/mockup/          41 màn thiết kế
+nguyen_chi_nhan_app/    App Flutter (chỉ giao diện, mọi xử lý ở API)
+design/                 41 màn mockup + email
+docs/demo.mp4           Video demo
 ```
 
 ## Chạy
