@@ -4,7 +4,8 @@ import bcrypt from 'bcryptjs'
 pg.types.setTypeParser(1700, (v) => (v === null ? null : Number(v))) // numeric -> number
 pg.types.setTypeParser(20, (v) => Number(v)) // bigint (count) -> number
 
-const url = process.env.DATABASE_URL || 'postgres://tracker:tracker@127.0.0.1:5433/nguyenchinhan_db'
+// NCN_DATABASE_URL trỏ vào nguyenchinhan_db; DATABASE_URL do Neon tự tạo (neondb)
+const url = process.env.NCN_DATABASE_URL || process.env.DATABASE_URL || 'postgres://tracker:tracker@127.0.0.1:5433/nguyenchinhan_db'
 const local = /@(localhost|127\.0\.0\.1)[:/]/.test(url)
 
 export const pool = new pg.Pool({
