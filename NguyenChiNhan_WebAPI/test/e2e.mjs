@@ -139,6 +139,10 @@ ok(r.status === 200 && r.data.users.total >= 4 && r.data.recentLogins.length >= 
 // --- 5. Tiện ích ---
 r = await call('post', '/api/tools/translate', { text: 'EMERGENCY EXIT\nNO SMOKING', source: 'en', target: 'vi' }, S)
 ok(r.status === 200 && r.data.translated.length > 0, 'dịch Anh -> Việt', r.data)
+r = await call('post', '/api/tools/ocr', { image: (await import('node:fs')).readFileSync(new URL('./ocr-sample.jpg', import.meta.url)).toString('base64'), source: 'en', target: 'vi' }, S)
+ok(r.status === 200 && r.data.lines === 3 && r.data.text.includes('EMERGENCY EXIT') && r.data.translated.length > 0, 'OCR ảnh -> chữ -> dịch', r.data)
+r = await call('post', '/api/tools/ocr', { image: 'abc' }, S)
+ok(r.status === 400, 'OCR ảnh hỏng bị chặn', r)
 r = await call('get', '/api/tools/noise/levels', null, S)
 ok(r.status === 200 && r.data.levels.length === 5, 'bảng mức ồn', r)
 r = await call('post', '/api/tools/noise/records', { avgDb: 80, maxDb: 91, durationSec: 58 }, S)

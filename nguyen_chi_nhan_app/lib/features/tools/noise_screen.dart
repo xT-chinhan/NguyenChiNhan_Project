@@ -4,13 +4,12 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
-import 'package:noise_meter/noise_meter.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../core/api.dart';
 import '../../core/theme.dart';
 import '../../widgets/ui.dart';
+import 'noise/noise_source.dart';
 
 /// 22 / 23 d · Đo tiếng ồn: micro đo dB trên máy, bảng mức + đánh giá lấy từ API
 class NoiseScreen extends StatefulWidget {
@@ -20,7 +19,7 @@ class NoiseScreen extends StatefulWidget {
 }
 
 class _NoiseScreenState extends State<NoiseScreen> {
-  StreamSubscription<NoiseReading>? _sub;
+  final _source = NoiseSource();
   Timer? _tick;
   Map? _cfg; // {levels, scale, warnText} từ API
   double _now = 0, _sum = 0, _max = 0;
@@ -37,12 +36,12 @@ class _NoiseScreenState extends State<NoiseScreen> {
   void initState() {
     super.initState();
     _loadLevels();
-    _start();
+    if (!NoiseSource.needsTap) _start(); // web: chờ người dùng bấm Bắt đầu đo
   }
 
   @override
   void dispose() {
-    _sub?.cancel();
+    _source.stop();
     _tick?.cancel();
     super.dispose();
   }
@@ -67,11 +66,6 @@ class _NoiseScreenState extends State<NoiseScreen> {
   }
 
   Future<void> _start() async {
-    final st = await Permission.microphone.request();
-    if (!st.isGranted) {
-      setState(() => _error = 'Cần quyền micro để đo tiếng ồn.');
-      return;
-    }
     setState(() {
       _error = null;
       _running = true;
@@ -79,14 +73,21 @@ class _NoiseScreenState extends State<NoiseScreen> {
       _count = _secs = 0;
       _bars.clear();
     });
-    _sub = NoiseMeter().noise.listen((r) {
-      final v = r.meanDecibel;
-      if (v.isNaN || v.isInfinite || v < 0) return;
-      _now = v;
-      _sum += v;
+    final err = await _source.start((x) {
+      _now = x.$1;
+      _sum += x.$1;
       _count++;
-      _max = max(_max, r.maxDecibel.isFinite ? min(r.maxDecibel, 130) : v);
-    }, onError: (_) => setState(() => _error = 'Micro đang bận hoặc không đọc được.'));
+      _max = max(_max, x.$2);
+    });
+    if (err != null) {
+      if (mounted) {
+        setState(() {
+          _error = err;
+          _running = false;
+        });
+      }
+      return;
+    }
     // Cập nhật giao diện 2 lần/giây, cột sóng 20 mẫu gần nhất
     var half = 0;
     _tick = Timer.periodic(const Duration(milliseconds: 500), (_) {
@@ -100,7 +101,7 @@ class _NoiseScreenState extends State<NoiseScreen> {
   }
 
   Future<void> _stop() async {
-    await _sub?.cancel();
+    await _source.stop();
     _tick?.cancel();
     setState(() => _running = false);
     if (_count == 0 || _secs == 0) return;
@@ -157,7 +158,7 @@ class _NoiseScreenState extends State<NoiseScreen> {
                 child: Column(children: [
                   loud
                       ? Pill('Quá ồn · $_time', icon: LucideIcons.ear, tone: Tone.danger)
-                      : Pill(_running ? 'Đang đo · $_time' : 'Đã dừng · $_time', icon: _running ? LucideIcons.circle : LucideIcons.pause),
+                      : Pill(_running ? 'Đang đo · $_time' : (_count == 0 ? 'Bấm Bắt đầu đo' : 'Đã dừng · $_time'), icon: _running ? LucideIcons.circle : LucideIcons.pause),
                   const SizedBox(height: 12),
                   Text.rich(
                     TextSpan(children: [
@@ -283,7 +284,7 @@ class _NoiseScreenState extends State<NoiseScreen> {
               Expanded(
                 flex: 10,
                 child: Btn.secondary('Đo lại', icon: LucideIcons.refreshCw, onTap: () async {
-                  await _sub?.cancel();
+                  await _source.stop();
                   _tick?.cancel();
                   _start();
                 }),

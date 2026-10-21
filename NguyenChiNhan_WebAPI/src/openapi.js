@@ -38,6 +38,7 @@ const E = [
   ['get', '/api/dashboard/staff', 'Dashboard', 'Tổng quan nhân viên', ['Admin', 'Staff']],
   ['get', '/api/tools/translate/languages', 'Tiện ích (mục 5)', 'Ngôn ngữ hỗ trợ', []],
   ['post', '/api/tools/translate', 'Tiện ích (mục 5)', 'f. Dịch chữ (app đọc chữ từ camera/ảnh)', [], obj({ text: s, source: s, target: s }, ['text'])],
+  ['post', '/api/tools/ocr', 'Tiện ích (mục 5)', 'f. Ảnh (base64) → đọc chữ (Tesseract) → dịch. Dùng cho bản web', [], obj({ image: s, source: s, target: s }, ['image'])],
   ['get', '/api/tools/noise/levels', 'Tiện ích (mục 5)', 'd. Bảng mức tiếng ồn', []],
   ['post', '/api/tools/noise/records', 'Tiện ích (mục 5)', 'd. Lưu lần đo, trả mức + lời khuyên', [], obj({ avgDb: n, maxDb: n, durationSec: n }, ['avgDb', 'maxDb', 'durationSec'])],
   ['get', '/api/tools/noise/records', 'Tiện ích (mục 5)', 'd. Lịch sử đo', []],

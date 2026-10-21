@@ -1,4 +1,5 @@
 import { Router } from 'express'
+import { createWorker } from 'tesseract.js'
 import { q } from '../db.js'
 import { auth, HttpError } from '../security.js'
 
@@ -67,6 +68,61 @@ tools.post('/translate', async (req, res) => {
     target,
     targetName: LANGS[target],
     lines: translated.split('\n').length,
+    ms: Date.now() - t0,
+  })
+})
+
+// ---------- f. Đọc chữ trên API (bản web / máy không có ML Kit): ảnh -> Tesseract -> dịch ----------
+let ocrWorker
+const getOcr = () =>
+  (ocrWorker ??= createWorker(['eng', 'vie'], 1, { cachePath: '/tmp/tesseract' }).catch((e) => {
+    ocrWorker = undefined
+    throw e
+  }))
+
+const cleanLines = (text) =>
+  text
+    .split('\n')
+    .map((l) => l.replace(/\s+/g, ' ').trim())
+    .filter((l) => l.length >= 3 && /\p{L}{2,}/u.test(l))
+
+tools.post('/ocr', async (req, res) => {
+  const raw = String(req.body?.image || '').replace(/^data:image\/\w+;base64,/, '')
+  if (!raw) throw new HttpError(400, 'Thiếu ảnh.', 'VALIDATION')
+  const img = Buffer.from(raw, 'base64')
+  if (img.length < 100 || img.length > 3_000_000) throw new HttpError(400, 'Ảnh không hợp lệ (tối đa 3 MB).', 'VALIDATION')
+  const source = LANGS[req.body?.source] ? req.body.source : 'en'
+  const target = LANGS[req.body?.target] && req.body.target !== 'auto' ? req.body.target : 'vi'
+  const t0 = Date.now()
+  let lines
+  try {
+    const { data } = await (await getOcr()).recognize(img)
+    lines = cleanLines(data.text || '')
+  } catch (e) {
+    throw new HttpError(502, 'Không đọc được ảnh, thử lại nhé.', 'OCR_FAILED', { reason: e.message })
+  }
+  const ocrMs = Date.now() - t0
+  if (!lines.length) return res.json({ text: '', lines: 0, translated: '', ocrMs, ms: Date.now() - t0 })
+  const text = lines.join('\n')
+  let out
+  try {
+    out = await translateText(text, source, target)
+  } catch (e) {
+    throw new HttpError(502, 'Dịch vụ dịch đang bận, thử lại sau.', 'TRANSLATE_FAILED', { reason: e.message, text })
+  }
+  await q(
+    'INSERT INTO translations (user_id, source_lang, target_lang, source_text, translated_text) VALUES ($1,$2,$3,$4,$5)',
+    [req.user.id, out.detected, target, text, out.translated],
+  )
+  res.json({
+    text,
+    lines: lines.length,
+    translated: out.translated,
+    source: out.detected,
+    sourceName: LANGS[out.detected] || out.detected,
+    target,
+    targetName: LANGS[target],
+    ocrMs,
     ms: Date.now() - t0,
   })
 })

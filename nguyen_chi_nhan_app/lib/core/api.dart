@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/foundation.dart';
@@ -79,16 +78,21 @@ class Api {
   Future<Map<String, String>> _deviceHeaders() async {
     try {
       final d = DeviceInfoPlugin();
-      if (Platform.isAndroid) {
+      if (kIsWeb) {
+        final w = await d.webBrowserInfo;
+        final os = (w.platform ?? '').toLowerCase().contains('iphone') || (w.userAgent ?? '').contains('iPhone') ? 'iPhone' : (w.platform ?? 'Web');
+        return {'X-Device-Name': '${w.browserName.name[0].toUpperCase()}${w.browserName.name.substring(1)} · $os', 'X-Device-Platform': 'Web'};
+      }
+      if (defaultTargetPlatform == TargetPlatform.android) {
         final a = await d.androidInfo;
         return {'X-Device-Name': '${a.manufacturer[0].toUpperCase()}${a.manufacturer.substring(1)} ${a.model}', 'X-Device-Platform': 'Android ${a.version.release}'};
       }
-      if (Platform.isIOS) {
+      if (defaultTargetPlatform == TargetPlatform.iOS) {
         final a = await d.iosInfo;
         return {'X-Device-Name': a.utsname.machine, 'X-Device-Platform': 'iOS ${a.systemVersion}'};
       }
     } catch (_) {}
-    return {'X-Device-Name': 'Flutter ${Platform.operatingSystem}', 'X-Device-Platform': Platform.operatingSystem};
+    return {'X-Device-Name': 'Flutter ${defaultTargetPlatform.name}', 'X-Device-Platform': defaultTargetPlatform.name};
   }
 
   Future<dynamic> get(String path) => _send('GET', path);

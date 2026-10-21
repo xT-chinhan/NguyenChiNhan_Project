@@ -1,7 +1,9 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:camera/camera.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
@@ -26,6 +28,18 @@ Future<String> recognizeFile(TextRecognizer r, String path) async {
   return lines.join('\n');
 }
 
+/// Đọc chữ + dịch. Android: ML Kit đọc trên máy, API dịch. Web (không có ML Kit): gửi ảnh để API đọc + dịch.
+Future<Map<String, dynamic>> readAndTranslate(XFile shot, String src, String tgt, TextRecognizer? r) async {
+  if (r == null) {
+    final bytes = await shot.readAsBytes();
+    return Map<String, dynamic>.from(await Api.i.post('/tools/ocr', {'image': base64Encode(bytes), 'source': src, 'target': tgt}));
+  }
+  final text = await recognizeFile(r, shot.path);
+  if (text.isEmpty) return {'text': ''};
+  final res = Map<String, dynamic>.from(await Api.i.post('/tools/translate', {'text': text, 'source': src, 'target': tgt}));
+  return {...res, 'text': text};
+}
+
 /// 20 f · Dịch realtime: camera đọc chữ mỗi 1,4 giây, gửi API dịch, phủ bản dịch lên khung hình
 class TranslateCameraScreen extends StatefulWidget {
   const TranslateCameraScreen({super.key});
@@ -34,7 +48,7 @@ class TranslateCameraScreen extends StatefulWidget {
 }
 
 class _TranslateCameraScreenState extends State<TranslateCameraScreen> with WidgetsBindingObserver {
-  final _recognizer = TextRecognizer(script: TextRecognitionScript.latin);
+  final TextRecognizer? _recognizer = kIsWeb ? null : TextRecognizer(script: TextRecognitionScript.latin);
   CameraController? _cam;
   String? _camError;
   int _dir = 0; // 0: Anh -> Việt, 1: Việt -> Anh
@@ -59,7 +73,7 @@ class _TranslateCameraScreenState extends State<TranslateCameraScreen> with Widg
     _alive = false;
     WidgetsBinding.instance.removeObserver(this);
     _cam?.dispose();
-    _recognizer.close();
+    _recognizer?.close();
     super.dispose();
   }
 
@@ -97,7 +111,7 @@ class _TranslateCameraScreenState extends State<TranslateCameraScreen> with Widg
 
   Future<void> _loop() async {
     while (_alive && mounted && _cam != null) {
-      await Future.delayed(const Duration(milliseconds: 1400));
+      await Future.delayed(Duration(milliseconds: kIsWeb ? 2200 : 1400));
       if (!_busy) await _scanFrame();
     }
   }
@@ -108,12 +122,12 @@ class _TranslateCameraScreenState extends State<TranslateCameraScreen> with Widg
     _busy = true;
     try {
       final shot = await cam.takePicture();
-      final text = await recognizeFile(_recognizer, shot.path);
-      File(shot.path).delete().ignore();
+      final (src, tgt) = _langs;
+      final r = await readAndTranslate(shot, src, tgt, _recognizer);
+      if (!kIsWeb) File(shot.path).delete().ignore();
+      final text = (r['text'] ?? '') as String;
       if (text.isEmpty || text == _lastText) return;
       _lastText = text;
-      final (src, tgt) = _langs;
-      final r = await Api.i.post('/tools/translate', {'text': text, 'source': src, 'target': tgt});
       final tr = (r['translated'] as String).split('\n');
       final orig = text.split('\n');
       if (mounted) {
@@ -132,10 +146,9 @@ class _TranslateCameraScreenState extends State<TranslateCameraScreen> with Widg
   }
 
   Future<void> _captureAndOpen({bool gallery = false}) async {
-    String? path;
+    XFile? shot;
     if (gallery) {
-      final x = await ImagePicker().pickImage(source: ImageSource.gallery, maxWidth: 1600);
-      path = x?.path;
+      shot = await ImagePicker().pickImage(source: ImageSource.gallery, maxWidth: 1600, imageQuality: 85);
     } else {
       final cam = _cam;
       if (cam == null) return;
@@ -144,14 +157,15 @@ class _TranslateCameraScreenState extends State<TranslateCameraScreen> with Widg
       }
       _busy = true;
       try {
-        path = (await cam.takePicture()).path;
+        shot = await cam.takePicture();
       } finally {
         _busy = false;
       }
     }
-    if (path == null || !mounted) return;
+    if (shot == null || !mounted) return;
     final (src, tgt) = _langs;
-    Navigator.push(context, MaterialPageRoute(builder: (_) => TranslateResultScreen(imagePath: path!, source: src, target: tgt, recognizer: _recognizer)));
+    final picked = shot;
+    Navigator.push(context, MaterialPageRoute(builder: (_) => TranslateResultScreen(shot: picked, source: src, target: tgt, recognizer: _recognizer)));
   }
 
   @override
@@ -165,10 +179,12 @@ class _TranslateCameraScreenState extends State<TranslateCameraScreen> with Widg
         body: Stack(children: [
           Positioned.fill(
             child: cam != null && cam.value.isInitialized
-                ? FittedBox(
-                    fit: BoxFit.cover,
-                    child: SizedBox(width: cam.value.previewSize!.height, height: cam.value.previewSize!.width, child: CameraPreview(cam)),
-                  )
+                ? (kIsWeb || cam.value.previewSize == null
+                    ? Center(child: CameraPreview(cam))
+                    : FittedBox(
+                        fit: BoxFit.cover,
+                        child: SizedBox(width: cam.value.previewSize!.height, height: cam.value.previewSize!.width, child: CameraPreview(cam)),
+                      ))
                 : Center(child: Text(_camError ?? _status, textAlign: TextAlign.center, style: const TextStyle(color: Colors.white70))),
           ),
           // Bản dịch phủ lên khung hình
@@ -205,16 +221,17 @@ class _TranslateCameraScreenState extends State<TranslateCameraScreen> with Widg
                     Text(_status, style: const TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w600)),
                   ]),
                 ),
-                _Glass(
-                  onTap: cam == null
-                      ? null
-                      : () async {
-                          _torch = !_torch;
-                          await cam.setFlashMode(_torch ? FlashMode.torch : FlashMode.off);
-                          setState(() {});
-                        },
-                  child: Icon(_torch ? LucideIcons.zapOff : LucideIcons.zap, size: 18, color: Colors.white),
-                ),
+                if (!kIsWeb)
+                  _Glass(
+                    onTap: cam == null
+                        ? null
+                        : () async {
+                            _torch = !_torch;
+                            await cam.setFlashMode(_torch ? FlashMode.torch : FlashMode.off);
+                            setState(() {});
+                          },
+                    child: Icon(_torch ? LucideIcons.zapOff : LucideIcons.zap, size: 18, color: Colors.white),
+                  ),
               ]),
             ),
           ),
@@ -252,7 +269,7 @@ class _TranslateCameraScreenState extends State<TranslateCameraScreen> with Widg
                   Expanded(child: Btn('Chụp & dịch', icon: LucideIcons.camera, onTap: cam == null ? null : _captureAndOpen)),
                 ]),
                 const SizedBox(height: 12),
-                Text('Đọc chữ trên máy · dịch bằng NguyenChiNhan_WebAPI', style: T.bodyS.copyWith(color: c.muted)),
+                Text(kIsWeb ? 'Máy chủ đọc chữ và dịch (NguyenChiNhan_WebAPI)' : 'Đọc chữ trên máy · dịch bằng NguyenChiNhan_WebAPI', style: T.bodyS.copyWith(color: c.muted)),
               ]),
             ),
           ),
@@ -282,10 +299,10 @@ class _Glass extends StatelessWidget {
 
 /// 21 f · Kết quả dịch từ ảnh chụp / ảnh chọn
 class TranslateResultScreen extends StatefulWidget {
-  final String imagePath;
+  final XFile shot;
   final String source, target;
-  final TextRecognizer recognizer;
-  const TranslateResultScreen({super.key, required this.imagePath, required this.source, required this.target, required this.recognizer});
+  final TextRecognizer? recognizer; // null = bản web, API đọc chữ
+  const TranslateResultScreen({super.key, required this.shot, required this.source, required this.target, this.recognizer});
   @override
   State<TranslateResultScreen> createState() => _TranslateResultScreenState();
 }
@@ -294,6 +311,7 @@ class _TranslateResultScreenState extends State<TranslateResultScreen> {
   String? _text;
   Map? _res;
   String? _error;
+  Uint8List? _bytes;
 
   @override
   void initState() {
@@ -303,12 +321,15 @@ class _TranslateResultScreenState extends State<TranslateResultScreen> {
 
   Future<void> _run() async {
     try {
-      final text = await recognizeFile(widget.recognizer, widget.imagePath);
+      final bytes = await widget.shot.readAsBytes();
       if (!mounted) return;
-      setState(() => _text = text);
-      if (text.isEmpty) return;
-      final r = await Api.i.post('/tools/translate', {'text': text, 'source': widget.source, 'target': widget.target});
-      if (mounted) setState(() => _res = r);
+      setState(() => _bytes = bytes);
+      final r = await readAndTranslate(widget.shot, widget.source, widget.target, widget.recognizer);
+      if (!mounted) return;
+      setState(() {
+        _text = (r['text'] ?? '') as String;
+        _res = _text!.isEmpty ? null : r;
+      });
     } on ApiException catch (e) {
       if (mounted) setState(() => _error = e.message);
     } catch (_) {
@@ -333,7 +354,10 @@ class _TranslateResultScreenState extends State<TranslateResultScreen> {
         child: Column(children: [
           Expanded(
             child: ListView(padding: const EdgeInsets.fromLTRB(kPad, 4, kPad, 16), children: [
-              ClipRRect(borderRadius: BorderRadius.circular(18), child: Image.file(File(widget.imagePath), height: 150, fit: BoxFit.cover)),
+              ClipRRect(
+                borderRadius: BorderRadius.circular(18),
+                child: _bytes == null ? const Skeleton(height: 150, radius: 18) : Image.memory(_bytes!, height: 150, fit: BoxFit.cover),
+              ),
               const SizedBox(height: 16),
               if (_error != null)
                 Note(_error!, icon: LucideIcons.circleAlert)
@@ -364,7 +388,7 @@ class _TranslateResultScreenState extends State<TranslateResultScreen> {
                   Row(children: [
                     Icon(LucideIcons.scanText, size: 15, color: c.muted),
                     const SizedBox(width: 6),
-                    Text('ML Kit đọc chữ · máy chủ dịch · ${r['ms']} ms', style: T.bodyS.copyWith(color: c.muted)),
+                    Text('${widget.recognizer == null ? 'Máy chủ đọc chữ và dịch' : 'ML Kit đọc chữ · máy chủ dịch'} · ${r['ms']} ms', style: T.bodyS.copyWith(color: c.muted)),
                   ]),
                 ],
               ],

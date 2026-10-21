@@ -1,11 +1,11 @@
 {
-    "name": "nguyen_chi_nhan_app",
-    "short_name": "nguyen_chi_nhan_app",
+    "name": "Chí Nhân Store",
+    "short_name": "Chí Nhân",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#0175C2",
-    "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "background_color": "#F7F6F3",
+    "theme_color": "#F7F6F3",
+    "description": "Chí Nhân Store · Nguyễn Chí Nhân",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

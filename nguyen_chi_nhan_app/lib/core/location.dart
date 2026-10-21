@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:geolocator/geolocator.dart';
 
 /// Một lần lấy GPS: app chỉ đọc cảm biến rồi gửi API, API mới quyết định hợp lệ hay không
@@ -32,7 +33,9 @@ class Locator {
     var p = await Geolocator.checkPermission();
     if (p == LocationPermission.denied) p = await Geolocator.requestPermission();
     if (p == LocationPermission.denied || p == LocationPermission.deniedForever) {
-      throw const LocationProblem('Cho phép app dùng vị trí để chấm công tại cửa hàng.');
+      throw LocationProblem(kIsWeb
+          ? 'Cho phép Safari dùng vị trí: Cài đặt › Quyền riêng tư › Dịch vụ định vị › Safari › Khi dùng ứng dụng.'
+          : 'Cho phép app dùng vị trí để chấm công tại cửa hàng.');
     }
     final pos = await Geolocator.getCurrentPosition(
       locationSettings: const LocationSettings(accuracy: LocationAccuracy.high, timeLimit: Duration(seconds: 20)),
@@ -41,6 +44,8 @@ class Locator {
   }
 
   /// Mở cài đặt để bật GPS hoặc cấp quyền
-  static Future<void> openSettings({bool serviceOff = false}) =>
-      serviceOff ? Geolocator.openLocationSettings() : Geolocator.openAppSettings();
+  static Future<void> openSettings({bool serviceOff = false}) async {
+    if (kIsWeb) return; // Safari: hỏi quyền lại khi lấy vị trí, không có trang cài đặt để mở
+    serviceOff ? await Geolocator.openLocationSettings() : await Geolocator.openAppSettings();
+  }
 }

@@ -14,7 +14,7 @@ import { openapi, swaggerHtml } from './openapi.js'
 const app = express()
 app.set('trust proxy', true)
 app.use(cors())
-app.use(express.json({ limit: '200kb' }))
+app.use(express.json({ limit: '4mb' })) // ảnh OCR gửi dạng base64
 app.use(express.urlencoded({ extended: false }))
 
 app.get('/', (_req, res) => res.redirect('/swagger'))
