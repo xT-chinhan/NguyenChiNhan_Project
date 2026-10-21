@@ -10,7 +10,7 @@ Mã nguồn: https://github.com/xT-chinhan/NguyenChiNhan_Project
 
 TÀI KHOẢN (OTP gửi về hutech.vn.online@gmail.com)
 -----------------------------------------------------
-Quản trị    chinhan   Admin@123
+Quản trị    chinhan   admin123
 Nhân viên   phuc      Staff@123
 Khách hàng  baongoc   User@123
 

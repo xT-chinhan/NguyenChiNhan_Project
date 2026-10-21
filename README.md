@@ -17,7 +17,7 @@
 
 | Vai trò | Tên đăng nhập | Mật khẩu |
 |---|---|---|
-| Quản trị | `chinhan` | `Admin@123` |
+| Quản trị | `chinhan` | `admin123` |
 | Nhân viên | `phuc` | `Staff@123` |
 | Khách hàng | `baongoc` | `User@123` |
 

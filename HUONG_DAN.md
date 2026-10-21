@@ -7,7 +7,7 @@
 ## Tài khoản mẫu
 | Vai trò | Tên đăng nhập | Mật khẩu | Vào trang |
 |---|---|---|---|
-| Quản trị | `chinhan` | `Admin@123` | Tổng quan · Danh mục · Sản phẩm · Người dùng · Tài khoản |
+| Quản trị | `chinhan` | `admin123` | Tổng quan · Danh mục · Sản phẩm · Người dùng · Tài khoản |
 | Nhân viên | `phuc` | `Staff@123` | Tổng quan · Sản phẩm · Chấm công · Tiện ích · Tài khoản |
 | Khách hàng | `baongoc` | `User@123` | Cửa hàng · Tiện ích · Tài khoản |
 
