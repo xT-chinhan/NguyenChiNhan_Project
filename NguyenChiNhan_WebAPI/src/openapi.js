@@ -45,8 +45,11 @@ const E = [
   ['post', '/api/tools/location/share', 'Tiện ích (mục 5)', 'b. Tọa độ → địa chỉ + nội dung chia sẻ', [], obj({ lat: n, lng: n, accuracy: n }, ['lat', 'lng'])],
   ['get', '/api/tools/location/history', 'Tiện ích (mục 5)', 'b. Lịch sử chia sẻ', []],
   ['get', '/api/attendance/today', 'Chấm công', 'Trạng thái hôm nay của tôi', ['Staff', 'Admin']],
-  ['post', '/api/attendance/check-in', 'Chấm công', 'Vào ca (mỗi ngày 1 lần, sau 08:00 là trễ)', ['Staff', 'Admin']],
-  ['post', '/api/attendance/check-out', 'Chấm công', 'Tan ca', ['Staff', 'Admin']],
+  ['post', '/api/attendance/check-location', 'Chấm công', 'Đánh giá vị trí GPS: trong/ngoài bán kính, vị trí giả, sai số (không ghi gì)', ['Staff', 'Admin'], obj({ lat: n, lng: n, accuracy: n, isMocked: b }, ['lat', 'lng'])],
+  ['post', '/api/attendance/check-in', 'Chấm công', 'Vào ca bằng GPS (mỗi ngày 1 lần, sau 08:00 là trễ)', ['Staff', 'Admin'], obj({ lat: n, lng: n, accuracy: n, isMocked: b }, ['lat', 'lng'])],
+  ['post', '/api/attendance/check-out', 'Chấm công', 'Tan ca bằng GPS', ['Staff', 'Admin'], obj({ lat: n, lng: n, accuracy: n, isMocked: b }, ['lat', 'lng'])],
+  ['get', '/api/attendance/site', 'Chấm công', 'Mốc chấm công (vị trí cửa hàng + bán kính)', ['Staff', 'Admin']],
+  ['put', '/api/attendance/site', 'Chấm công', 'Admin đặt mốc tại vị trí hiện tại và/hoặc đổi bán kính (20–1000 m)', ['Admin'], obj({ lat: n, lng: n, accuracy: n, isMocked: b, radius: n, name: s })],
   ['get', '/api/attendance/me', 'Chấm công', 'Bảng công tháng của tôi', ['Staff', 'Admin'], null, { month: 'YYYY-MM' }],
   ['get', '/api/attendance', 'Chấm công', 'Admin xem nhân viên đã chấm công trong ngày', ['Admin'], null, { date: 'YYYY-MM-DD' }],
 ]
