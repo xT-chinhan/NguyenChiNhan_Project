@@ -13,6 +13,7 @@ import 'package:nguyen_chi_nhan_app/core/api.dart';
 import 'package:nguyen_chi_nhan_app/core/theme.dart';
 import 'package:nguyen_chi_nhan_app/features/account/account_screen.dart';
 import 'package:nguyen_chi_nhan_app/features/account/login_history_screen.dart';
+import 'package:nguyen_chi_nhan_app/features/attendance/attendance_screen.dart';
 import 'package:nguyen_chi_nhan_app/features/auth/login_screen.dart';
 import 'package:nguyen_chi_nhan_app/features/auth/otp_screen.dart';
 import 'package:nguyen_chi_nhan_app/features/auth/register_screen.dart';
@@ -52,8 +53,10 @@ http.Client _mock() => MockClient((req) async {
         '/users?': 'users',
         '/users': 'users',
         '/tools/location/resolve': 'location',
+        '/attendance/today': 'att_today',
+        '/attendance/me': 'att_me',
       };
-      final key = routes[p];
+      final key = routes[p] ?? (p.startsWith('/attendance?date=') ? 'att_admin' : null);
       if (key == null) return http.Response(jsonEncode({'message': 'no fixture $p'}), 404);
       return http.Response.bytes(utf8.encode(jsonEncode(fx[key])), 200, headers: {'content-type': 'application/json; charset=utf-8'});
     });
@@ -129,6 +132,14 @@ void main() {
   });
   testWidgets('52 đã khóa', (t) async {
     await shot(t, '52-da-khoa', const LockedScreen(result: {'revokedSessions': 3, 'resetCodeSent': true, 'adminsNotified': 1, 'maskedEmail': 'hut•••@gmail.com', 'username': 'baongoc'}));
+  });
+  testWidgets('35 NV chấm công', (t) async {
+    _session('Staff');
+    await shot(t, '35-nv-cham-cong', const AttendanceScreen());
+  });
+  testWidgets('48 Admin chấm công', (t) async {
+    _session('Admin');
+    await shot(t, '48-ad-cham-cong', const AttendanceAdminScreen());
   });
   testWidgets('dark mode cửa hàng', (t) async {
     _session('User');

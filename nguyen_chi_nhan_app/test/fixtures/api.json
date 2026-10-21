@@ -14,7 +14,7 @@
   }
  },
  "session_Staff": {
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIyIiwic2lkIjozMCwidmVyIjowLCJyb2xlIjoiU3RhZmYiLCJ1bmlxdWVfbmFtZSI6InBodWMiLCJpYXQiOjE3OTI1NTc3NzYsImV4cCI6MTc5MzE2MjU3NiwiYXVkIjoiTmd1eWVuQ2hpTmhhbl9BcHAiLCJpc3MiOiJOZ3V5ZW5DaGlOaGFuX1dlYkFQSSJ9.FpAMLJMBZE85QbmPCpMEnMUlqnQfuGiWnpTpXCFGGS0",
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIyIiwic2lkIjo0MSwidmVyIjowLCJyb2xlIjoiU3RhZmYiLCJ1bmlxdWVfbmFtZSI6InBodWMiLCJpYXQiOjE3OTI1NjcwMTMsImV4cCI6MTc5MzE3MTgxMywiYXVkIjoiTmd1eWVuQ2hpTmhhbl9BcHAiLCJpc3MiOiJOZ3V5ZW5DaGlOaGFuX1dlYkFQSSJ9.079G26jx917yIz4NGCIeeYdyVrLq4-vN0-1XTBU8PiA",
   "role": "Staff",
   "user": {
    "id": 2,
@@ -28,7 +28,7 @@
   }
  },
  "session_Admin": {
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIiwic2lkIjozMSwidmVyIjowLCJyb2xlIjoiQWRtaW4iLCJ1bmlxdWVfbmFtZSI6ImNoaW5oYW4iLCJpYXQiOjE3OTI1NTc3NzYsImV4cCI6MTc5MzE2MjU3NiwiYXVkIjoiTmd1eWVuQ2hpTmhhbl9BcHAiLCJpc3MiOiJOZ3V5ZW5DaGlOaGFuX1dlYkFQSSJ9.tNs7RijVJuSkoEovGYah8ZJm7vmnb8RiPjOnM7DUgHw",
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIiwic2lkIjo0MiwidmVyIjowLCJyb2xlIjoiQWRtaW4iLCJ1bmlxdWVfbmFtZSI6ImNoaW5oYW4iLCJpYXQiOjE3OTI1NjcwMTMsImV4cCI6MTc5MzE3MTgxMywiYXVkIjoiTmd1eWVuQ2hpTmhhbl9BcHAiLCJpc3MiOiJOZ3V5ZW5DaGlOaGFuX1dlYkFQSSJ9.Kfb06wQkO0JZ6JwnBFtl4z9NPFydtyV9AEJhBn76G40",
   "role": "Admin",
   "user": {
    "id": 1,
@@ -720,5 +720,79 @@
   "address": "Phường Thạnh Mỹ Tây, Thành phố Hồ Chí Minh",
   "mapsUrl": "https://maps.google.com/?q=10.80182,106.71481",
   "shareText": "📍 Mình đang ở Hẻm 479 Điện Biên Phủ, Phường Thạnh Mỹ Tây, Thành phố Hồ Chí Minh\nhttps://maps.google.com/?q=10.80182,106.71481"
+ },
+ "att_today": {
+  "shiftStart": "08:00",
+  "record": {
+   "id": 1,
+   "date": "2026-10-21",
+   "checkIn": "2026-10-21T07:15:40.572Z",
+   "checkOut": "2026-10-21T07:15:40.604Z",
+   "late": true,
+   "minutes": 0
+  },
+  "status": "done"
+ },
+ "att_me": {
+  "month": "2026-10",
+  "days": 1,
+  "lateDays": 1,
+  "totalMinutes": 0,
+  "items": [
+   {
+    "id": 1,
+    "date": "2026-10-21",
+    "checkIn": "2026-10-21T07:15:40.572Z",
+    "checkOut": "2026-10-21T07:15:40.604Z",
+    "late": true,
+    "minutes": 0
+   }
+  ]
+ },
+ "att_admin": {
+  "date": "2026-10-21",
+  "shiftStart": "08:00",
+  "total": 5,
+  "present": 1,
+  "late": 1,
+  "items": [
+   {
+    "userId": 2,
+    "fullName": "Lê Hoàng Phúc",
+    "username": "phuc",
+    "record": {
+     "id": 1,
+     "date": "2026-10-21",
+     "checkIn": "2026-10-21T07:15:40.572Z",
+     "checkOut": "2026-10-21T07:15:40.604Z",
+     "late": true,
+     "minutes": 0
+    }
+   },
+   {
+    "userId": 4,
+    "fullName": "Khách Test",
+    "username": "khmvhlw77s",
+    "record": null
+   },
+   {
+    "userId": 5,
+    "fullName": "Khách Test",
+    "username": "khmvhlwpxm",
+    "record": null
+   },
+   {
+    "userId": 6,
+    "fullName": "Khách Test",
+    "username": "khmvhmm6oj",
+    "record": null
+   },
+   {
+    "userId": 7,
+    "fullName": "Khách Test",
+    "username": "khmvhs2l3p",
+    "record": null
+   }
+  ]
  }
 }

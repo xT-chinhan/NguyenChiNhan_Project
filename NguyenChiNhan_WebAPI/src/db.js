@@ -109,6 +109,14 @@ CREATE TABLE IF NOT EXISTS translations (
   translated_text TEXT NOT NULL,
   created_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
+CREATE TABLE IF NOT EXISTS attendances (
+  id SERIAL PRIMARY KEY,
+  user_id INT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  work_date DATE NOT NULL,
+  check_in TIMESTAMPTZ NOT NULL,
+  check_out TIMESTAMPTZ,
+  UNIQUE (user_id, work_date)
+);
 `
 
 async function seed() {

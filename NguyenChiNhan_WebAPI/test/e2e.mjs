@@ -189,5 +189,37 @@ r = await call('post', '/api/auth/logout', null, kh3.token)
 r = await call('get', '/api/me', null, kh3.token)
 ok(r.status === 401, 'logout thu hồi phiên', r)
 
+// --- Chấm công (nhánh feature/cham-cong) ---
+const nvT = (await login('phuc', 'Staff@123', 'Staff Phone')).token
+const adT = (await login('chinhan', 'Admin@123', 'Admin Phone')).token
+const khT = (await login('baongoc', 'User@123', 'Galaxy A54')).token
+r = await call('get', '/api/attendance/today', null, khT)
+ok(r.status === 403, 'khách không chấm công', r)
+r = await call('get', '/api/attendance/today', null, nvT)
+ok(r.status === 200 && ['none', 'working', 'done'].includes(r.data.status), 'trạng thái hôm nay', r.data)
+if (r.data.status === 'none') {
+  r = await call('post', '/api/attendance/check-out', null, nvT)
+  ok(r.status === 409 && r.data.code === 'NOT_CHECKED_IN', 'tan ca khi chưa vào ca', r)
+  r = await call('post', '/api/attendance/check-in', null, nvT)
+  ok(r.status === 201 && r.data.record.checkIn && typeof r.data.record.late === 'boolean', 'vào ca', r.data)
+}
+r = await call('post', '/api/attendance/check-in', null, nvT)
+ok(r.status === 409 && r.data.code === 'ALREADY_CHECKED_IN', 'vào ca 2 lần bị chặn', r)
+r = await call('get', '/api/attendance/today', null, nvT)
+if (r.data.status === 'working') {
+  r = await call('post', '/api/attendance/check-out', null, nvT)
+  ok(r.status === 200 && r.data.record.checkOut && r.data.record.minutes >= 0, 'tan ca', r.data)
+}
+r = await call('post', '/api/attendance/check-out', null, nvT)
+ok(r.status === 409 && r.data.code === 'ALREADY_CHECKED_OUT', 'tan ca 2 lần bị chặn', r)
+r = await call('get', '/api/attendance/me', null, nvT)
+ok(r.status === 200 && r.data.days >= 1 && /^\d{4}-\d{2}$/.test(r.data.month) && r.data.items[0].checkOut, 'bảng công tháng', r.data)
+r = await call('get', '/api/attendance', null, nvT)
+ok(r.status === 403, 'nhân viên không xem công người khác', r)
+r = await call('get', '/api/attendance', null, adT)
+ok(r.status === 200 && r.data.present >= 1 && r.data.items.some((x) => x.username === 'phuc' && x.record), 'admin xem chấm công hôm nay', r.data)
+r = await call('get', '/api/attendance?date=2020-01-01', null, adT)
+ok(r.status === 200 && r.data.present === 0 && r.data.date === '2020-01-01', 'admin xem ngày cũ', r.data)
+
 console.log(`\n${pass} pass, ${fail} fail`)
 process.exit(fail ? 1 : 0)
