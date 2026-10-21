@@ -32,7 +32,8 @@ export async function denySession(sessionId, userId) {
     [userId],
   )
   let resetSent = true
-  await issueOtp(user, 'reset').catch(() => (resetSent = false)) // đang trong 45s chờ thì mã cũ vẫn dùng được
+  // Thao tác bảo mật: luôn gửi mã mới, không áp thời gian chờ 45s
+  await issueOtp(user, 'reset', { cooldown: false }).catch(() => (resetSent = false))
   const admins = (await q(`SELECT * FROM users WHERE role = 'Admin' AND id <> $1`, [userId])).rows
   for (const a of admins) {
     const m = adminNoticeMail(a, user, s)

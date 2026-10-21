@@ -118,7 +118,7 @@ tools.get('/noise/records', async (req, res) => {
 })
 
 // ---------- b. Chia sẻ vị trí: app gửi tọa độ GPS, API tìm địa chỉ + tạo nội dung chia sẻ ----------
-async function reverseGeocode(lat, lng) {
+export async function reverseGeocode(lat, lng) {
   try {
     const r = await fetch(
       `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lng}&accept-language=vi&zoom=18`,

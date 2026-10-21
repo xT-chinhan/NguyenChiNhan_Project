@@ -10,6 +10,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
 import 'package:nguyen_chi_nhan_app/core/api.dart';
+import 'package:nguyen_chi_nhan_app/core/location.dart';
 import 'package:nguyen_chi_nhan_app/core/theme.dart';
 import 'package:nguyen_chi_nhan_app/features/account/account_screen.dart';
 import 'package:nguyen_chi_nhan_app/features/account/login_history_screen.dart';
@@ -53,10 +54,13 @@ http.Client _mock() => MockClient((req) async {
         '/users?': 'users',
         '/users': 'users',
         '/tools/location/resolve': 'location',
-        '/attendance/today': 'att_today',
-        '/attendance/me': 'att_me',
+        '/attendance/today': 'att_today_none',
+        '/attendance/me': 'att_me_none',
+        '/attendance/site': 'att_site',
+        '/attendance': 'att_admin',
       };
-      final key = routes[p] ?? (p.startsWith('/attendance?date=') ? 'att_admin' : null);
+      var key = routes[p] ?? (p.startsWith('/attendance?date=') ? 'att_admin' : null);
+      if (p == '/attendance/check-location') key = (jsonDecode(req.body)['lat'] as num) > 10.81 ? 'loc_outside' : 'loc_inside';
       if (key == null) return http.Response(jsonEncode({'message': 'no fixture $p'}), 404);
       return http.Response.bytes(utf8.encode(jsonEncode(fx[key])), 200, headers: {'content-type': 'application/json; charset=utf-8'});
     });
@@ -133,13 +137,28 @@ void main() {
   testWidgets('52 đã khóa', (t) async {
     await shot(t, '52-da-khoa', const LockedScreen(result: {'revokedSessions': 3, 'resetCodeSent': true, 'adminsNotified': 1, 'maskedEmail': 'hut•••@gmail.com', 'username': 'baongoc'}));
   });
-  testWidgets('35 NV chấm công', (t) async {
-    _session('Staff');
-    await shot(t, '35-nv-cham-cong', const AttendanceScreen());
+  testWidgets('70 chấm công: trong khu vực', (t) async {
+    _session('StaffFresh');
+    Locator.override = () async => const GeoFix(10.802, 106.7149, 12);
+    await shot(t, '70-cc-trong-khu-vuc', const AttendanceScreen());
   });
-  testWidgets('48 Admin chấm công', (t) async {
+  testWidgets('74 chấm công: ngoài khu vực', (t) async {
+    _session('StaffFresh');
+    Locator.override = () async => const GeoFix(10.8231, 106.6297, 10);
+    await shot(t, '74-cc-ngoai-khu-vuc', const AttendanceScreen());
+  });
+  testWidgets('75 chấm công: tắt GPS', (t) async {
+    _session('StaffFresh');
+    Locator.override = () async => throw const LocationProblem('Bật Vị trí (GPS) trên điện thoại để chấm công tại cửa hàng.', serviceOff: true);
+    await shot(t, '75-cc-chua-co-vi-tri', const AttendanceScreen());
+  });
+  testWidgets('73 Admin chấm công', (t) async {
     _session('Admin');
-    await shot(t, '48-ad-cham-cong', const AttendanceAdminScreen());
+    await shot(t, '73-cc-admin', const AttendanceAdminScreen());
+  });
+  testWidgets('76 Admin vị trí chấm công', (t) async {
+    _session('Admin');
+    await shot(t, '76-cc-admin-vi-tri', const AttendanceSiteScreen());
   });
   testWidgets('dark mode cửa hàng', (t) async {
     _session('User');

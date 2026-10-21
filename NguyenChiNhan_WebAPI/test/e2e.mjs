@@ -189,37 +189,92 @@ r = await call('post', '/api/auth/logout', null, kh3.token)
 r = await call('get', '/api/me', null, kh3.token)
 ok(r.status === 401, 'logout thu hồi phiên', r)
 
-// --- Chấm công (nhánh feature/cham-cong) ---
-const nvT = (await login('phuc', 'Staff@123', 'Staff Phone')).token
+// --- Chấm công GPS (nhánh feature/cham-cong) ---
 const adT = (await login('chinhan', 'Admin@123', 'Admin Phone')).token
 const khT = (await login('baongoc', 'User@123', 'Galaxy A54')).token
+const nvName = `nv${uniq}`
+r = await call('post', '/api/users', { fullName: 'Nhân Viên Test', username: nvName, email: 'nv@example.com', password: 'Staff@123', role: 'Staff' }, adT)
+ok(r.status === 201, 'admin tạo nhân viên test', r)
+const nvT = (await login(nvName, 'Staff@123', 'NV Phone')).token
+const SITE = { lat: 10.80182, lng: 106.71481 }
+const IN = { lat: 10.802, lng: 106.7149, accuracy: 12 } // ~22 m
+const EDGE_IN = { lat: 10.80262, lng: 106.71481, accuracy: 10 } // ~89 m
+const EDGE_OUT = { lat: 10.80272, lng: 106.71481, accuracy: 10 } // ~100,1 m
+const FAR = { lat: 10.8231, lng: 106.6297, accuracy: 10 } // ~9,6 km
+
 r = await call('get', '/api/attendance/today', null, khT)
 ok(r.status === 403, 'khách không chấm công', r)
 r = await call('get', '/api/attendance/today', null, nvT)
-ok(r.status === 200 && ['none', 'working', 'done'].includes(r.data.status), 'trạng thái hôm nay', r.data)
-if (r.data.status === 'none') {
-  r = await call('post', '/api/attendance/check-out', null, nvT)
-  ok(r.status === 409 && r.data.code === 'NOT_CHECKED_IN', 'tan ca khi chưa vào ca', r)
-  r = await call('post', '/api/attendance/check-in', null, nvT)
-  ok(r.status === 201 && r.data.record.checkIn && typeof r.data.record.late === 'boolean', 'vào ca', r.data)
-}
+ok(r.status === 200 && r.data.status === 'none' && r.data.serverTime && r.data.hint && r.data.site.radius === 100 && r.data.site.lat === SITE.lat, 'today: chưa vào ca + giờ máy chủ + mốc', r.data)
+r = await call('post', '/api/attendance/check-location', IN, nvT)
+ok(r.status === 200 && r.data.allowed && r.data.code === 'INSIDE' && r.data.distance > 15 && r.data.distance < 30 && r.data.message.startsWith('Trong khu vực'), 'check-location trong khu vực', r.data)
+r = await call('post', '/api/attendance/check-location', EDGE_IN, nvT)
+ok(r.data.allowed === true && r.data.distance <= 100, 'biên 89 m: được', r.data)
+r = await call('post', '/api/attendance/check-location', EDGE_OUT, nvT)
+ok(r.data.allowed === false && r.data.code === 'OUTSIDE_AREA', 'biên 100,1 m: không được', r.data)
+r = await call('post', '/api/attendance/check-location', FAR, nvT)
+ok(r.data.allowed === false && r.data.code === 'OUTSIDE_AREA' && r.data.distanceText.endsWith('km') && r.data.message.includes('Cần ở trong 100 m'), 'check-location ngoài 9,6 km', r.data)
+r = await call('post', '/api/attendance/check-location', { ...IN, isMocked: true }, nvT)
+ok(r.data.allowed === false && r.data.code === 'MOCK_LOCATION', 'vị trí giả lập bị chặn', r.data)
+r = await call('post', '/api/attendance/check-location', { ...IN, accuracy: 400 }, nvT)
+ok(r.data.allowed === false && r.data.code === 'GPS_INACCURATE', 'GPS sai số 400 m bị chặn', r.data)
+r = await call('post', '/api/attendance/check-location', {}, nvT)
+ok(r.status === 400 && r.data.code === 'LOCATION_REQUIRED', 'thiếu tọa độ', r)
+
+r = await call('post', '/api/attendance/check-out', IN, nvT)
+ok(r.status === 409 && r.data.code === 'NOT_CHECKED_IN', 'tan ca khi chưa vào ca', r)
 r = await call('post', '/api/attendance/check-in', null, nvT)
+ok(r.status === 400 && r.data.code === 'LOCATION_REQUIRED', 'vào ca không gửi GPS bị chặn', r)
+r = await call('post', '/api/attendance/check-in', FAR, nvT)
+ok(r.status === 403 && r.data.code === 'OUTSIDE_AREA' && r.data.distance > 9000, 'vào ca ở xa bị chặn', r.data)
+r = await call('post', '/api/attendance/check-in', { ...IN, isMocked: true }, nvT)
+ok(r.status === 403 && r.data.code === 'MOCK_LOCATION', 'vào ca bằng vị trí giả bị chặn', r.data)
+r = await call('get', '/api/attendance/today', null, nvT)
+ok(r.data.status === 'none', 'bị chặn thì không ghi gì', r.data)
+r = await call('post', '/api/attendance/check-in', IN, nvT)
+ok(r.status === 201 && r.data.record.checkIn && typeof r.data.record.late === 'boolean' && r.data.record.inDistanceText.endsWith(' m'), 'vào ca trong khu vực', r.data)
+r = await call('post', '/api/attendance/check-in', IN, nvT)
 ok(r.status === 409 && r.data.code === 'ALREADY_CHECKED_IN', 'vào ca 2 lần bị chặn', r)
 r = await call('get', '/api/attendance/today', null, nvT)
-if (r.data.status === 'working') {
-  r = await call('post', '/api/attendance/check-out', null, nvT)
-  ok(r.status === 200 && r.data.record.checkOut && r.data.record.minutes >= 0, 'tan ca', r.data)
-}
-r = await call('post', '/api/attendance/check-out', null, nvT)
+ok(r.data.status === 'working' && r.data.workingMinutes >= 0 && r.data.hint.includes('đi trễ'), 'today: đang làm', r.data)
+r = await call('post', '/api/attendance/check-out', FAR, nvT)
+ok(r.status === 403 && r.data.code === 'OUTSIDE_AREA', 'tan ca ở xa bị chặn', r.data)
+r = await call('post', '/api/attendance/check-out', EDGE_IN, nvT)
+ok(r.status === 200 && r.data.record.checkOut && r.data.record.minutes >= 0 && r.data.record.outDistanceText, 'tan ca trong khu vực', r.data)
+r = await call('post', '/api/attendance/check-out', IN, nvT)
 ok(r.status === 409 && r.data.code === 'ALREADY_CHECKED_OUT', 'tan ca 2 lần bị chặn', r)
+r = await call('get', '/api/attendance/today', null, nvT)
+ok(r.data.status === 'done' && r.data.hint === 'Hẹn gặp lại ngày mai.', 'today: đã tan ca', r.data)
 r = await call('get', '/api/attendance/me', null, nvT)
-ok(r.status === 200 && r.data.days >= 1 && /^\d{4}-\d{2}$/.test(r.data.month) && r.data.items[0].checkOut, 'bảng công tháng', r.data)
+ok(r.status === 200 && r.data.days === 1 && r.data.items[0].checkOut && r.data.totalHoursText.endsWith('h') && r.data.lateDays === (r.data.items[0].late ? 1 : 0), 'bảng công tháng', r.data)
+
+// Mốc chấm công
+r = await call('get', '/api/attendance/site', null, nvT)
+ok(r.status === 200 && r.data.radius === 100 && r.data.name, 'xem mốc', r.data)
+r = await call('put', '/api/attendance/site', { radius: 200 }, nvT)
+ok(r.status === 403, 'nhân viên không đổi mốc', r)
+r = await call('put', '/api/attendance/site', { radius: 5 }, adT)
+ok(r.status === 400, 'bán kính 5 m bị chặn', r)
+r = await call('put', '/api/attendance/site', { ...FAR, isMocked: true }, adT)
+ok(r.status === 403 && r.data.code === 'MOCK_LOCATION', 'admin đặt mốc bằng vị trí giả bị chặn', r)
+r = await call('put', '/api/attendance/site', { lat: FAR.lat, lng: FAR.lng, radius: 200 }, adT)
+ok(r.status === 200 && r.data.site.lat === FAR.lat && r.data.site.radius === 200 && r.data.site.address, 'admin đặt mốc tại vị trí hiện tại', r.data)
+r = await call('post', '/api/attendance/check-location', IN, nvT)
+ok(r.data.allowed === false && r.data.radius === 200, 'mốc mới áp dụng ngay (chỗ cũ thành ngoài)', r.data)
+r = await call('post', '/api/attendance/check-location', FAR, nvT)
+ok(r.data.allowed === true, 'mốc mới: tại chỗ mới được', r.data)
+r = await call('put', '/api/attendance/site', { ...SITE, radius: 100, name: 'Chí Nhân Store' }, adT)
+ok(r.status === 200 && r.data.site.lat === SITE.lat && r.data.site.radius === 100, 'đặt lại mốc HUTECH 100 m', r.data)
+
+// Admin xem theo ngày
 r = await call('get', '/api/attendance', null, nvT)
 ok(r.status === 403, 'nhân viên không xem công người khác', r)
 r = await call('get', '/api/attendance', null, adT)
-ok(r.status === 200 && r.data.present >= 1 && r.data.items.some((x) => x.username === 'phuc' && x.record), 'admin xem chấm công hôm nay', r.data)
+const mine = r.data.items?.find((x) => x.username === nvName)
+ok(r.status === 200 && r.data.isToday && mine?.record?.inDistanceText && r.data.present >= 1, 'admin xem chấm công hôm nay + khoảng cách', r.data)
 r = await call('get', '/api/attendance?date=2020-01-01', null, adT)
-ok(r.status === 200 && r.data.present === 0 && r.data.date === '2020-01-01', 'admin xem ngày cũ', r.data)
+ok(r.status === 200 && r.data.present === 0 && r.data.date === '2020-01-01' && r.data.isToday === false, 'admin xem ngày cũ', r.data)
+await call('delete', `/api/users/${(await call('get', `/api/users?q=${nvName}`, null, adT)).data.items[0].id}`, null, adT)
 
 console.log(`\n${pass} pass, ${fail} fail`)
 process.exit(fail ? 1 : 0)

@@ -28,7 +28,7 @@
   }
  },
  "session_Admin": {
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIiwic2lkIjo0MiwidmVyIjowLCJyb2xlIjoiQWRtaW4iLCJ1bmlxdWVfbmFtZSI6ImNoaW5oYW4iLCJpYXQiOjE3OTI1NjcwMTMsImV4cCI6MTc5MzE3MTgxMywiYXVkIjoiTmd1eWVuQ2hpTmhhbl9BcHAiLCJpc3MiOiJOZ3V5ZW5DaGlOaGFuX1dlYkFQSSJ9.Kfb06wQkO0JZ6JwnBFtl4z9NPFydtyV9AEJhBn76G40",
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIiwic2lkIjo4NywidmVyIjowLCJyb2xlIjoiQWRtaW4iLCJ1bmlxdWVfbmFtZSI6ImNoaW5oYW4iLCJpYXQiOjE3OTI1Njc5OTcsImV4cCI6MTc5MzE3Mjc5NywiYXVkIjoiTmd1eWVuQ2hpTmhhbl9BcHAiLCJpc3MiOiJOZ3V5ZW5DaGlOaGFuX1dlYkFQSSJ9.Z5kls-TeG6KdXaUQ-nkFDw2NLr_1wQEcbVpSAkLmQDI",
   "role": "Admin",
   "user": {
    "id": 1,
@@ -751,10 +751,11 @@
  },
  "att_admin": {
   "date": "2026-10-21",
+  "isToday": true,
   "shiftStart": "08:00",
-  "total": 5,
-  "present": 1,
-  "late": 1,
+  "total": 13,
+  "present": 2,
+  "late": 2,
   "items": [
    {
     "userId": 2,
@@ -766,13 +767,38 @@
      "checkIn": "2026-10-21T07:15:40.572Z",
      "checkOut": "2026-10-21T07:15:40.604Z",
      "late": true,
-     "minutes": 0
+     "minutes": 0,
+     "inDistance": null,
+     "inDistanceText": null,
+     "outDistanceText": null
     }
    },
    {
-    "userId": 4,
+    "userId": 19,
+    "fullName": "Đỗ Minh Thư",
+    "username": "thumvhspb70",
+    "record": {
+     "id": 11,
+     "date": "2026-10-21",
+     "checkIn": "2026-10-21T07:33:17.867Z",
+     "checkOut": null,
+     "late": true,
+     "minutes": null,
+     "inDistance": 22,
+     "inDistanceText": "22 m",
+     "outDistanceText": null
+    }
+   },
+   {
+    "userId": 12,
     "fullName": "Khách Test",
-    "username": "khmvhlw77s",
+    "username": "khmvhsm2kg",
+    "record": null
+   },
+   {
+    "userId": 10,
+    "fullName": "Khách Test",
+    "username": "khmvhslgmd",
     "record": null
    },
    {
@@ -782,9 +808,33 @@
     "record": null
    },
    {
+    "userId": 8,
+    "fullName": "Khách Test",
+    "username": "khmvhslaex",
+    "record": null
+   },
+   {
     "userId": 6,
     "fullName": "Khách Test",
     "username": "khmvhmm6oj",
+    "record": null
+   },
+   {
+    "userId": 16,
+    "fullName": "Khách Test",
+    "username": "khmvhsm7rx",
+    "record": null
+   },
+   {
+    "userId": 4,
+    "fullName": "Khách Test",
+    "username": "khmvhlw77s",
+    "record": null
+   },
+   {
+    "userId": 14,
+    "fullName": "Khách Test",
+    "username": "khmvhsm5ld",
     "record": null
    },
    {
@@ -792,7 +842,99 @@
     "fullName": "Khách Test",
     "username": "khmvhs2l3p",
     "record": null
+   },
+   {
+    "userId": 11,
+    "fullName": "Khách Test",
+    "username": "khmvhsljzm",
+    "record": null
+   },
+   {
+    "userId": 18,
+    "fullName": "Võ Anh Khoa",
+    "username": "khoamvhspb1e",
+    "record": null
    }
   ]
+ },
+ "session_StaffFresh": {
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxOCIsInNpZCI6ODgsInZlciI6MCwicm9sZSI6IlN0YWZmIiwidW5pcXVlX25hbWUiOiJraG9hbXZoc3BiMWUiLCJpYXQiOjE3OTI1Njc5OTcsImV4cCI6MTc5MzE3Mjc5NywiYXVkIjoiTmd1eWVuQ2hpTmhhbl9BcHAiLCJpc3MiOiJOZ3V5ZW5DaGlOaGFuX1dlYkFQSSJ9.6Uz-phhpQ2tB8t-q27-P52uCXDBtS7hO6gA5gzw7yXc",
+  "role": "Staff",
+  "user": {
+   "id": 18,
+   "username": "khoamvhspb1e",
+   "fullName": "Võ Anh Khoa",
+   "email": "khoamvhspb1e@example.com",
+   "role": "Staff",
+   "emailConfirmed": true,
+   "loginAlert": true,
+   "createdAt": "2026-10-21T07:33:17.567Z"
+  }
+ },
+ "att_today_none": {
+  "serverTime": "2026-10-21T07:33:17.888Z",
+  "shiftStart": "08:00",
+  "status": "none",
+  "record": null,
+  "workingMinutes": null,
+  "hint": "Đã quá 08:00, vào ca bây giờ sẽ tính là đi trễ.",
+  "site": {
+   "name": "Chí Nhân Store",
+   "address": "Hẻm 479 Điện Biên Phủ, Phường Thạnh Mỹ Tây, Thành phố Hồ Chí Minh",
+   "lat": 10.80182,
+   "lng": 106.71481,
+   "radius": 100,
+   "updatedAt": "2026-10-21T07:30:55.749Z"
+  }
+ },
+ "att_me_none": {
+  "month": "2026-10",
+  "days": 0,
+  "lateDays": 0,
+  "totalMinutes": 0,
+  "totalHoursText": "0,0h",
+  "items": []
+ },
+ "loc_inside": {
+  "distance": 22,
+  "distanceText": "22 m",
+  "radius": 100,
+  "accuracy": 12,
+  "allowed": true,
+  "code": "INSIDE",
+  "message": "Trong khu vực cửa hàng · cách 22 m",
+  "site": {
+   "name": "Chí Nhân Store",
+   "address": "Hẻm 479 Điện Biên Phủ, Phường Thạnh Mỹ Tây, Thành phố Hồ Chí Minh",
+   "lat": 10.80182,
+   "lng": 106.71481,
+   "radius": 100,
+   "updatedAt": "2026-10-21T07:30:55.749Z"
+  }
+ },
+ "loc_outside": {
+  "distance": 9592,
+  "distanceText": "9,6 km",
+  "radius": 100,
+  "accuracy": 10,
+  "allowed": false,
+  "code": "OUTSIDE_AREA",
+  "message": "Cách cửa hàng 9,6 km. Cần ở trong 100 m để chấm công.",
+  "site": {
+   "name": "Chí Nhân Store",
+   "address": "Hẻm 479 Điện Biên Phủ, Phường Thạnh Mỹ Tây, Thành phố Hồ Chí Minh",
+   "lat": 10.80182,
+   "lng": 106.71481,
+   "radius": 100,
+   "updatedAt": "2026-10-21T07:30:55.749Z"
+  }
+ },
+ "att_site": {
+  "name": "Chí Nhân Store",
+  "address": "Hẻm 479 Điện Biên Phủ, Phường Thạnh Mỹ Tây, Thành phố Hồ Chí Minh",
+  "lat": 10.80182,
+  "lng": 106.71481,
+  "radius": 100,
+  "updatedAt": "2026-10-21T07:30:55.749Z"
  }
 }
