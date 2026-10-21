@@ -7,6 +7,7 @@ import '../account/account_screen.dart';
 import '../admin/admin_home.dart';
 import '../admin/categories_screen.dart';
 import '../admin/users_screen.dart';
+import '../attendance/attendance_screen.dart';
 import '../shop/shop_screen.dart';
 import '../staff/products_manage_screen.dart';
 import '../staff/staff_home.dart';
@@ -33,6 +34,7 @@ class RoleHome extends StatelessWidget {
       'Staff' => <TabItem>[
           (LucideIcons.layoutDashboard, 'Tổng quan', const StaffHome()),
           (LucideIcons.package, 'Sản phẩm', const ProductsManageScreen()),
+          (LucideIcons.clock, 'Chấm công', const AttendanceScreen()),
           (LucideIcons.layoutGrid, 'Tiện ích', const ToolsScreen()),
           (LucideIcons.circleUser, 'Tài khoản', const AccountScreen()),
         ],

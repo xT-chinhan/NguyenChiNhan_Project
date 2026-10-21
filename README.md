@@ -25,6 +25,7 @@
 | 4 | CRUD | Danh mục, Sản phẩm, Người dùng (+ lịch sử hoạt động) |
 | 5 | 3 chức năng | f Dịch realtime/ảnh chụp · d Đo tiếng ồn · b Chia sẻ vị trí (`/api/tools/*`) |
 | 6 | Tính năng mới | Email cảnh báo đăng nhập + “Không phải tôi” khóa tài khoản, báo Admin |
+| + | Chấm công (nhánh `feature/cham-cong`) | `/api/attendance/*`: Vào ca / Tan ca bằng GPS trong bán kính cửa hàng; API tính khoảng cách, chặn vị trí giả / GPS sai số > 150 m, đi trễ sau 08:00; Admin đổi mốc + bán kính |
 | 7 | Giao diện | Theo mockup đã duyệt, sáng/tối, skeleton, trạng thái rỗng/mất mạng |
 
 ## Chạy

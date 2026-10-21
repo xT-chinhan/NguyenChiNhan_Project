@@ -8,6 +8,7 @@ import { me, securityLinks } from './routes/me.js'
 import { categories, products } from './routes/catalog.js'
 import { users, dashboard } from './routes/admin.js'
 import { tools } from './routes/tools.js'
+import { attendance } from './routes/attendance.js'
 import { openapi, swaggerHtml } from './openapi.js'
 
 const app = express()
@@ -37,6 +38,7 @@ app.use('/api/products', products)
 app.use('/api/users', users)
 app.use('/api/dashboard', dashboard)
 app.use('/api/tools', tools)
+app.use('/api/attendance', attendance)
 
 if (devMail) app.get('/api/dev/outbox', (_req, res) => res.json(outbox.slice(-10)))
 

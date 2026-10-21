@@ -44,6 +44,11 @@ const E = [
   ['post', '/api/tools/location/resolve', 'Tiện ích (mục 5)', 'b. Tọa độ → địa chỉ (không lưu)', [], obj({ lat: n, lng: n, accuracy: n }, ['lat', 'lng'])],
   ['post', '/api/tools/location/share', 'Tiện ích (mục 5)', 'b. Tọa độ → địa chỉ + nội dung chia sẻ', [], obj({ lat: n, lng: n, accuracy: n }, ['lat', 'lng'])],
   ['get', '/api/tools/location/history', 'Tiện ích (mục 5)', 'b. Lịch sử chia sẻ', []],
+  ['get', '/api/attendance/today', 'Chấm công', 'Trạng thái hôm nay của tôi', ['Staff', 'Admin']],
+  ['post', '/api/attendance/check-in', 'Chấm công', 'Vào ca (mỗi ngày 1 lần, sau 08:00 là trễ)', ['Staff', 'Admin']],
+  ['post', '/api/attendance/check-out', 'Chấm công', 'Tan ca', ['Staff', 'Admin']],
+  ['get', '/api/attendance/me', 'Chấm công', 'Bảng công tháng của tôi', ['Staff', 'Admin'], null, { month: 'YYYY-MM' }],
+  ['get', '/api/attendance', 'Chấm công', 'Admin xem nhân viên đã chấm công trong ngày', ['Admin'], null, { date: 'YYYY-MM-DD' }],
 ]
 
 const paths = {}

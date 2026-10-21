@@ -109,6 +109,35 @@ CREATE TABLE IF NOT EXISTS translations (
   translated_text TEXT NOT NULL,
   created_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
+CREATE TABLE IF NOT EXISTS attendances (
+  id SERIAL PRIMARY KEY,
+  user_id INT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  work_date DATE NOT NULL,
+  check_in TIMESTAMPTZ NOT NULL,
+  check_out TIMESTAMPTZ,
+  UNIQUE (user_id, work_date)
+);
+-- Vị trí lúc chấm công (GPS gửi từ app, API tự tính khoảng cách)
+ALTER TABLE attendances ADD COLUMN IF NOT EXISTS in_lat DOUBLE PRECISION;
+ALTER TABLE attendances ADD COLUMN IF NOT EXISTS in_lng DOUBLE PRECISION;
+ALTER TABLE attendances ADD COLUMN IF NOT EXISTS in_distance REAL;
+ALTER TABLE attendances ADD COLUMN IF NOT EXISTS out_lat DOUBLE PRECISION;
+ALTER TABLE attendances ADD COLUMN IF NOT EXISTS out_lng DOUBLE PRECISION;
+ALTER TABLE attendances ADD COLUMN IF NOT EXISTS out_distance REAL;
+-- Mốc chấm công (1 dòng): vị trí cửa hàng + bán kính cho phép
+CREATE TABLE IF NOT EXISTS attendance_site (
+  id INT PRIMARY KEY DEFAULT 1 CHECK (id = 1),
+  name TEXT NOT NULL,
+  address TEXT,
+  lat DOUBLE PRECISION NOT NULL,
+  lng DOUBLE PRECISION NOT NULL,
+  radius_m INT NOT NULL CHECK (radius_m BETWEEN 20 AND 1000),
+  updated_by INT REFERENCES users(id) ON DELETE SET NULL,
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+INSERT INTO attendance_site (id, name, address, lat, lng, radius_m)
+VALUES (1, 'Chí Nhân Store', '475A Điện Biên Phủ, Bình Thạnh, TP. HCM', 10.80182, 106.71481, 100)
+ON CONFLICT (id) DO NOTHING;
 `
 
 async function seed() {

@@ -5,6 +5,7 @@ import '../../core/api.dart';
 import '../../core/theme.dart';
 import '../../main.dart' show setDark, themeMode;
 import '../../widgets/ui.dart';
+import '../attendance/attendance_screen.dart';
 import '../auth/login_screen.dart';
 import '../shop/shop_screen.dart';
 import '../tools/tools_screen.dart';
@@ -88,6 +89,8 @@ class _AccountScreenState extends State<AccountScreen> {
                 child: Column(
                   children: withDividers([
                     SetRow(icon: LucideIcons.layoutGrid, label: 'Tiện ích', value: '3', onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const ToolsScreen(standalone: true)))),
+                    SetRow(icon: LucideIcons.clock, label: 'Chấm công nhân viên', onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const AttendanceAdminScreen()))),
+                    SetRow(icon: LucideIcons.mapPin, label: 'Vị trí chấm công', onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const AttendanceSiteScreen()))),
                     SetRow(icon: LucideIcons.store, label: 'Xem cửa hàng như khách', onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const ShopScreen(standalone: true)))),
                   ], indent: 60),
                 ),
