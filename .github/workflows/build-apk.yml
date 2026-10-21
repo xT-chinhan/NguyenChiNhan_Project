@@ -54,3 +54,6 @@ jobs:
             | Khách hàng | baongoc | User@123 |
 
             Mã OTP gửi về email của tài khoản. Có thể tự đăng ký tài khoản mới bằng email của mình.
+
+            **Chấm công (Nhân viên):** tab Chấm công → Vào ca / Tan ca, phải ở trong bán kính cửa hàng (mặc định HUTECH 475A Điện Biên Phủ, 100 m).
+            Admin đổi mốc: Tài khoản → Vị trí chấm công → Đặt tại vị trí hiện tại của tôi → Lưu.
