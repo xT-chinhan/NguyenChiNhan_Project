@@ -7,7 +7,7 @@
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Neon-111?logo=postgresql&logoColor=white)
 ![Vercel](https://img.shields.io/badge/API-Vercel-111?logo=vercel&logoColor=white)
 
-[**Tải APK**](https://github.com/xT-chinhan/NguyenChiNhan_Project/releases/latest) · [Web API](https://nguyenchinhan-webapi.vercel.app/swagger) · [Hướng dẫn](HUONG_DAN.md) · [Checklist](CHECKLIST.txt)
+[**Tải APK**](https://github.com/xT-chinhan/NguyenChiNhan_Project/releases/latest) · [**Bản web (iPhone)**](https://nguyenchinhan-app.vercel.app) · [Web API](https://nguyenchinhan-webapi.vercel.app/swagger) · [Hướng dẫn](HUONG_DAN.md) · [Checklist](CHECKLIST.txt)
 
 <img src="design/mockup/shots/01-dang-nhap.png" width="160"> <img src="design/mockup/shots/10-kh-cua-hang.png" width="160"> <img src="design/mockup/shots/70-cc-chua-vao-ca.png" width="160"> <img src="design/mockup/shots/40-ad-tong-quan.png" width="160">
 

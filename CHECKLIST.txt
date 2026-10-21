@@ -3,6 +3,7 @@ Checklist chức năng
 =====================================================
 
 Tải APK : https://github.com/xT-chinhan/NguyenChiNhan_Project/releases/latest
+Bản web : https://nguyenchinhan-app.vercel.app  (iPhone: Safari > Chia sẻ > Thêm vào MH chính)
 Web API : https://nguyenchinhan-webapi.vercel.app/swagger
 Mã nguồn: https://github.com/xT-chinhan/NguyenChiNhan_Project
 
@@ -83,4 +84,5 @@ KỸ THUẬT
 [x] CSDL: PostgreSQL (Neon) · nguyenchinhan_db
 [x] App: Flutter · nguyen_chi_nhan_app (chỉ giao diện, mọi xử lý ở API)
 [x] Deploy Vercel, APK build tự động trên GitHub Actions
-[x] Test API 91/91, flutter analyze sạch
+[x] Bản web cho iPhone: API đọc chữ (Tesseract), micro trình duyệt đo dB
+[x] Test API 93/93, flutter analyze sạch

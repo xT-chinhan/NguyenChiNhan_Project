@@ -84,7 +84,12 @@ const cleanLines = (text) =>
   text
     .split('\n')
     .map((l) => l.replace(/\s+/g, ' ').trim())
-    .filter((l) => l.length >= 3 && /\p{L}{2,}/u.test(l))
+    .filter((l) => {
+      // bỏ dòng nhiễu: cần từ ≥ 2 chữ cái và ít nhất một nửa ký tự là chữ
+      const chars = l.replace(/\s/g, '')
+      const letters = (chars.match(/\p{L}/gu) || []).length
+      return l.length >= 3 && /\p{L}{2,}/u.test(l) && letters / chars.length >= 0.5
+    })
 
 tools.post('/ocr', async (req, res) => {
   const raw = String(req.body?.image || '').replace(/^data:image\/\w+;base64,/, '')
