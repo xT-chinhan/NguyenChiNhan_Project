@@ -25,3 +25,8 @@ android/.gradle/
 **/ios/Pods/
 **/ios/.symlinks/
 .DS_Store
+
+# Skill do Vercel CLI tự cài
+.agents/
+.claude/
+skills-lock.json
