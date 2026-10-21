@@ -91,6 +91,7 @@ void main() {
     await _loadFont('BeVietnamPro', [for (final w in ['Regular', 'Medium', 'SemiBold', 'Bold']) 'assets/fonts/BeVietnamPro-$w.ttf']);
     await _loadFont('packages/lucide_icons_flutter/Lucide', ['packages/lucide_icons_flutter/assets/lucide.ttf']);
     Api.i.client = _mock();
+    deviceNow = () => DateTime(2026, 10, 21, 14, 33, 17);
   });
 
   testWidgets('01 đăng nhập', (t) async => shot(t, '01-dang-nhap', const LoginScreen()));

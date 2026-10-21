@@ -30,3 +30,6 @@ android/.gradle/
 .agents/
 .claude/
 skills-lock.json
+
+# Ảnh lỗi của flutter test (golden)
+**/test/failures/

@@ -17,6 +17,9 @@ class LocationProblem implements Exception {
   String toString() => message;
 }
 
+/// Giờ máy (thay khi test để ảnh chụp không phụ thuộc giờ thật)
+DateTime Function() deviceNow = DateTime.now;
+
 class Locator {
   /// Thay khi test (không có GPS thật)
   static Future<GeoFix> Function()? override;

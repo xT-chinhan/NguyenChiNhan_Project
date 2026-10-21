@@ -41,7 +41,7 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
   Duration _offset = Duration.zero; // giờ máy chủ - giờ máy
   Timer? _tick, _refresh;
 
-  DateTime get _serverNow => DateTime.now().add(_offset);
+  DateTime get _serverNow => deviceNow().add(_offset);
   String get _status => _today?['status'] ?? 'none';
 
   @override
@@ -77,7 +77,7 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
       if (!mounted) return;
       setState(() {
         _today = t;
-        _offset = DateTime.parse(t['serverTime']).difference(DateTime.now());
+        _offset = DateTime.parse(t['serverTime']).difference(deviceNow());
       });
     } catch (e) {
       if (rethrowErrors) rethrow;
