@@ -85,4 +85,4 @@ KỸ THUẬT
 [x] App: Flutter · nguyen_chi_nhan_app (chỉ giao diện, mọi xử lý ở API)
 [x] Deploy Vercel, APK build tự động trên GitHub Actions
 [x] Bản web cho iPhone: API đọc chữ (Tesseract), micro trình duyệt đo dB
-[x] Test API 93/93, flutter analyze sạch
+[x] Test API 96/96, flutter analyze sạch

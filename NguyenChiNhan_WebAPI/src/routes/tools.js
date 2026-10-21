@@ -1,5 +1,6 @@
 import { Router } from 'express'
 import { createWorker } from 'tesseract.js'
+import sharp from 'sharp'
 import { q } from '../db.js'
 import { auth, HttpError } from '../security.js'
 
@@ -42,37 +43,57 @@ async function translateText(text, source, target) {
 
 tools.get('/translate/languages', (_req, res) => res.json(Object.entries(LANGS).map(([code, name]) => ({ code, name }))))
 
-tools.post('/translate', async (req, res) => {
-  const text = String(req.body?.text || '').trim()
-  const source = LANGS[req.body?.source] ? req.body.source : 'auto'
-  const target = LANGS[req.body?.target] && req.body.target !== 'auto' ? req.body.target : 'vi'
-  if (!text) throw new HttpError(400, 'Không có chữ để dịch.', 'VALIDATION')
-  if (text.length > 4000) throw new HttpError(400, 'Đoạn chữ quá dài (tối đa 4000 ký tự).', 'VALIDATION')
-  const t0 = Date.now()
+// Dịch từng dòng, tự nhận ngôn ngữ mỗi dòng (ảnh hay lẫn Việt + Anh). Dòng đã đúng ngôn ngữ đích thì giữ nguyên.
+async function translateLines(lines, target) {
+  const outs = await Promise.all(lines.map((l) => translateText(l, 'auto', target).catch(() => null)))
+  if (outs.every((o) => o === null)) throw new Error('translate failed')
+  const pairs = lines.map((l, i) => ({ text: l, translated: outs[i]?.translated || l, lang: outs[i]?.detected || null }))
+  const count = {}
+  for (const p of pairs) if (p.lang && p.lang !== target) count[p.lang] = (count[p.lang] || 0) + 1
+  const detected = Object.entries(count).sort((a, b) => b[1] - a[1])[0]?.[0] || pairs.find((p) => p.lang)?.lang || 'auto'
+  const langs = [...new Set(pairs.map((p) => p.lang).filter((l) => LANGS[l]))]
+  const sourceName = langs.length > 1 ? langs.map((l) => LANGS[l]).join(' + ') : LANGS[detected] || 'Không rõ'
+  return { pairs, detected, sourceName, translated: pairs.map((p) => p.translated).join('\n') }
+}
+
+async function translateAndSave(userId, lines, target, t0, extra = {}) {
   let out
   try {
-    out = await translateText(text, source, target)
+    out = await translateLines(lines, target)
   } catch (e) {
-    throw new HttpError(502, 'Dịch vụ dịch đang bận, thử lại sau.', 'TRANSLATE_FAILED', { reason: e.message })
+    throw new HttpError(502, 'Dịch vụ dịch đang bận, thử lại sau.', 'TRANSLATE_FAILED', { reason: e.message, text: lines.join('\n') })
   }
-  const { translated, detected } = out
+  const text = lines.join('\n')
   await q(
     'INSERT INTO translations (user_id, source_lang, target_lang, source_text, translated_text) VALUES ($1,$2,$3,$4,$5)',
-    [req.user.id, detected, target, text, translated],
+    [userId, out.detected, target, text, out.translated],
   )
-  res.json({
+  return {
     text,
-    translated,
-    source: detected,
-    sourceName: LANGS[detected] || detected,
+    translated: out.translated,
+    pairs: out.pairs,
+    source: out.detected,
+    sourceName: out.sourceName,
     target,
     targetName: LANGS[target],
-    lines: translated.split('\n').length,
+    lines: lines.length,
+    ...extra,
     ms: Date.now() - t0,
-  })
+  }
+}
+
+const targetOf = (body) => (LANGS[body?.target] && body.target !== 'auto' ? body.target : 'vi')
+
+// Dịch chữ (Android: ML Kit đọc chữ trên máy rồi gửi lên). Ngôn ngữ nguồn API tự nhận.
+tools.post('/translate', async (req, res) => {
+  const text = String(req.body?.text || '').trim()
+  if (!text) throw new HttpError(400, 'Không có chữ để dịch.', 'VALIDATION')
+  if (text.length > 4000) throw new HttpError(400, 'Đoạn chữ quá dài (tối đa 4000 ký tự).', 'VALIDATION')
+  const lines = text.split('\n').map((l) => l.trim()).filter(Boolean).slice(0, 30)
+  res.json(await translateAndSave(req.user.id, lines, targetOf(req.body), Date.now()))
 })
 
-// ---------- f. Đọc chữ trên API (bản web / máy không có ML Kit): ảnh -> Tesseract -> dịch ----------
+// ---------- f. Đọc chữ trên API (bản web): ảnh -> Tesseract (lọc theo độ tin cậy) -> dịch ----------
 let ocrWorker
 const getOcr = () =>
   (ocrWorker ??= createWorker(['eng', 'vie'], 1, { cachePath: '/tmp/tesseract' }).catch((e) => {
@@ -80,56 +101,48 @@ const getOcr = () =>
     throw e
   }))
 
-const cleanLines = (text) =>
-  text
-    .split('\n')
-    .map((l) => l.replace(/\s+/g, ' ').trim())
-    .filter((l) => {
-      // bỏ dòng nhiễu: cần từ ≥ 2 chữ cái và ít nhất một nửa ký tự là chữ
-      const chars = l.replace(/\s/g, '')
-      const letters = (chars.match(/\p{L}/gu) || []).length
-      return l.length >= 3 && /\p{L}{2,}/u.test(l) && letters / chars.length >= 0.5
-    })
+const MIN_WORD_CONF = 60 // chữ Tesseract đọc dưới mức này coi như nhiễu
+const MIN_LINE_CONF = 70
+
+/** Lấy các dòng đọc chắc chắn: bỏ chữ tin cậy thấp, bỏ dòng ít chữ cái */
+export function confidentLines(blocks) {
+  const out = []
+  for (const b of blocks || []) {
+    for (const para of b.paragraphs || []) {
+      for (const line of para.lines || []) {
+        const words = (line.words || []).filter((w) => w.confidence >= MIN_WORD_CONF && w.text.trim())
+        if (!words.length) continue
+        const conf = words.reduce((s, w) => s + w.confidence, 0) / words.length
+        const text = words.map((w) => w.text.trim()).join(' ')
+        const chars = text.replace(/\s/g, '')
+        const letters = (chars.match(/\p{L}/gu) || []).length
+        if (conf >= MIN_LINE_CONF && letters >= 4 && /\p{L}{3,}/u.test(text) && letters / chars.length >= 0.5) out.push(text)
+      }
+    }
+  }
+  return out.slice(0, 20)
+}
 
 tools.post('/ocr', async (req, res) => {
   const raw = String(req.body?.image || '').replace(/^data:image\/\w+;base64,/, '')
   if (!raw) throw new HttpError(400, 'Thiếu ảnh.', 'VALIDATION')
   const img = Buffer.from(raw, 'base64')
   if (img.length < 100 || img.length > 3_000_000) throw new HttpError(400, 'Ảnh không hợp lệ (tối đa 3 MB).', 'VALIDATION')
-  const source = LANGS[req.body?.source] ? req.body.source : 'en'
-  const target = LANGS[req.body?.target] && req.body.target !== 'auto' ? req.body.target : 'vi'
   const t0 = Date.now()
   let lines
   try {
-    const { data } = await (await getOcr()).recognize(img)
-    lines = cleanLines(data.text || '')
+    // Ảnh camera thường nhỏ + mờ: xám, phóng tới ~1600px, tăng tương phản -> Tesseract đọc dấu tiếng Việt tốt hơn
+    const meta = await sharp(img).metadata()
+    const width = Math.min(2000, Math.max(meta.width || 0, Math.round((meta.width || 800) * 2)), 1600)
+    const prepared = await sharp(img).rotate().grayscale().resize({ width, withoutEnlargement: false }).normalize().sharpen().jpeg({ quality: 90 }).toBuffer()
+    const { data } = await (await getOcr()).recognize(prepared, {}, { blocks: true, text: true })
+    lines = confidentLines(data.blocks)
   } catch (e) {
     throw new HttpError(502, 'Không đọc được ảnh, thử lại nhé.', 'OCR_FAILED', { reason: e.message })
   }
   const ocrMs = Date.now() - t0
-  if (!lines.length) return res.json({ text: '', lines: 0, translated: '', ocrMs, ms: Date.now() - t0 })
-  const text = lines.join('\n')
-  let out
-  try {
-    out = await translateText(text, source, target)
-  } catch (e) {
-    throw new HttpError(502, 'Dịch vụ dịch đang bận, thử lại sau.', 'TRANSLATE_FAILED', { reason: e.message, text })
-  }
-  await q(
-    'INSERT INTO translations (user_id, source_lang, target_lang, source_text, translated_text) VALUES ($1,$2,$3,$4,$5)',
-    [req.user.id, out.detected, target, text, out.translated],
-  )
-  res.json({
-    text,
-    lines: lines.length,
-    translated: out.translated,
-    source: out.detected,
-    sourceName: LANGS[out.detected] || out.detected,
-    target,
-    targetName: LANGS[target],
-    ocrMs,
-    ms: Date.now() - t0,
-  })
+  if (!lines.length) return res.json({ text: '', lines: 0, translated: '', pairs: [], ocrMs, ms: ocrMs })
+  res.json(await translateAndSave(req.user.id, lines, targetOf(req.body), t0, { ocrMs }))
 })
 
 // ---------- d. Đo tiếng ồn: app đo dB bằng micro, API phân loại + lưu ----------

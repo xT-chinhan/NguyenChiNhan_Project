@@ -28,7 +28,7 @@ async function call(method, path, body, token, headers = {}) {
 async function login(username, password, device = 'Test Device') {
   const a = await call('post', '/api/auth/login', { username, password })
   if (a.status !== 200) return { a }
-  const b = await call('post', '/api/auth/login/verify', { username, code: a.data.devCode }, null, { 'x-device-name': device, 'x-device-platform': 'Android 14' })
+  const b = await call('post', '/api/auth/login/verify', { username, code: a.data.devCode }, null, { 'x-device-name': encodeURIComponent(device), 'x-device-platform': 'Android 14' })
   return { a, b, token: b.data.token }
 }
 
@@ -141,6 +141,10 @@ r = await call('post', '/api/tools/translate', { text: 'EMERGENCY EXIT\nNO SMOKI
 ok(r.status === 200 && r.data.translated.length > 0, 'dịch Anh -> Việt', r.data)
 r = await call('post', '/api/tools/ocr', { image: (await import('node:fs')).readFileSync(new URL('./ocr-sample.jpg', import.meta.url)).toString('base64'), source: 'en', target: 'vi' }, S)
 ok(r.status === 200 && r.data.lines === 3 && r.data.text.includes('EMERGENCY EXIT') && r.data.translated.length > 0, 'OCR ảnh -> chữ -> dịch', r.data)
+r = await call('post', '/api/tools/ocr', { image: (await import('node:fs')).readFileSync(new URL('./ocr-photo-vi.jpg', import.meta.url)).toString('base64'), target: 'en' }, S)
+ok(r.status === 200 && r.data.source === 'vi' && r.data.pairs.length >= 2 && /SMOKING/i.test(r.data.translated), 'OCR ảnh mờ tiếng Việt -> Anh', r.data)
+r = await call('post', '/api/tools/translate', { text: 'Xin chào các bạn\nGood morning everyone', target: 'vi' }, S)
+ok(r.status === 200 && r.data.pairs[0].lang === 'vi' && r.data.pairs[1].lang === 'en' && r.data.pairs[0].translated === 'Xin chào các bạn' && /chào/i.test(r.data.pairs[1].translated), 'dịch tự nhận ngôn ngữ từng dòng', r.data)
 r = await call('post', '/api/tools/ocr', { image: 'abc' }, S)
 ok(r.status === 400, 'OCR ảnh hỏng bị chặn', r)
 r = await call('get', '/api/tools/noise/levels', null, S)
@@ -160,6 +164,7 @@ ok(out.data.some((m) => m.subject.includes('Đăng nhập') && m.html.includes('
 // đăng nhập từ thiết bị lạ bằng tài khoản mẫu khách hàng
 const kh1 = await login('baongoc', 'User@123', 'Galaxy A54')
 const kh2 = await login('baongoc', 'User@123', 'Chrome · Windows ' + uniq)
+ok((await call('get', '/api/me/sessions', null, kh2.token)).data.items.find((x) => x.current)?.device === 'Chrome · Windows ' + uniq, 'tên thiết bị có dấu · không lỗi font')
 r = await call('get', '/api/me/sessions', null, kh1.token)
 const strange = r.data.items.find((x) => x.device.startsWith('Chrome'))
 ok(r.status === 200 && strange?.suspicious === true && r.data.items.find((x) => x.current), 'lịch sử: có đăng nhập lạ', r.data)

@@ -119,8 +119,9 @@ export function clientInfo(req) {
     ip,
     city: dec(req.get('x-vercel-ip-city')),
     country: req.get('x-vercel-ip-country') || null,
-    device: (req.get('x-device-name') || '').slice(0, 80) || (req.get('user-agent') || 'Không rõ thiết bị').slice(0, 80),
-    platform: (req.get('x-device-platform') || '').slice(0, 40) || null,
+    // App gửi tên thiết bị đã encodeURIComponent (header HTTP chỉ an toàn với ASCII)
+    device: dec(req.get('x-device-name'))?.slice(0, 80) || (req.get('user-agent') || 'Không rõ thiết bị').slice(0, 80),
+    platform: dec(req.get('x-device-platform'))?.slice(0, 40) || null,
   }
 }
 

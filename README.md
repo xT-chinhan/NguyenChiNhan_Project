@@ -48,7 +48,7 @@ design/mockup/          41 màn thiết kế
 
 ```bash
 # API
-cd NguyenChiNhan_WebAPI && npm install && npm run dev   # npm test: 91 bước E2E
+cd NguyenChiNhan_WebAPI && npm install && npm run dev   # npm test: 96 bước E2E
 
 # App
 cd nguyen_chi_nhan_app && flutter pub get && flutter run

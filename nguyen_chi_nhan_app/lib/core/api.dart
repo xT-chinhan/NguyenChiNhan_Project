@@ -80,20 +80,26 @@ class Api {
       final d = DeviceInfoPlugin();
       if (kIsWeb) {
         final w = await d.webBrowserInfo;
-        final os = (w.platform ?? '').toLowerCase().contains('iphone') || (w.userAgent ?? '').contains('iPhone') ? 'iPhone' : (w.platform ?? 'Web');
-        return {'X-Device-Name': '${w.browserName.name[0].toUpperCase()}${w.browserName.name.substring(1)} · $os', 'X-Device-Platform': 'Web'};
+        final ua = w.userAgent ?? '';
+        final os = ua.contains('iPhone') ? 'iPhone' : (ua.contains('iPad') ? 'iPad' : (ua.contains('Android') ? 'Android' : (ua.contains('Mac') ? 'Mac' : (ua.contains('Windows') ? 'Windows' : 'Web'))));
+        final b = w.browserName.name;
+        final browser = b == 'unknown' ? 'Web' : b[0].toUpperCase() + b.substring(1);
+        return _encode({'X-Device-Name': '$os · $browser', 'X-Device-Platform': 'Web'});
       }
       if (defaultTargetPlatform == TargetPlatform.android) {
         final a = await d.androidInfo;
-        return {'X-Device-Name': '${a.manufacturer[0].toUpperCase()}${a.manufacturer.substring(1)} ${a.model}', 'X-Device-Platform': 'Android ${a.version.release}'};
+        return _encode({'X-Device-Name': '${a.manufacturer[0].toUpperCase()}${a.manufacturer.substring(1)} ${a.model}', 'X-Device-Platform': 'Android ${a.version.release}'});
       }
       if (defaultTargetPlatform == TargetPlatform.iOS) {
         final a = await d.iosInfo;
-        return {'X-Device-Name': a.utsname.machine, 'X-Device-Platform': 'iOS ${a.systemVersion}'};
+        return _encode({'X-Device-Name': a.utsname.machine, 'X-Device-Platform': 'iOS ${a.systemVersion}'});
       }
     } catch (_) {}
-    return {'X-Device-Name': 'Flutter ${defaultTargetPlatform.name}', 'X-Device-Platform': defaultTargetPlatform.name};
+    return _encode({'X-Device-Name': 'Flutter ${defaultTargetPlatform.name}', 'X-Device-Platform': defaultTargetPlatform.name});
   }
+
+  /// Header HTTP chỉ an toàn với ASCII: mã hóa, API giải mã lại
+  Map<String, String> _encode(Map<String, String> h) => h.map((k, v) => MapEntry(k, Uri.encodeComponent(v)));
 
   Future<dynamic> get(String path) => _send('GET', path);
   Future<dynamic> post(String path, [Object? body]) => _send('POST', path, body);
