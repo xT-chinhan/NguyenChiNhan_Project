@@ -1,0 +1,828 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chí Nhân Store — Mockup UI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap&subset=vietnamese" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="ncn.css">
+</head>
+<body>
+<main class="gallery">
+  <header class="gallery-head">
+    <h1>Chí Nhân Store · Mockup giao diện mobile</h1>
+    <p>Đồ án Lập trình di động · <b>Nguyễn Chí Nhân</b>. Style giữ nguyên bộ token Thu Chi (nền ngà, gần đơn sắc, Be Vietnam Pro, card bo 18, nút viên thuốc). Khung 390×844. Dữ liệu mẫu: thứ Tư 21/10/2026, 7 sản phẩm / 3 danh mục đúng dữ liệu seed của WebAPI.<br>
+    Ba vai trò, ba thanh điều hướng: <b>Khách hàng</b> Cửa hàng · Tiện ích · Tài khoản — <b>Nhân viên</b> Tổng quan · Sản phẩm · Tiện ích · Tài khoản — <b>Quản trị</b> Tổng quan · Danh mục · Sản phẩm · Người dùng · Tài khoản.<br>
+    Mục 5 chọn: <b>f</b> Dịch realtime/ảnh chụp, <b>d</b> Đo tiếng ồn, <b>b</b> Chia sẻ vị trí. Mục 6: <b>Email cảnh báo đăng nhập</b> + nút “Không phải tôi”.</p>
+  </header>
+
+  <!-- ===================== A. XÁC THỰC ===================== -->
+  <section class="section">
+    <div class="section-label"><b>A</b> Đăng ký · Đăng nhập · OTP (yêu cầu 1, 2)</div>
+    <div class="row-phones">
+
+      <!-- 01 Đăng nhập -->
+      <div class="frame"><div class="phone" data-shot="01-dang-nhap">
+        <div class="screen">
+          <div class="pad" style="padding-top:36px">
+            <div class="logo">CN</div>
+            <h1 class="headline mt-6">Chào mừng trở lại</h1>
+            <p class="body-m muted mt-2">Đăng nhập Chí Nhân Store. Bước sau sẽ cần mã OTP gửi về email của bạn.</p>
+            <div class="mt-8">
+              <label class="field-label">Tên đăng nhập</label>
+              <div class="input"><i data-lucide="user"></i><span>baongoc</span></div>
+            </div>
+            <div class="mt-4">
+              <label class="field-label">Mật khẩu</label>
+              <div class="input focus"><i data-lucide="lock-keyhole"></i><span class="grow" style="letter-spacing:3px">••••••••</span><i data-lucide="eye-off"></i></div>
+            </div>
+          </div>
+          <div class="pad" style="position:absolute;left:0;right:0;bottom:34px">
+            <button class="btn btn-primary">Tiếp tục</button>
+            <div class="or mt-4">chưa có tài khoản?</div>
+            <button class="btn btn-secondary mt-4">Tạo tài khoản mới</button>
+          </div>
+        </div>
+      </div><div class="frame-cap"><span>01</span>Đăng nhập: tên đăng nhập + mật khẩu</div></div>
+
+      <!-- 02 Đăng ký -->
+      <div class="frame"><div class="phone" data-shot="02-dang-ky">
+        <div class="screen">
+          <div class="appbar"><span class="back left"><i data-lucide="chevron-left"></i>Đăng nhập</span><span></span><span></span></div>
+          <div class="pad" style="padding-top:4px">
+            <h1 class="headline">Tạo tài khoản</h1>
+            <p class="body-m muted mt-2">Mã xác thực sẽ được gửi tới email này.</p>
+            <div class="mt-5"><label class="field-label">Họ và tên</label><div class="input"><i data-lucide="user"></i><span>Trần Bảo Ngọc</span></div></div>
+            <div class="mt-3"><label class="field-label">Tên đăng nhập</label><div class="input"><i data-lucide="at-sign"></i><span>baongoc</span></div></div>
+            <div class="mt-3"><label class="field-label">Email</label><div class="input"><i data-lucide="mail"></i><span>ngoc.tran@gmail.com</span></div></div>
+            <div class="mt-3"><label class="field-label">Mật khẩu</label><div class="input focus"><i data-lucide="lock-keyhole"></i><span class="grow" style="letter-spacing:3px">••••••••</span><i data-lucide="eye-off"></i></div>
+              <div class="body-s muted mt-2">Ít nhất 6 ký tự.</div></div>
+          </div>
+          <div class="pad" style="position:absolute;left:0;right:0;bottom:34px">
+            <div class="note mb-3" style="margin-bottom:12px"><i data-lucide="info"></i><span>Tài khoản mới là <b>Khách hàng</b>. Quản trị viên cấp quyền Nhân viên sau.</span></div>
+            <button class="btn btn-primary">Gửi mã xác thực</button>
+          </div>
+        </div>
+      </div><div class="frame-cap"><span>02</span>Đăng ký qua email</div></div>
+
+      <!-- 03 Xác thực email -->
+      <div class="frame"><div class="phone" data-shot="03-xac-thuc-email">
+        <div class="screen">
+          <div class="appbar"><span class="back left"><i data-lucide="chevron-left"></i>Quay lại</span><span></span><span></span></div>
+          <div class="pad" style="padding-top:12px">
+            <h1 class="headline">Xác thực email</h1>
+            <p class="body-m muted mt-2">Nhập mã 6 số đã gửi tới <span style="color:var(--color-on-surface);font-weight:600">ngo•••@gmail.com</span> để kích hoạt tài khoản.</p>
+            <div class="otp mt-8 num"><div>3</div><div>7</div><div>0</div><div>5</div><div class="cur"></div><div></div></div>
+            <div class="between mt-4 body-s"><span class="muted">Chưa nhận được mã?</span><span class="muted num">Gửi lại sau 00:42</span></div>
+          </div>
+          <div style="position:absolute;left:0;right:0;bottom:30px" class="pad">
+            <div class="keypad">
+              <div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div><div>7</div><div>8</div><div>9</div><div></div><div>0</div><div class="fn"><i data-lucide="delete"></i></div>
+            </div>
+            <button class="btn btn-primary mt-3" disabled>Kích hoạt tài khoản</button>
+          </div>
+        </div>
+      </div><div class="frame-cap"><span>03</span>OTP xác thực email khi đăng ký</div></div>
+
+      <!-- 04 OTP đăng nhập -->
+      <div class="frame"><div class="phone" data-shot="04-otp-dang-nhap">
+        <div class="screen">
+          <div class="appbar"><span class="back left"><i data-lucide="chevron-left"></i>Đăng nhập</span><span class="title body-s muted" style="font-weight:500">Bước 2/2</span><span></span></div>
+          <div class="pad" style="padding-top:12px">
+            <h1 class="headline">Nhập mã đăng nhập</h1>
+            <p class="body-m muted mt-2">Mật khẩu đúng. Mã 6 số đã gửi tới <span style="color:var(--color-on-surface);font-weight:600">ngo•••@gmail.com</span>, hiệu lực 5 phút.</p>
+            <div class="otp mt-8 num"><div>8</div><div>1</div><div>4</div><div>2</div><div>6</div><div>9</div></div>
+            <div class="between mt-4 body-s"><span class="muted">Chưa nhận được mã?</span><span class="w6">Gửi lại mã</span></div>
+          </div>
+          <div style="position:absolute;left:0;right:0;bottom:30px" class="pad">
+            <div class="keypad">
+              <div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div><div>7</div><div>8</div><div>9</div><div></div><div>0</div><div class="fn"><i data-lucide="delete"></i></div>
+            </div>
+            <button class="btn btn-primary mt-3">Đăng nhập</button>
+          </div>
+        </div>
+      </div><div class="frame-cap"><span>04</span>OTP đăng nhập (đủ 6 số)</div></div>
+
+      <!-- 05 OTP sai -->
+      <div class="frame"><div class="phone" data-shot="05-otp-sai">
+        <div class="screen">
+          <div class="appbar"><span class="back left"><i data-lucide="chevron-left"></i>Đăng nhập</span><span class="title body-s muted" style="font-weight:500">Bước 2/2</span><span></span></div>
+          <div class="pad" style="padding-top:12px">
+            <h1 class="headline">Nhập mã đăng nhập</h1>
+            <p class="body-m muted mt-2">Mã 6 số đã gửi tới <span style="color:var(--color-on-surface);font-weight:600">ngo•••@gmail.com</span></p>
+            <div class="otp mt-8 num"><div style="border-color:var(--color-danger-bar)">8</div><div style="border-color:var(--color-danger-bar)">1</div><div style="border-color:var(--color-danger-bar)">4</div><div style="border-color:var(--color-danger-bar)">2</div><div style="border-color:var(--color-danger-bar)">6</div><div style="border-color:var(--color-danger-bar)">0</div></div>
+            <div class="err-t"><i data-lucide="circle-alert"></i><span>Mã không đúng. Còn 2 lần thử, sau đó cần lấy mã mới.</span></div>
+          </div>
+          <div style="position:absolute;left:0;right:0;bottom:30px" class="pad">
+            <div class="keypad">
+              <div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div><div>7</div><div>8</div><div>9</div><div></div><div>0</div><div class="fn"><i data-lucide="delete"></i></div>
+            </div>
+            <button class="btn btn-primary mt-3" disabled>Đăng nhập</button>
+          </div>
+        </div>
+      </div><div class="frame-cap"><span>05</span>OTP sai: lỗi đỏ ngay dưới ô</div></div>
+
+      <!-- 06 Email OTP -->
+      <div class="frame"><div class="phone" data-shot="06-email-otp">
+        <div class="screen">
+          <div class="appbar"><span class="back left"><i data-lucide="chevron-left"></i>Hộp thư</span><span></span><span class="right"><span class="icon-btn"><i data-lucide="archive"></i></span></span></div>
+          <div class="mail-h">
+            <div class="title-l">Mã đăng nhập Chí Nhân Store: 814269</div>
+            <div class="mail-from mt-3"><span class="logo sm">CN</span><div class="grow"><div class="w6" style="font-size:14px">Chí Nhân Store</div><div class="body-s muted">hutech.vn.online@gmail.com · 19:51</div></div></div>
+          </div>
+          <div class="mail-body">
+            <div class="brand"><span class="logo sm">CN</span>Chí Nhân Store</div>
+            <div class="title-m mt-5">Xin chào Trần Bảo Ngọc,</div>
+            <p class="body-m muted mt-2">Đây là mã đăng nhập của bạn. Mã có hiệu lực trong 5 phút và chỉ dùng được một lần.</p>
+            <div class="mail-code num mt-4">814269</div>
+            <p class="body-s muted mt-4">Không phải bạn đang đăng nhập? Bỏ qua email này, mật khẩu của bạn vẫn an toàn nếu không ai có mã.</p>
+          </div>
+          <div class="mail-foot">Đồ án Lập trình di động · Nguyễn Chí Nhân<br>Email tự động, vui lòng không trả lời.</div>
+        </div>
+      </div><div class="frame-cap"><span>06</span>Email chứa mã OTP</div></div>
+    </div>
+  </section>
+
+  <!-- ===================== B. KHÁCH HÀNG ===================== -->
+  <section class="section">
+    <div class="section-label"><b>B</b> Khách hàng (yêu cầu 3)</div>
+    <div class="row-phones">
+
+      <!-- 10 Cửa hàng -->
+      <div class="frame"><div class="phone" data-shot="10-kh-cua-hang" data-role="kh" data-tab="shop">
+        <div class="screen">
+          <div class="pad">
+            <div class="between" style="height:48px">
+              <div class="logo sm">CN</div>
+              <span class="icon-btn filled"><i data-lucide="bell"></i></span>
+            </div>
+            <h1 class="headline mt-2">Chào Ngọc</h1>
+            <div class="search mt-4"><i data-lucide="search"></i>Tìm sản phẩm…</div>
+            <div class="chips mt-3" style="margin-right:-20px"><span class="chip on">Tất cả</span><span class="chip">Điện tử</span><span class="chip">Thời trang</span><span class="chip">Gia dụng</span></div>
+            <div class="between mt-5"><span class="title-m">7 sản phẩm</span><span class="label-s">Giá thấp → cao</span></div>
+            <div class="card flush list mt-2">
+              <div class="row"><span class="bubble"><i data-lucide="shirt"></i></span><div class="grow"><div class="t">Áo thun thể thao nam</div><div class="s">Thời trang</div></div><div class="r"><div class="price num">250.000đ</div></div></div>
+              <div class="row"><span class="bubble"><i data-lucide="shirt"></i></span><div class="grow"><div class="t">Áo khoác gió chống nước</div><div class="s">Thời trang</div></div><div class="r"><div class="price num">450.000đ</div></div></div>
+              <div class="row"><span class="bubble"><i data-lucide="cooking-pot"></i></span><div class="grow"><div class="t">Nồi chiên không dầu 5L</div><div class="s">Gia dụng</div></div><div class="r"><div class="price num">1.200.000đ</div></div></div>
+              <div class="row"><span class="bubble"><i data-lucide="keyboard"></i></span><div class="grow"><div class="t">Bàn phím cơ không dây</div><div class="s">Điện tử</div></div><div class="r"><div class="price num">1.850.000đ</div></div></div>
+              <div class="row"><span class="bubble"><i data-lucide="mouse"></i></span><div class="grow"><div class="t">Chuột Logitech MX Master 3S</div><div class="s">Điện tử</div></div><div class="r"><div class="price num">2.490.000đ</div></div></div>
+            </div>
+          </div>
+        </div>
+      </div><div class="frame-cap"><span>10</span>Cửa hàng: tìm, lọc danh mục</div></div>
+
+      <!-- 11 Chi tiết sản phẩm -->
+      <div class="frame"><div class="phone" data-shot="11-kh-chi-tiet" data-role="kh" data-tab="shop">
+        <div class="screen">
+          <div class="appbar"><span class="back left"><i data-lucide="chevron-left"></i>Cửa hàng</span><span></span><span class="right"><span class="icon-btn"><i data-lucide="share-2"></i></span></span></div>
+          <div class="pad">
+            <div class="center" style="display:flex;flex-direction:column;align-items:center;padding-top:8px">
+              <span class="bubble xl"><i data-lucide="cooking-pot"></i></span>
+              <span class="tag line mt-4"><i data-lucide="shapes"></i>Gia dụng</span>
+              <h1 class="title-l mt-3" style="font-size:22px">Nồi chiên không dầu 5L</h1>
+              <div class="display num mt-2">1.200.000đ</div>
+            </div>
+            <div class="card mt-6">
+              <div class="label-s">Mô tả</div>
+              <p class="body-m mt-2">Công nghệ Rapid Air giảm 80% dầu mỡ.</p>
+            </div>
+            <div class="card flush mt-3" style="padding:4px 16px">
+              <div class="kv"><span class="k">Mã</span><span class="v num">SP-006</span></div>
+              <div class="kv"><span class="k">Danh mục</span><span class="v">Gia dụng</span></div>
+              <div class="kv"><span class="k">Cập nhật</span><span class="v">Hôm nay, 09:12</span></div>
+            </div>
+          </div>
+        </div>
+      </div><div class="frame-cap"><span>11</span>Chi tiết sản phẩm</div></div>
+
+      <!-- 12 Tiện ích -->
+      <div class="frame"><div class="phone" data-shot="12-kh-tien-ich" data-role="kh" data-tab="tools">
+        <div class="screen">
+          <div class="pad">
+            <div style="height:56px;display:flex;align-items:center"><h1 class="headline">Tiện ích</h1></div>
+            <p class="body-m muted">Chạy ngay trên điện thoại, không cần đăng nhập lại.</p>
+            <div class="card flush mt-4">
+              <div class="feat"><span class="bubble lg"><i data-lucide="languages"></i></span><div class="grow"><div class="t">Dịch realtime</div><div class="s">Hướng camera vào chữ hoặc chọn ảnh. Dịch ngay trên máy, không cần mạng.</div></div><i data-lucide="chevron-right" class="chev"></i></div>
+              <div class="feat"><span class="bubble lg"><i data-lucide="audio-lines"></i></span><div class="grow"><div class="t">Đo tiếng ồn</div><div class="s">Đo dB bằng micro, so với mức an toàn cho tai.</div></div><i data-lucide="chevron-right" class="chev"></i></div>
+              <div class="feat"><span class="bubble lg"><i data-lucide="map-pin"></i></span><div class="grow"><div class="t">Chia sẻ vị trí</div><div class="s">Gửi vị trí hiện tại qua Zalo, Messenger, SMS bằng link Google Maps.</div></div><i data-lucide="chevron-right" class="chev"></i></div>
+            </div>
+            <div class="note mt-4"><i data-lucide="shield-check"></i><span>Micro, camera và vị trí chỉ bật khi bạn mở tiện ích, không chạy nền.</span></div>
+          </div>
+        </div>
+      </div><div class="frame-cap"><span>12</span>Tiện ích: 3 chức năng mục 5</div></div>
+
+      <!-- 13 Tài khoản (Khách hàng) -->
+      <div class="frame"><div class="phone" data-shot="13-kh-tai-khoan" data-role="kh" data-tab="me">
+        <div class="screen">
+          <div class="pad">
+            <div style="height:56px;display:flex;align-items:center"><h1 class="headline">Tài khoản</h1></div>
+            <div class="card tight mt-2"><div class="hstack" style="--gap:12px"><span class="avatar">BN</span><div class="grow"><div class="title-m">Trần Bảo Ngọc</div><div class="body-s muted">ngoc.tran@gmail.com</div></div><span class="role">Khách hàng</span></div></div>
+            <div class="group-h"><span>Bảo mật</span></div>
+            <div class="card flush set">
+              <div class="srow"><span class="bubble sm"><i data-lucide="shield-alert"></i></span><span class="grow">Email cảnh báo đăng nhập</span><span class="switch on"></span></div>
+              <div class="srow"><span class="bubble sm"><i data-lucide="monitor-smartphone"></i></span><span class="grow">Lịch sử đăng nhập</span><span class="sv">3 thiết bị</span><i data-lucide="chevron-right" class="chev"></i></div>
+              <div class="srow"><span class="bubble sm"><i data-lucide="lock-keyhole"></i></span><span class="grow">Đổi mật khẩu</span><i data-lucide="chevron-right" class="chev"></i></div>
+            </div>
+            <div class="group-h"><span>Ứng dụng</span></div>
+            <div class="card flush set">
+              <div class="srow"><span class="bubble sm"><i data-lucide="moon"></i></span><span class="grow">Giao diện tối</span><span class="switch"></span></div>
+              <div class="srow"><span class="bubble sm"><i data-lucide="info"></i></span><span class="grow">Giới thiệu</span><span class="sv">v1.0.0</span><i data-lucide="chevron-right" class="chev"></i></div>
+            </div>
+            <button class="btn btn-secondary mt-5"><i data-lucide="log-out"></i>Đăng xuất</button>
+          </div>
+        </div>
+      </div><div class="frame-cap"><span>13</span>Tài khoản + bật/tắt cảnh báo đăng nhập</div></div>
+    </div>
+  </section>
+
+  <!-- ===================== C. TIỆN ÍCH ===================== -->
+  <section class="section">
+    <div class="section-label"><b>C</b> 3 chức năng thuyết trình (yêu cầu 5: f · d · b)</div>
+    <div class="row-phones">
+
+      <!-- 20 Dịch realtime -->
+      <div class="frame"><div class="phone" data-shot="20-dich-realtime" data-dark>
+        <div class="cam">
+          <div class="scene"></div>
+          <div class="sign-board"></div>
+          <div class="tr" style="top:212px">Lối thoát hiểm<small>EMERGENCY EXIT</small></div>
+          <div class="tr" style="top:272px">Không hút thuốc trong khu vực này<small>NO SMOKING IN THIS AREA</small></div>
+          <div class="tr" style="top:346px;right:120px">Tầng 2 · Thư viện<small>2ND FLOOR · LIBRARY</small></div>
+        </div>
+        <div class="screen" style="z-index:5">
+          <div class="cam" style="background:none;position:absolute;inset:0;overflow:visible">
+            <div class="topbar">
+              <span class="glass"><i data-lucide="x"></i></span>
+              <span class="glass live">Đang dịch · trên máy</span>
+              <span class="glass"><i data-lucide="zap"></i></span>
+            </div>
+          </div>
+        </div>
+        <div class="sheet" style="z-index:10;padding-bottom:40px">
+          <div class="grabber"></div>
+          <div class="between">
+            <div class="seg" style="flex:1;max-width:230px"><div class="on">Anh → Việt</div><div>Việt → Anh</div></div>
+            <span class="icon-btn"><i data-lucide="arrow-left-right"></i></span>
+          </div>
+          <div class="hstack mt-4" style="--gap:10px">
+            <button class="btn btn-secondary" style="flex:1"><i data-lucide="image"></i>Chọn ảnh</button>
+            <button class="btn btn-primary" style="flex:1"><i data-lucide="camera"></i>Chụp &amp; dịch</button>
+          </div>
+          <div class="body-s muted center mt-3">Đã tải gói Anh, Việt (31 MB) · dùng được khi không có mạng</div>
+        </div>
+      </div><div class="frame-cap"><span>20</span>f · Dịch realtime bằng camera</div></div>
+
+      <!-- 21 Kết quả ảnh chụp -->
+      <div class="frame"><div class="phone" data-shot="21-dich-anh-chup">
+        <div class="screen">
+          <div class="appbar"><span class="back left"><i data-lucide="chevron-left"></i>Tiện ích</span><span class="title">Dịch ảnh</span><span class="right"><span class="icon-btn"><i data-lucide="copy"></i></span></span></div>
+          <div class="pad">
+            <div class="ocr-thumb" style="width:100%;height:150px;border-radius:var(--radius-lg);background:#ECE6D6;display:flex;align-items:center;justify-content:center;border:1px solid var(--color-outline)">
+              <div style="font:600 13px/1.5 var(--font-sans);color:#5b574d;text-align:left;padding:0 22px">EMERGENCY EXIT<br>NO SMOKING IN THIS AREA<br>2ND FLOOR · LIBRARY</div>
+            </div>
+            <div class="between mt-4"><span class="label-s">Chữ đọc được · Tiếng Anh</span><span class="badge ok"><i data-lucide="check"></i>3 dòng</span></div>
+            <div class="card mt-2 body-m" style="padding:14px 16px">Emergency exit<br>No smoking in this area<br>2nd floor · Library</div>
+            <div class="label-s mt-4">Bản dịch · Tiếng Việt</div>
+            <div class="card mt-2" style="padding:14px 16px;font-size:16px;font-weight:500;line-height:1.55">Lối thoát hiểm<br>Không hút thuốc trong khu vực này<br>Tầng 2 · Thư viện</div>
+            <div class="ai-src mt-3 body-s muted hstack" style="--gap:6px"><i data-lucide="scan-text" class="ic-16" style="width:15px;height:15px"></i>Google ML Kit · trên máy · 0,8 giây</div>
+          </div>
+          <div class="pad" style="position:absolute;left:0;right:0;bottom:34px">
+            <div class="hstack" style="--gap:10px"><button class="btn btn-secondary" style="flex:1"><i data-lucide="volume-2"></i>Đọc to</button><button class="btn btn-primary" style="flex:1"><i data-lucide="camera"></i>Chụp ảnh khác</button></div>
+          </div>
+        </div>
+      </div><div class="frame-cap"><span>21</span>f · Kết quả dịch từ ảnh chụp</div></div>
+
+      <!-- 22 Đo tiếng ồn -->
+      <div class="frame"><div class="phone" data-shot="22-do-tieng-on">
+        <div class="screen">
+          <div class="appbar"><span class="back left"><i data-lucide="chevron-left"></i>Tiện ích</span><span class="title">Đo tiếng ồn</span><span></span></div>
+          <div class="pad">
+            <div class="card" style="text-align:center;padding-top:22px">
+              <span class="badge"><span class="rec-dot" style="width:7px;height:7px;border-radius:50%;background:var(--color-danger-bar);display:inline-block"></span>Đang đo · 00:32</span>
+              <div class="db num mt-3">68<span>dB</span></div>
+              <div class="body-m muted">Như văn phòng đông người</div>
+              <div class="meter mt-5">
+                <i class="old" style="height:40%"></i><i class="old" style="height:46%"></i><i class="old" style="height:38%"></i><i class="old" style="height:52%"></i><i class="old" style="height:61%"></i><i class="old" style="height:48%"></i><i class="old" style="height:44%"></i><i class="old" style="height:57%"></i><i class="old" style="height:66%"></i><i class="old" style="height:59%"></i>
+                <i style="height:50%"></i><i style="height:55%"></i><i style="height:62%"></i><i class="w" style="height:86%"></i><i class="w" style="height:80%"></i><i style="height:64%"></i><i style="height:58%"></i><i style="height:61%"></i><i style="height:66%"></i><i style="height:70%"></i>
+              </div>
+              <div class="between body-s faint mt-2"><span>30 giây trước</span><span>bây giờ</span></div>
+            </div>
+            <div class="grid2 mt-3">
+              <div class="card stat"><div class="k">Trung bình</div><div class="v num">61 dB</div></div>
+              <div class="card stat"><div class="k">Cao nhất</div><div class="v num">82 dB</div></div>
+            </div>
+            <div class="card mt-3" style="padding:16px">
+              <div class="scale"><span class="mk" style="left:56%"></span></div>
+              <div class="between body-s muted mt-2 num"><span>30</span><span>60</span><span>85</span><span>120 dB</span></div>
+              <div class="body-s muted mt-3">Trên <b style="color:var(--color-warning)">85 dB</b> nghe lâu có thể hại tai.</div>
+            </div>
+          </div>
+          <div class="pad" style="position:absolute;left:0;right:0;bottom:34px">
+            <div class="hstack" style="--gap:10px"><button class="btn btn-secondary" style="flex:1"><i data-lucide="refresh-cw"></i>Đo lại</button><button class="btn btn-primary" style="flex:1.4"><span style="width:12px;height:12px;border-radius:3px;background:#fff;display:inline-block"></span>Dừng</button></div>
+          </div>
+        </div>
+      </div><div class="frame-cap"><span>22</span>d · Đo tiếng ồn realtime</div></div>
+
+      <!-- 23 Tiếng ồn vượt ngưỡng -->
+      <div class="frame"><div class="phone" data-shot="23-tieng-on-cao">
+        <div class="screen">
+          <div class="appbar"><span class="back left"><i data-lucide="chevron-left"></i>Tiện ích</span><span class="title">Đo tiếng ồn</span><span></span></div>
+          <div class="pad">
+            <div class="card" style="text-align:center;padding-top:22px">
+              <span class="badge danger"><i data-lucide="ear"></i>Quá ồn · 00:58</span>
+              <div class="db num mt-3" style="color:var(--color-danger)">91<span>dB</span></div>
+              <div class="body-m muted">Như đường phố giờ cao điểm</div>
+              <div class="meter mt-5">
+                <i class="old" style="height:58%"></i><i class="old" style="height:62%"></i><i class="old" style="height:60%"></i><i class="old" style="height:70%"></i><i class="old" style="height:74%"></i><i class="old" style="height:68%"></i><i class="old" style="height:72%"></i><i class="old" style="height:77%"></i><i class="old" style="height:80%"></i><i class="old" style="height:76%"></i>
+                <i class="w" style="height:82%"></i><i class="w" style="height:86%"></i><i class="w" style="height:90%"></i><i class="w" style="height:94%"></i><i class="w" style="height:88%"></i><i class="w" style="height:92%"></i><i class="w" style="height:96%"></i><i class="w" style="height:91%"></i><i class="w" style="height:93%"></i><i class="w" style="height:95%"></i>
+              </div>
+              <div class="between body-s faint mt-2"><span>30 giây trước</span><span>bây giờ</span></div>
+            </div>
+            <div class="card mt-3" style="padding:4px 16px">
+              <div class="lvl"><span class="dotc"></span><span class="v num">30 dB</span><span class="muted">Thư viện, phòng ngủ</span></div>
+              <div class="lvl"><span class="dotc"></span><span class="v num">60 dB</span><span class="muted">Trò chuyện bình thường</span></div>
+              <div class="lvl"><span class="dotc" style="background:var(--color-warning-bar)"></span><span class="v num">85 dB</span><span class="muted">Giới hạn nghe 8 giờ</span></div>
+              <div class="lvl cur"><span class="dotc" style="background:var(--color-danger-bar)"></span><span class="v num">91 dB</span><span>Bạn đang ở đây · tối đa 2 giờ</span></div>
+            </div>
+          </div>
+          <div class="pad" style="position:absolute;left:0;right:0;bottom:34px">
+            <div class="hstack" style="--gap:10px"><button class="btn btn-secondary" style="flex:1"><i data-lucide="refresh-cw"></i>Đo lại</button><button class="btn btn-primary" style="flex:1.4"><span style="width:12px;height:12px;border-radius:3px;background:#fff;display:inline-block"></span>Dừng</button></div>
+          </div>
+        </div>
+      </div><div class="frame-cap"><span>23</span>d · Vượt ngưỡng: số đỏ, cột vàng</div></div>
+
+      <!-- 24 Chia sẻ vị trí -->
+      <div class="frame"><div class="phone" data-shot="24-chia-se-vi-tri">
+        <div class="screen">
+          <div class="appbar"><span class="back left"><i data-lucide="chevron-left"></i>Tiện ích</span><span class="title">Chia sẻ vị trí</span><span></span></div>
+          <div class="pad">
+            <div class="map">
+              <div class="river"></div>
+              <div class="blk" style="left:14px;top:14px;width:96px;height:58px"></div>
+              <div class="blk" style="left:14px;top:84px;width:96px;height:58px"></div>
+              <div class="blk" style="left:140px;top:14px;width:114px;height:128px"></div>
+              <div class="blk" style="left:14px;top:172px;width:96px;height:74px"></div>
+              <div class="blk" style="left:140px;top:172px;width:60px;height:74px"></div>
+              <div class="acc"></div><div class="me"></div>
+              <span class="icon-btn filled zoom"><i data-lucide="locate-fixed"></i></span>
+            </div>
+            <div class="card mt-3">
+              <div class="hstack" style="--gap:12px;align-items:flex-start"><span class="bubble"><i data-lucide="map-pin"></i></span>
+                <div class="grow"><div class="t" style="font-weight:600">Trường Đại học HUTECH</div><div class="body-s muted mt-1" style="margin-top:2px">475A Điện Biên Phủ, P. 25, Bình Thạnh, TP. HCM</div></div></div>
+              <div class="divider"></div>
+              <div class="between body-s"><span class="muted num">10.80182, 106.71481</span><span class="badge ok"><i data-lucide="check"></i>Chính xác ±8 m</span></div>
+            </div>
+          </div>
+          <div class="pad" style="position:absolute;left:0;right:0;bottom:34px">
+            <button class="btn btn-primary"><i data-lucide="share-2"></i>Chia sẻ vị trí</button>
+            <button class="btn btn-secondary mt-3"><i data-lucide="external-link"></i>Mở Google Maps</button>
+          </div>
+        </div>
+      </div><div class="frame-cap"><span>24</span>b · Vị trí hiện tại</div></div>
+
+      <!-- 25 Sheet chia sẻ -->
+      <div class="frame"><div class="phone" data-shot="25-chia-se-sheet">
+        <div class="screen">
+          <div class="appbar"><span class="back left"><i data-lucide="chevron-left"></i>Tiện ích</span><span class="title">Chia sẻ vị trí</span><span></span></div>
+          <div class="pad"><div class="map"><div class="river"></div><div class="blk" style="left:14px;top:14px;width:96px;height:58px"></div><div class="blk" style="left:140px;top:14px;width:114px;height:128px"></div><div class="acc"></div><div class="me"></div></div></div>
+        </div>
+        <div class="scrim"></div>
+        <div class="sheet">
+          <div class="grabber"></div>
+          <div class="sheet-title">Gửi vị trí</div>
+          <div class="card mt-3" style="padding:12px 14px;background:var(--color-surface-container);border:0;box-shadow:none">
+            <div class="body-s" style="line-height:1.55">📍 Mình đang ở Trường Đại học HUTECH, 475A Điện Biên Phủ, Bình Thạnh<br><span class="muted">https://maps.google.com/?q=10.80182,106.71481</span></div>
+          </div>
+          <div class="hstack mt-4" style="--gap:0;justify-content:space-between">
+            <div style="display:flex;flex-direction:column;align-items:center;gap:6px;width:70px"><span class="bubble lg"><i data-lucide="message-circle"></i></span><span class="body-s">Zalo</span></div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:6px;width:70px"><span class="bubble lg"><i data-lucide="send"></i></span><span class="body-s">Messenger</span></div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:6px;width:70px"><span class="bubble lg"><i data-lucide="message-square"></i></span><span class="body-s">Tin nhắn</span></div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:6px;width:70px"><span class="bubble lg"><i data-lucide="copy"></i></span><span class="body-s">Sao chép</span></div>
+          </div>
+          <div class="note mt-5"><i data-lucide="info"></i><span>Chỉ gửi vị trí lúc bấm. App không theo dõi vị trí sau đó.</span></div>
+        </div>
+      </div><div class="frame-cap"><span>25</span>b · Chọn app để gửi link Google Maps</div></div>
+    </div>
+  </section>
+
+  <!-- ===================== D. NHÂN VIÊN ===================== -->
+  <section class="section">
+    <div class="section-label"><b>D</b> Nhân viên (yêu cầu 3, 4): thêm, sửa sản phẩm</div>
+    <div class="row-phones">
+
+      <!-- 30 Tổng quan NV -->
+      <div class="frame"><div class="phone" data-shot="30-nv-tong-quan" data-role="nv" data-tab="home">
+        <div class="screen">
+          <div class="pad">
+            <div class="between" style="height:48px"><div class="logo sm">CN</div><span class="role nv"><i data-lucide="badge-check" style="width:13px;height:13px"></i>Nhân viên</span></div>
+            <h1 class="headline mt-2">Chào Phúc</h1>
+            <div class="card mt-4">
+              <div class="label-s">Sản phẩm đang bán</div>
+              <div class="display num mt-2">7</div>
+              <div class="divider"></div>
+              <div style="display:grid;grid-template-columns:1fr 1fr">
+                <div><div class="label-s">Danh mục</div><div class="title-m num" style="margin-top:2px">3</div></div>
+                <div style="border-left:1px solid var(--color-outline-variant);padding-left:16px"><div class="label-s">Bạn sửa hôm nay</div><div class="title-m num" style="margin-top:2px">2</div></div>
+              </div>
+            </div>
+            <button class="btn btn-primary mt-4"><i data-lucide="plus"></i>Thêm sản phẩm</button>
+            <div class="between mt-5"><span class="title-m">Hoạt động gần đây</span><span class="label-s">Xem tất cả</span></div>
+            <div class="card flush list mt-2">
+              <div class="row"><span class="bubble"><i data-lucide="pencil"></i></span><div class="grow"><div class="t">Sửa giá Nồi chiên không dầu 5L</div><div class="s num">1.290.000đ → 1.200.000đ</div></div><div class="r"><div class="time">09:12</div></div></div>
+              <div class="row"><span class="bubble"><i data-lucide="plus"></i></span><div class="grow"><div class="t">Thêm Áo khoác gió chống nước</div><div class="s">Thời trang</div></div><div class="r"><div class="time">08:40</div></div></div>
+              <div class="row"><span class="bubble"><i data-lucide="pencil"></i></span><div class="grow"><div class="t">Sửa mô tả Bàn phím cơ không dây</div><div class="s">Hôm qua</div></div><div class="r"><div class="time">17:05</div></div></div>
+            </div>
+          </div>
+        </div>
+      </div><div class="frame-cap"><span>30</span>Dashboard nhân viên</div></div>
+
+      <!-- 31 Sản phẩm NV -->
+      <div class="frame"><div class="phone" data-shot="31-nv-san-pham" data-role="nv" data-tab="products">
+        <div class="screen">
+          <div class="pad">
+            <div class="between" style="height:56px"><h1 class="headline">Sản phẩm</h1><span class="icon-btn filled"><i data-lucide="plus"></i></span></div>
+            <div class="search mt-2"><i data-lucide="search"></i>Tìm theo tên…</div>
+            <div class="chips mt-3" style="margin-right:-20px"><span class="chip on">Tất cả 7</span><span class="chip">Điện tử 3</span><span class="chip">Thời trang 2</span><span class="chip">Gia dụng 2</span></div>
+            <div class="card flush list mt-4">
+              <div class="row"><span class="bubble"><i data-lucide="laptop"></i></span><div class="grow"><div class="t">Laptop Dell XPS 15</div><div class="s">Điện tử</div></div><div class="r"><div class="price num">35.000.000đ</div></div></div>
+              <div class="row"><span class="bubble"><i data-lucide="keyboard"></i></span><div class="grow"><div class="t">Bàn phím cơ không dây</div><div class="s">Điện tử</div></div><div class="r"><div class="price num">1.850.000đ</div></div></div>
+              <div class="row"><span class="bubble"><i data-lucide="mouse"></i></span><div class="grow"><div class="t">Chuột Logitech MX Master 3S</div><div class="s">Điện tử</div></div><div class="r"><div class="price num">2.490.000đ</div></div></div>
+              <div class="row"><span class="bubble"><i data-lucide="shirt"></i></span><div class="grow"><div class="t">Áo thun thể thao nam</div><div class="s">Thời trang</div></div><div class="r"><div class="price num">250.000đ</div></div></div>
+              <div class="row"><span class="bubble"><i data-lucide="cooking-pot"></i></span><div class="grow"><div class="t">Nồi chiên không dầu 5L</div><div class="s">Gia dụng</div></div><div class="r"><div class="price num">1.200.000đ</div></div></div>
+              <div class="row"><span class="bubble"><i data-lucide="air-vent"></i></span><div class="grow"><div class="t">Máy lọc không khí thông minh</div><div class="s">Gia dụng</div></div><div class="r"><div class="price num">3.200.000đ</div></div></div>
+            </div>
+          </div>
+        </div>
+      </div><div class="frame-cap"><span>31</span>Danh sách sản phẩm</div></div>
+
+      <!-- 32 Sửa sản phẩm -->
+      <div class="frame"><div class="phone" data-shot="32-nv-sua-san-pham">
+        <div class="screen">
+          <div class="appbar"><span class="icon-btn left"><i data-lucide="x"></i></span><span class="title">Sửa sản phẩm</span><span></span></div>
+          <div class="pad">
+            <label class="field-label mt-2">Tên sản phẩm</label>
+            <div class="input"><span>Nồi chiên không dầu 5L</span></div>
+            <label class="field-label mt-4">Giá bán</label>
+            <div class="input focus"><span class="grow num" style="font-weight:600">1.200.000<span class="caret" style="display:inline-block;width:2px;height:20px;background:var(--color-on-surface);vertical-align:-4px;margin-left:1px"></span></span><span class="muted">đ</span></div>
+            <div class="body-s muted mt-2">Một triệu hai trăm nghìn đồng</div>
+            <div class="card flush form mt-4">
+              <div class="frow"><span class="ico"><i data-lucide="shapes"></i></span><span class="lbl">Danh mục</span><span class="val">Gia dụng<i data-lucide="chevron-right" class="chev"></i></span></div>
+            </div>
+            <label class="field-label mt-4">Mô tả</label>
+            <div class="input" style="height:auto;min-height:84px;align-items:flex-start;padding-top:14px;line-height:1.5"><span>Công nghệ Rapid Air giảm 80% dầu mỡ.</span></div>
+          </div>
+          <div class="pad" style="position:absolute;left:0;right:0;bottom:34px">
+            <div class="note" style="margin-bottom:12px"><i data-lucide="info"></i><span>Nhân viên được thêm và sửa. Chỉ Quản trị viên xóa được sản phẩm.</span></div>
+            <button class="btn btn-primary">Lưu thay đổi</button>
+          </div>
+        </div>
+      </div><div class="frame-cap"><span>32</span>Thêm / sửa sản phẩm</div></div>
+
+      <!-- 33 Lưu xong -->
+      <div class="frame"><div class="phone" data-shot="33-nv-da-luu" data-role="nv" data-tab="products">
+        <div class="screen">
+          <div class="pad">
+            <div class="between" style="height:56px"><h1 class="headline">Sản phẩm</h1><span class="icon-btn filled"><i data-lucide="plus"></i></span></div>
+            <div class="search mt-2"><i data-lucide="search"></i>Tìm theo tên…</div>
+            <div class="chips mt-3" style="margin-right:-20px"><span class="chip">Tất cả 7</span><span class="chip">Điện tử 3</span><span class="chip">Thời trang 2</span><span class="chip on">Gia dụng 2</span></div>
+            <div class="card flush list mt-4">
+              <div class="row" style="background:var(--color-success-container);border-radius:18px 18px 0 0"><span class="bubble"><i data-lucide="cooking-pot"></i></span><div class="grow"><div class="t">Nồi chiên không dầu 5L</div><div class="s">Gia dụng · vừa sửa</div></div><div class="r"><div class="price num">1.200.000đ</div></div></div>
+              <div class="row"><span class="bubble"><i data-lucide="air-vent"></i></span><div class="grow"><div class="t">Máy lọc không khí thông minh</div><div class="s">Gia dụng</div></div><div class="r"><div class="price num">3.200.000đ</div></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="m-toast" style="position:absolute;left:16px;right:16px;bottom:100px;z-index:40"><i data-lucide="check"></i><span class="tt grow">Đã lưu Nồi chiên không dầu 5L</span></div>
+      </div><div class="frame-cap"><span>33</span>Đã lưu: dòng sáng nhẹ + toast</div></div>
+    </div>
+  </section>
+
+  <!-- ===================== E. QUẢN TRỊ ===================== -->
+  <section class="section">
+    <div class="section-label"><b>E</b> Quản trị viên (yêu cầu 3, 4): CRUD danh mục, sản phẩm, người dùng</div>
+    <div class="row-phones">
+
+      <!-- 40 Tổng quan Admin -->
+      <div class="frame"><div class="phone" data-shot="40-ad-tong-quan" data-role="ad" data-tab="home">
+        <div class="screen">
+          <div class="pad">
+            <div class="between" style="height:48px"><div class="logo sm">CN</div><span class="role ad"><i data-lucide="shield-check" style="width:13px;height:13px"></i>Quản trị</span></div>
+            <h1 class="headline mt-2">Chào Nhân</h1>
+            <div class="card mt-4">
+              <div class="between"><span class="label-s">Người dùng</span><span class="label-s hstack" style="--gap:2px">Quản lý <i data-lucide="chevron-right" style="width:16px;height:16px"></i></span></div>
+              <div class="display num mt-2">128</div>
+              <div class="stackbar mt-3"><i style="width:2%;background:var(--color-on-surface)"></i><i style="width:4%;background:#787774"></i><i style="width:94%;background:#DAD8D2"></i></div>
+              <div class="hstack body-s muted mt-2" style="--gap:14px"><span class="hstack" style="--gap:5px"><span class="legend-dot" style="background:var(--color-on-surface)"></span>Quản trị 1</span><span class="hstack" style="--gap:5px"><span class="legend-dot" style="background:#787774"></span>Nhân viên 4</span><span class="hstack" style="--gap:5px"><span class="legend-dot" style="background:#DAD8D2"></span>Khách 123</span></div>
+            </div>
+            <div class="grid2 mt-3">
+              <div class="card stat"><div class="k">Sản phẩm</div><div class="v num">7</div></div>
+              <div class="card stat"><div class="k">Danh mục</div><div class="v num">3</div></div>
+            </div>
+            <div class="between mt-5"><span class="title-m">Đăng nhập gần đây</span><span class="label-s">Xem tất cả</span></div>
+            <div class="card flush list mt-2">
+              <div class="row"><span class="avatar" style="width:40px;height:40px;font-size:14px">BN</span><div class="grow"><div class="t">Trần Bảo Ngọc</div><div class="s">Android · TP. HCM</div></div><div class="r"><div class="time">19:51</div></div></div>
+              <div class="row"><span class="avatar" style="width:40px;height:40px;font-size:14px;background:#787774">HP</span><div class="grow"><div class="t">Lê Hoàng Phúc</div><div class="s">Android · TP. HCM</div></div><div class="r"><div class="time">08:31</div></div></div>
+            </div>
+          </div>
+        </div>
+      </div><div class="frame-cap"><span>40</span>Dashboard quản trị</div></div>
+
+      <!-- 41 Danh mục -->
+      <div class="frame"><div class="phone" data-shot="41-ad-danh-muc" data-role="ad" data-tab="cats">
+        <div class="screen">
+          <div class="pad">
+            <div class="between" style="height:56px"><h1 class="headline">Danh mục</h1><span class="icon-btn filled"><i data-lucide="plus"></i></span></div>
+            <p class="body-s muted">Vuốt trái một dòng để sửa hoặc xóa.</p>
+            <div class="card flush list mt-3" style="overflow:hidden">
+              <div class="row"><span class="bubble"><i data-lucide="laptop"></i></span><div class="grow"><div class="t">Điện tử</div><div class="s">Thiết bị điện tử, công nghệ và phụ kiện</div></div><div class="r"><div class="sv body-s muted">3 SP</div></div></div>
+              <div class="row"><span class="bubble"><i data-lucide="shirt"></i></span><div class="grow"><div class="t">Thời trang</div><div class="s">Quần áo, giày dép và phụ kiện</div></div><div class="r"><div class="sv body-s muted">2 SP</div></div></div>
+              <div class="swipe row" style="padding:0">
+                <div class="front" style="display:flex;align-items:center;gap:12px;min-height:64px;padding:0 16px"><span class="bubble"><i data-lucide="cooking-pot"></i></span><div class="grow"><div class="t">Gia dụng</div><div class="s">Đồ dùng gia đình, nhà bếp…</div></div><div class="r"><div class="sv body-s muted">2 SP</div></div></div>
+                <div class="acts"><span class="sa"><i data-lucide="pencil"></i>Sửa</span><span class="sa del"><i data-lucide="trash-2"></i>Xóa</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div><div class="frame-cap"><span>41</span>Danh mục: vuốt để Sửa / Xóa</div></div>
+
+      <!-- 42 Thêm danh mục -->
+      <div class="frame"><div class="phone" data-shot="42-ad-them-danh-muc" data-role="ad" data-tab="cats">
+        <div class="screen">
+          <div class="pad"><div class="between" style="height:56px"><h1 class="headline">Danh mục</h1><span class="icon-btn filled"><i data-lucide="plus"></i></span></div></div>
+        </div>
+        <div class="scrim"></div>
+        <div class="sheet">
+          <div class="grabber"></div>
+          <div class="sheet-title">Thêm danh mục</div>
+          <label class="field-label mt-4">Tên danh mục</label>
+          <div class="input focus"><span>Sách<span style="display:inline-block;width:2px;height:20px;background:var(--color-on-surface);vertical-align:-4px;margin-left:1px"></span></span></div>
+          <label class="field-label mt-4">Mô tả <span class="faint" style="font-weight:400">(không bắt buộc)</span></label>
+          <div class="input"><span class="ph">Ví dụ: Sách giáo trình, truyện</span></div>
+          <button class="btn btn-primary mt-6">Thêm danh mục</button>
+        </div>
+      </div><div class="frame-cap"><span>42</span>Thêm / sửa danh mục (sheet)</div></div>
+
+      <!-- 43 Xóa danh mục -->
+      <div class="frame"><div class="phone" data-shot="43-ad-xoa-danh-muc" data-role="ad" data-tab="cats">
+        <div class="screen">
+          <div class="pad"><div class="between" style="height:56px"><h1 class="headline">Danh mục</h1><span class="icon-btn filled"><i data-lucide="plus"></i></span></div></div>
+        </div>
+        <div class="scrim"></div>
+        <div class="sheet">
+          <div class="grabber"></div>
+          <div style="display:flex;flex-direction:column;align-items:center;text-align:center;padding-top:8px">
+            <span class="bubble lg danger"><i data-lucide="trash-2"></i></span>
+            <div class="sheet-title mt-4" style="font-size:20px">Xóa danh mục Gia dụng?</div>
+            <p class="body-m muted mt-2" style="max-width:320px">2 sản phẩm sẽ không còn thuộc danh mục nào. Sản phẩm không bị xóa.</p>
+          </div>
+          <button class="btn btn-danger-soft mt-6">Xóa danh mục</button>
+          <button class="btn mt-2" style="background:none">Hủy</button>
+        </div>
+      </div><div class="frame-cap"><span>43</span>Xác nhận xóa danh mục</div></div>
+
+      <!-- 44 Sản phẩm Admin (vuốt xóa) -->
+      <div class="frame"><div class="phone" data-shot="44-ad-san-pham" data-role="ad" data-tab="products">
+        <div class="screen">
+          <div class="pad">
+            <div class="between" style="height:56px"><h1 class="headline">Sản phẩm</h1><span class="icon-btn filled"><i data-lucide="plus"></i></span></div>
+            <div class="search mt-2"><i data-lucide="search"></i>Tìm theo tên…</div>
+            <div class="chips mt-3" style="margin-right:-20px"><span class="chip on">Tất cả 7</span><span class="chip">Điện tử 3</span><span class="chip">Thời trang 2</span><span class="chip">Gia dụng 2</span></div>
+            <div class="card flush list mt-4" style="overflow:hidden">
+              <div class="row"><span class="bubble"><i data-lucide="laptop"></i></span><div class="grow"><div class="t">Laptop Dell XPS 15</div><div class="s">Điện tử</div></div><div class="r"><div class="price num">35.000.000đ</div></div></div>
+              <div class="swipe row" style="padding:0">
+                <div class="front" style="display:flex;align-items:center;gap:12px;min-height:64px;padding:0 16px"><span class="bubble"><i data-lucide="keyboard"></i></span><div class="grow"><div class="t">Bàn phím cơ không dây</div><div class="s">Điện tử</div></div><div class="r"><div class="price num">1.850.000đ</div></div></div>
+                <div class="acts"><span class="sa"><i data-lucide="pencil"></i>Sửa</span><span class="sa del"><i data-lucide="trash-2"></i>Xóa</span></div>
+              </div>
+              <div class="row"><span class="bubble"><i data-lucide="mouse"></i></span><div class="grow"><div class="t">Chuột Logitech MX Master 3S</div><div class="s">Điện tử</div></div><div class="r"><div class="price num">2.490.000đ</div></div></div>
+              <div class="row"><span class="bubble"><i data-lucide="shirt"></i></span><div class="grow"><div class="t">Áo thun thể thao nam</div><div class="s">Thời trang</div></div><div class="r"><div class="price num">250.000đ</div></div></div>
+              <div class="row"><span class="bubble"><i data-lucide="cooking-pot"></i></span><div class="grow"><div class="t">Nồi chiên không dầu 5L</div><div class="s">Gia dụng</div></div><div class="r"><div class="price num">1.200.000đ</div></div></div>
+            </div>
+          </div>
+        </div>
+      </div><div class="frame-cap"><span>44</span>Sản phẩm: Admin có thêm Xóa</div></div>
+
+      <!-- 45 Người dùng -->
+      <div class="frame"><div class="phone" data-shot="45-ad-nguoi-dung" data-role="ad" data-tab="users">
+        <div class="screen">
+          <div class="pad">
+            <div class="between" style="height:56px"><h1 class="headline">Người dùng</h1><span class="icon-btn filled"><i data-lucide="user-plus"></i></span></div>
+            <div class="search mt-2"><i data-lucide="search"></i>Tên, email, tên đăng nhập…</div>
+            <div class="chips mt-3" style="margin-right:-20px"><span class="chip on">Tất cả 128</span><span class="chip">Quản trị 1</span><span class="chip">Nhân viên 4</span><span class="chip">Khách 123</span></div>
+            <div class="card flush list mt-4">
+              <div class="row"><span class="avatar" style="width:40px;height:40px;font-size:14px">CN</span><div class="grow"><div class="t">Nguyễn Chí Nhân</div><div class="s">chinhan · bạn</div></div><span class="role ad">Quản trị</span></div>
+              <div class="row"><span class="avatar" style="width:40px;height:40px;font-size:14px;background:#787774">HP</span><div class="grow"><div class="t">Lê Hoàng Phúc</div><div class="s">phuc.le@gmail.com</div></div><span class="role nv">Nhân viên</span></div>
+              <div class="row"><span class="avatar" style="width:40px;height:40px;font-size:14px;background:#787774">MT</span><div class="grow"><div class="t">Đỗ Minh Thư</div><div class="s">thu.do@gmail.com</div></div><span class="role nv">Nhân viên</span></div>
+              <div class="row"><span class="avatar" style="width:40px;height:40px;font-size:14px;background:#B9B7B0">BN</span><div class="grow"><div class="t">Trần Bảo Ngọc</div><div class="s">ngoc.tran@gmail.com</div></div><span class="role">Khách hàng</span></div>
+              <div class="row"><span class="avatar" style="width:40px;height:40px;font-size:14px;background:#B9B7B0">QV</span><div class="grow"><div class="t">Phạm Quốc Việt</div><div class="s">viet.pham@gmail.com</div></div><span class="tag warn" style="height:22px;font-size:11.5px;font-weight:600">Chưa xác thực</span></div>
+            </div>
+          </div>
+        </div>
+      </div><div class="frame-cap"><span>45</span>Người dùng: lọc theo vai trò</div></div>
+
+      <!-- 46 Đổi vai trò -->
+      <div class="frame"><div class="phone" data-shot="46-ad-doi-vai-tro" data-role="ad" data-tab="users">
+        <div class="screen">
+          <div class="pad"><div class="between" style="height:56px"><h1 class="headline">Người dùng</h1><span class="icon-btn filled"><i data-lucide="user-plus"></i></span></div></div>
+        </div>
+        <div class="scrim"></div>
+        <div class="sheet">
+          <div class="grabber"></div>
+          <div class="hstack" style="--gap:12px"><span class="avatar" style="background:#B9B7B0">BN</span><div class="grow"><div class="title-m">Trần Bảo Ngọc</div><div class="body-s muted">baongoc · ngoc.tran@gmail.com</div></div></div>
+          <div class="label-s mt-5" style="margin-bottom:8px">Vai trò</div>
+          <div class="card flush set">
+            <div class="srow"><span class="bubble sm"><i data-lucide="shield-check"></i></span><span class="grow">Quản trị viên<div class="body-s muted" style="font-weight:400">Toàn quyền, kể cả xóa</div></span><span class="radio"></span></div>
+            <div class="srow"><span class="bubble sm"><i data-lucide="badge-check"></i></span><span class="grow">Nhân viên<div class="body-s muted" style="font-weight:400">Thêm, sửa sản phẩm</div></span><span class="radio on"></span></div>
+            <div class="srow"><span class="bubble sm"><i data-lucide="shopping-bag"></i></span><span class="grow">Khách hàng<div class="body-s muted" style="font-weight:400">Xem cửa hàng, tiện ích</div></span><span class="radio"></span></div>
+          </div>
+          <button class="btn btn-primary mt-5">Lưu vai trò</button>
+          <button class="btn btn-danger-text mt-2" style="background:none;color:var(--color-danger)">Xóa người dùng</button>
+        </div>
+      </div><div class="frame-cap"><span>46</span>Đổi vai trò / xóa người dùng</div></div>
+
+      <!-- 47 Tài khoản Admin -->
+      <div class="frame"><div class="phone" data-shot="47-ad-tai-khoan" data-role="ad" data-tab="me">
+        <div class="screen">
+          <div class="pad">
+            <div style="height:56px;display:flex;align-items:center"><h1 class="headline">Tài khoản</h1></div>
+            <div class="card tight mt-2"><div class="hstack" style="--gap:12px"><span class="avatar">CN</span><div class="grow"><div class="title-m">Nguyễn Chí Nhân</div><div class="body-s muted">hutech.vn.online@gmail.com</div></div><span class="role ad">Quản trị</span></div></div>
+            <div class="group-h"><span>Công cụ</span></div>
+            <div class="card flush set">
+              <div class="srow"><span class="bubble sm"><i data-lucide="layout-grid"></i></span><span class="grow">Tiện ích</span><span class="sv">3</span><i data-lucide="chevron-right" class="chev"></i></div>
+              <div class="srow"><span class="bubble sm"><i data-lucide="store"></i></span><span class="grow">Xem cửa hàng như khách</span><i data-lucide="chevron-right" class="chev"></i></div>
+            </div>
+            <div class="group-h"><span>Bảo mật</span></div>
+            <div class="card flush set">
+              <div class="srow"><span class="bubble sm"><i data-lucide="shield-alert"></i></span><span class="grow">Email cảnh báo đăng nhập</span><span class="switch on"></span></div>
+              <div class="srow"><span class="bubble sm"><i data-lucide="monitor-smartphone"></i></span><span class="grow">Lịch sử đăng nhập</span><span class="sv">2 thiết bị</span><i data-lucide="chevron-right" class="chev"></i></div>
+            </div>
+            <button class="btn btn-secondary mt-5"><i data-lucide="log-out"></i>Đăng xuất</button>
+          </div>
+        </div>
+      </div><div class="frame-cap"><span>47</span>Tài khoản quản trị: lối vào Tiện ích</div></div>
+    </div>
+  </section>
+
+  <!-- ===================== F. MỤC 6 ===================== -->
+  <section class="section">
+    <div class="section-label"><b>F</b> Tính năng mới (yêu cầu 6): Email cảnh báo đăng nhập</div>
+    <div class="row-phones">
+
+      <!-- 50 Email cảnh báo -->
+      <div class="frame"><div class="phone" data-shot="50-email-canh-bao">
+        <div class="screen">
+          <div class="appbar"><span class="back left"><i data-lucide="chevron-left"></i>Hộp thư</span><span></span><span class="right"><span class="icon-btn"><i data-lucide="archive"></i></span></span></div>
+          <div class="mail-h">
+            <div class="title-l">Đăng nhập mới vào tài khoản của bạn</div>
+            <div class="mail-from mt-3"><span class="logo sm">CN</span><div class="grow"><div class="w6" style="font-size:14px">Chí Nhân Store</div><div class="body-s muted">hutech.vn.online@gmail.com · 22:47</div></div></div>
+          </div>
+          <div class="mail-body" style="padding-bottom:18px">
+            <div class="brand"><span class="logo sm">CN</span>Chí Nhân Store</div>
+            <p class="body-m mt-4">Tài khoản <b>baongoc</b> vừa đăng nhập trên một thiết bị mới.</p>
+            <div class="mt-3" style="border-top:1px solid var(--color-outline-variant)">
+              <div class="kv"><span class="k">Lúc</span><span class="v num">22:47 · 21/10/2026</span></div>
+              <div class="kv"><span class="k">Thiết bị</span><span class="v">Chrome · Windows</span></div>
+              <div class="kv"><span class="k">Vị trí</span><span class="v">Hà Nội (theo IP)</span></div>
+              <div class="kv"><span class="k">IP</span><span class="v num">14.232.•••.18</span></div>
+            </div>
+            <button class="btn btn-secondary btn-sm mt-4" style="height:44px">Đúng là tôi</button>
+            <button class="btn btn-primary mt-2" style="height:44px"><i data-lucide="shield-x"></i>Không phải tôi, khóa ngay</button>
+          </div>
+          <div class="mail-foot">Bạn nhận email này vì đã bật “Email cảnh báo đăng nhập”.</div>
+        </div>
+      </div><div class="frame-cap"><span>50</span>Email cảnh báo: thiết bị, vị trí, IP</div></div>
+
+      <!-- 51 Lịch sử đăng nhập -->
+      <div class="frame"><div class="phone" data-shot="51-lich-su-dang-nhap" data-role="kh" data-tab="me">
+        <div class="screen">
+          <div class="appbar"><span class="back left"><i data-lucide="chevron-left"></i>Tài khoản</span><span></span><span></span></div>
+          <div class="pad">
+            <h1 class="headline" style="margin-bottom:16px">Lịch sử đăng nhập</h1>
+            <div class="ai-banner" style="display:flex;gap:12px;align-items:flex-start;padding:14px;border-radius:var(--radius-lg);background:var(--color-warning-container)">
+              <span class="bubble warn sm"><i data-lucide="shield-alert"></i></span>
+              <div class="grow"><div class="w6" style="color:var(--color-warning)">Có 1 đăng nhập lạ</div><div class="body-s" style="color:#6b5a2e;margin-top:2px">Hà Nội, 22:47. Nếu không phải bạn, khóa ngay để đăng xuất mọi thiết bị.</div></div>
+            </div>
+            <div class="card flush mt-4">
+              <div class="sess"><span class="bubble"><i data-lucide="smartphone"></i></span><div class="grow"><div class="between"><span class="t">Galaxy A54</span><span class="badge ok" style="height:22px">Thiết bị này</span></div><div class="s">Android 14 · TP. HCM</div></div></div>
+              <div class="sess"><span class="bubble warn"><i data-lucide="monitor"></i></span><div class="grow"><div class="between"><span class="t">Chrome · Windows</span><span class="badge warn" style="height:22px">Lạ</span></div><div class="s">Hà Nội · 22:47 hôm nay</div><div class="hstack mt-2" style="--gap:16px"><span class="w6 body-s">Đúng là tôi</span><span class="w6 body-s" style="color:var(--color-danger)">Không phải tôi</span></div></div></div>
+              <div class="sess"><span class="bubble"><i data-lucide="smartphone"></i></span><div class="grow"><span class="t">iPhone 13</span><div class="s">iOS 18 · TP. HCM · 3 ngày trước</div></div></div>
+            </div>
+            <div class="body-s muted mt-3" style="padding:0 4px">Mỗi lần đăng nhập thành công, email cảnh báo được gửi tới ngo•••@gmail.com.</div>
+          </div>
+        </div>
+      </div><div class="frame-cap"><span>51</span>Lịch sử đăng nhập trong app</div></div>
+
+      <!-- 52 Khóa xong -->
+      <div class="frame"><div class="phone" data-shot="52-da-khoa">
+        <div class="screen">
+          <div class="pad" style="padding-top:48px;display:flex;flex-direction:column;align-items:center;text-align:center">
+            <span class="bubble xl"><i data-lucide="shield-check"></i></span>
+            <h1 class="title-l mt-5" style="font-size:24px">Đã bảo vệ tài khoản</h1>
+            <p class="body-m muted mt-2" style="max-width:300px">Mọi thiết bị đã bị đăng xuất. Đặt mật khẩu mới để đăng nhập lại.</p>
+          </div>
+          <div class="pad mt-6">
+            <div class="card flush" style="padding:4px 16px">
+              <div class="kv"><span class="k" style="width:auto"><i data-lucide="check" style="color:var(--color-income)"></i></span><span class="grow">Đã đăng xuất 3 thiết bị</span></div>
+              <div class="kv"><span class="k" style="width:auto"><i data-lucide="check" style="color:var(--color-income)"></i></span><span class="grow">Đã gửi mã đặt lại mật khẩu tới email</span></div>
+              <div class="kv"><span class="k" style="width:auto"><i data-lucide="check" style="color:var(--color-income)"></i></span><span class="grow">Quản trị viên được báo</span></div>
+            </div>
+          </div>
+          <div class="pad" style="position:absolute;left:0;right:0;bottom:34px">
+            <button class="btn btn-primary">Đặt mật khẩu mới</button>
+          </div>
+        </div>
+      </div><div class="frame-cap"><span>52</span>Sau “Không phải tôi”</div></div>
+    </div>
+  </section>
+
+  <!-- ===================== G. TRẠNG THÁI ===================== -->
+  <section class="section">
+    <div class="section-label"><b>G</b> Đang tải · Rỗng · Mất kết nối</div>
+    <div class="row-phones">
+
+      <!-- 60 Đang tải -->
+      <div class="frame"><div class="phone" data-shot="60-dang-tai" data-role="kh" data-tab="shop">
+        <div class="screen">
+          <div class="pad">
+            <div class="between" style="height:48px"><div class="logo sm">CN</div><span class="icon-btn filled"><i data-lucide="bell"></i></span></div>
+            <h1 class="headline mt-2">Chào Ngọc</h1>
+            <div class="search mt-4"><i data-lucide="search"></i>Tìm sản phẩm…</div>
+            <div class="hstack mt-3" style="--gap:8px"><div class="sk pill" style="width:72px;height:34px"></div><div class="sk pill" style="width:84px;height:34px"></div><div class="sk pill" style="width:100px;height:34px"></div><div class="sk pill" style="width:80px;height:34px"></div></div>
+            <div class="sk mt-5" style="width:96px;height:14px"></div>
+            <div class="card flush mt-2" style="padding:0 16px">
+              <div class="hstack" style="--gap:12px;height:64px"><div class="sk round" style="width:40px;height:40px"></div><div class="grow"><div class="sk" style="width:62%;height:12px"></div><div class="sk mt-2" style="width:30%;height:10px"></div></div><div class="sk" style="width:72px;height:12px"></div></div>
+              <div class="hstack" style="--gap:12px;height:64px"><div class="sk round" style="width:40px;height:40px"></div><div class="grow"><div class="sk" style="width:54%;height:12px"></div><div class="sk mt-2" style="width:26%;height:10px"></div></div><div class="sk" style="width:64px;height:12px"></div></div>
+              <div class="hstack" style="--gap:12px;height:64px"><div class="sk round" style="width:40px;height:40px"></div><div class="grow"><div class="sk" style="width:66%;height:12px"></div><div class="sk mt-2" style="width:34%;height:10px"></div></div><div class="sk" style="width:80px;height:12px"></div></div>
+            </div>
+          </div>
+        </div>
+      </div><div class="frame-cap"><span>60</span>Đang tải: skeleton, không spinner</div></div>
+
+      <!-- 61 Không tìm thấy -->
+      <div class="frame"><div class="phone" data-shot="61-khong-tim-thay" data-role="kh" data-tab="shop">
+        <div class="screen">
+          <div class="pad">
+            <div class="between" style="height:48px"><div class="logo sm">CN</div><span class="icon-btn filled"><i data-lucide="bell"></i></span></div>
+            <h1 class="headline mt-2">Chào Ngọc</h1>
+            <div class="search mt-4" style="color:var(--color-on-surface);border-color:var(--color-on-surface)"><i data-lucide="search"></i><span class="grow">tai nghe</span><i data-lucide="x"></i></div>
+            <div class="empty" style="padding-top:64px">
+              <span class="bubble xl"><i data-lucide="search"></i></span>
+              <div class="title-l mt-5">Không có “tai nghe”</div>
+              <p class="body-m muted mt-2" style="max-width:280px">Thử từ khóa ngắn hơn hoặc xem tất cả danh mục.</p>
+              <button class="btn btn-secondary mt-5" style="width:auto;padding:0 22px">Xem tất cả sản phẩm</button>
+            </div>
+          </div>
+        </div>
+      </div><div class="frame-cap"><span>61</span>Tìm không thấy</div></div>
+
+      <!-- 62 Mất kết nối -->
+      <div class="frame"><div class="phone" data-shot="62-mat-ket-noi" data-role="kh" data-tab="shop">
+        <div class="screen">
+          <div class="pad">
+            <div class="between" style="height:48px"><div class="logo sm">CN</div><span class="icon-btn filled"><i data-lucide="bell"></i></span></div>
+            <h1 class="headline mt-2">Chào Ngọc</h1>
+            <div class="empty" style="padding-top:96px">
+              <span class="bubble xl"><i data-lucide="wifi-off"></i></span>
+              <div class="title-l mt-5">Không kết nối được máy chủ</div>
+              <p class="body-m muted mt-2" style="max-width:290px">Kiểm tra mạng rồi thử lại. Tiện ích Dịch, Đo tiếng ồn vẫn dùng được khi không có mạng.</p>
+              <button class="btn btn-primary mt-5" style="width:auto;padding:0 26px"><i data-lucide="refresh-cw"></i>Thử lại</button>
+            </div>
+          </div>
+        </div>
+      </div><div class="frame-cap"><span>62</span>Mất kết nối: trung tính, có Thử lại</div></div>
+    </div>
+  </section>
+</main>
+
+<script src="vendor/lucide.min.js"></script>
+<script>
+(function () {
+  var NAV = {
+    kh: [['shop', 'store', 'Cửa hàng'], ['tools', 'layout-grid', 'Tiện ích'], ['me', 'circle-user', 'Tài khoản']],
+    nv: [['home', 'layout-dashboard', 'Tổng quan'], ['products', 'package', 'Sản phẩm'], ['tools', 'layout-grid', 'Tiện ích'], ['me', 'circle-user', 'Tài khoản']],
+    ad: [['home', 'layout-dashboard', 'Tổng quan'], ['cats', 'shapes', 'Danh mục'], ['products', 'package', 'Sản phẩm'], ['users', 'users', 'Người dùng'], ['me', 'circle-user', 'Tài khoản']]
+  };
+  document.querySelectorAll('.phone').forEach(function (p) {
+    var dark = p.hasAttribute('data-dark');
+    var sb = document.createElement('div');
+    sb.className = 'statusbar' + (dark ? ' light' : '');
+    sb.innerHTML = '<span class="num">19:51</span><span class="island"></span><span class="sys"><i data-lucide="signal"></i><i data-lucide="wifi"></i><span class="batt"><i></i></span></span>';
+    p.prepend(sb);
+    var role = p.getAttribute('data-role'), t = p.getAttribute('data-tab');
+    if (role && t) {
+      var tabs = NAV[role];
+      var bar = document.createElement('nav');
+      bar.className = 'tabbar t' + tabs.length;
+      bar.innerHTML = tabs.map(function (x) {
+        return '<span class="tab' + (x[0] === t ? ' on' : '') + '"><i data-lucide="' + x[1] + '"></i>' + x[2] + '</span>';
+      }).join('');
+      p.appendChild(bar);
+    }
+    var hi = document.createElement('div'); hi.className = 'home-ind' + (dark ? ' light' : ''); p.appendChild(hi);
+  });
+  lucide.createIcons({ attrs: { 'stroke-width': 1.75 } });
+})();
+</script>
+</body>
+</html>

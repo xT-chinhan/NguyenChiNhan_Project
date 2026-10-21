@@ -1,0 +1,724 @@
+{
+ "session_User": {
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzIiwic2lkIjoyOSwidmVyIjo0LCJyb2xlIjoiVXNlciIsInVuaXF1ZV9uYW1lIjoiYmFvbmdvYyIsImlhdCI6MTc5MjU1Nzc3NiwiZXhwIjoxNzkzMTYyNTc2LCJhdWQiOiJOZ3V5ZW5DaGlOaGFuX0FwcCIsImlzcyI6Ik5ndXllbkNoaU5oYW5fV2ViQVBJIn0.2G1CFp_AQuZBjB0ENBRuR3O07DgTDApRfkr0XKBNKuY",
+  "role": "User",
+  "user": {
+   "id": 3,
+   "username": "baongoc",
+   "fullName": "Trần Bảo Ngọc",
+   "email": "hutech.vn.online@gmail.com",
+   "role": "User",
+   "emailConfirmed": true,
+   "loginAlert": true,
+   "createdAt": "2026-10-21T04:21:47.830Z"
+  }
+ },
+ "session_Staff": {
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIyIiwic2lkIjozMCwidmVyIjowLCJyb2xlIjoiU3RhZmYiLCJ1bmlxdWVfbmFtZSI6InBodWMiLCJpYXQiOjE3OTI1NTc3NzYsImV4cCI6MTc5MzE2MjU3NiwiYXVkIjoiTmd1eWVuQ2hpTmhhbl9BcHAiLCJpc3MiOiJOZ3V5ZW5DaGlOaGFuX1dlYkFQSSJ9.FpAMLJMBZE85QbmPCpMEnMUlqnQfuGiWnpTpXCFGGS0",
+  "role": "Staff",
+  "user": {
+   "id": 2,
+   "username": "phuc",
+   "fullName": "Lê Hoàng Phúc",
+   "email": "hutech.vn.online@gmail.com",
+   "role": "Staff",
+   "emailConfirmed": true,
+   "loginAlert": true,
+   "createdAt": "2026-10-21T04:21:47.770Z"
+  }
+ },
+ "session_Admin": {
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIiwic2lkIjozMSwidmVyIjowLCJyb2xlIjoiQWRtaW4iLCJ1bmlxdWVfbmFtZSI6ImNoaW5oYW4iLCJpYXQiOjE3OTI1NTc3NzYsImV4cCI6MTc5MzE2MjU3NiwiYXVkIjoiTmd1eWVuQ2hpTmhhbl9BcHAiLCJpc3MiOiJOZ3V5ZW5DaGlOaGFuX1dlYkFQSSJ9.tNs7RijVJuSkoEovGYah8ZJm7vmnb8RiPjOnM7DUgHw",
+  "role": "Admin",
+  "user": {
+   "id": 1,
+   "username": "chinhan",
+   "fullName": "Nguyễn Chí Nhân",
+   "email": "hutech.vn.online@gmail.com",
+   "role": "Admin",
+   "emailConfirmed": true,
+   "loginAlert": true,
+   "createdAt": "2026-10-21T04:21:47.707Z"
+  }
+ },
+ "categories": [
+  {
+   "id": 1,
+   "name": "Điện tử",
+   "description": "Thiết bị điện tử, công nghệ và phụ kiện",
+   "icon": "laptop",
+   "productCount": 3
+  },
+  {
+   "id": 2,
+   "name": "Thời trang",
+   "description": "Quần áo, giày dép và phụ kiện thời trang",
+   "icon": "shirt",
+   "productCount": 2
+  },
+  {
+   "id": 3,
+   "name": "Gia dụng",
+   "description": "Đồ dùng gia đình, nhà bếp và tiện ích",
+   "icon": "cooking-pot",
+   "productCount": 2
+  }
+ ],
+ "products_price_asc": [
+  {
+   "id": 4,
+   "name": "Áo thun thể thao nam",
+   "price": 250000,
+   "description": "Chất liệu thun lạnh thoáng khí",
+   "icon": "shirt",
+   "categoryId": 2,
+   "categoryName": "Thời trang",
+   "updatedAt": "2026-10-21T04:21:47.854Z",
+   "updatedBy": null
+  },
+  {
+   "id": 5,
+   "name": "Áo khoác gió chống nước",
+   "price": 450000,
+   "description": "Áo khoác đi mưa 2 lớp",
+   "icon": "shirt",
+   "categoryId": 2,
+   "categoryName": "Thời trang",
+   "updatedAt": "2026-10-21T04:21:47.857Z",
+   "updatedBy": null
+  },
+  {
+   "id": 6,
+   "name": "Nồi chiên không dầu 5L",
+   "price": 1200000,
+   "description": "Công nghệ Rapid Air giảm 80% dầu mỡ",
+   "icon": "cooking-pot",
+   "categoryId": 3,
+   "categoryName": "Gia dụng",
+   "updatedAt": "2026-10-21T04:21:47.859Z",
+   "updatedBy": null
+  },
+  {
+   "id": 2,
+   "name": "Bàn phím cơ không dây",
+   "price": 1850000,
+   "description": "Bàn phím cơ Bluetooth switch Red",
+   "icon": "keyboard",
+   "categoryId": 1,
+   "categoryName": "Điện tử",
+   "updatedAt": "2026-10-21T04:21:47.849Z",
+   "updatedBy": null
+  },
+  {
+   "id": 3,
+   "name": "Chuột Logitech MX Master 3S",
+   "price": 2490000,
+   "description": "Chuột công thái học cao cấp",
+   "icon": "mouse",
+   "categoryId": 1,
+   "categoryName": "Điện tử",
+   "updatedAt": "2026-10-21T04:21:47.852Z",
+   "updatedBy": null
+  },
+  {
+   "id": 7,
+   "name": "Máy lọc không khí thông minh",
+   "price": 3200000,
+   "description": "Lọc bụi mịn PM2.5 kết nối Wifi",
+   "icon": "air-vent",
+   "categoryId": 3,
+   "categoryName": "Gia dụng",
+   "updatedAt": "2026-10-21T04:21:47.861Z",
+   "updatedBy": null
+  },
+  {
+   "id": 1,
+   "name": "Laptop Dell XPS 15",
+   "price": 35000000,
+   "description": "Laptop cao cấp cho lập trình viên",
+   "icon": "laptop",
+   "categoryId": 1,
+   "categoryName": "Điện tử",
+   "updatedAt": "2026-10-21T04:21:47.845Z",
+   "updatedBy": null
+  }
+ ],
+ "products_newest": [
+  {
+   "id": 7,
+   "name": "Máy lọc không khí thông minh",
+   "price": 3200000,
+   "description": "Lọc bụi mịn PM2.5 kết nối Wifi",
+   "icon": "air-vent",
+   "categoryId": 3,
+   "categoryName": "Gia dụng",
+   "updatedAt": "2026-10-21T04:21:47.861Z",
+   "updatedBy": null
+  },
+  {
+   "id": 6,
+   "name": "Nồi chiên không dầu 5L",
+   "price": 1200000,
+   "description": "Công nghệ Rapid Air giảm 80% dầu mỡ",
+   "icon": "cooking-pot",
+   "categoryId": 3,
+   "categoryName": "Gia dụng",
+   "updatedAt": "2026-10-21T04:21:47.859Z",
+   "updatedBy": null
+  },
+  {
+   "id": 5,
+   "name": "Áo khoác gió chống nước",
+   "price": 450000,
+   "description": "Áo khoác đi mưa 2 lớp",
+   "icon": "shirt",
+   "categoryId": 2,
+   "categoryName": "Thời trang",
+   "updatedAt": "2026-10-21T04:21:47.857Z",
+   "updatedBy": null
+  },
+  {
+   "id": 4,
+   "name": "Áo thun thể thao nam",
+   "price": 250000,
+   "description": "Chất liệu thun lạnh thoáng khí",
+   "icon": "shirt",
+   "categoryId": 2,
+   "categoryName": "Thời trang",
+   "updatedAt": "2026-10-21T04:21:47.854Z",
+   "updatedBy": null
+  },
+  {
+   "id": 3,
+   "name": "Chuột Logitech MX Master 3S",
+   "price": 2490000,
+   "description": "Chuột công thái học cao cấp",
+   "icon": "mouse",
+   "categoryId": 1,
+   "categoryName": "Điện tử",
+   "updatedAt": "2026-10-21T04:21:47.852Z",
+   "updatedBy": null
+  },
+  {
+   "id": 2,
+   "name": "Bàn phím cơ không dây",
+   "price": 1850000,
+   "description": "Bàn phím cơ Bluetooth switch Red",
+   "icon": "keyboard",
+   "categoryId": 1,
+   "categoryName": "Điện tử",
+   "updatedAt": "2026-10-21T04:21:47.849Z",
+   "updatedBy": null
+  },
+  {
+   "id": 1,
+   "name": "Laptop Dell XPS 15",
+   "price": 35000000,
+   "description": "Laptop cao cấp cho lập trình viên",
+   "icon": "laptop",
+   "categoryId": 1,
+   "categoryName": "Điện tử",
+   "updatedAt": "2026-10-21T04:21:47.845Z",
+   "updatedBy": null
+  }
+ ],
+ "product_6": {
+  "id": 6,
+  "name": "Nồi chiên không dầu 5L",
+  "price": 1200000,
+  "description": "Công nghệ Rapid Air giảm 80% dầu mỡ",
+  "icon": "cooking-pot",
+  "categoryId": 3,
+  "categoryName": "Gia dụng",
+  "updatedAt": "2026-10-21T04:21:47.859Z",
+  "updatedBy": null
+ },
+ "me": {
+  "id": 3,
+  "username": "baongoc",
+  "fullName": "Trần Bảo Ngọc",
+  "email": "hutech.vn.online@gmail.com",
+  "role": "User",
+  "emailConfirmed": true,
+  "loginAlert": true,
+  "createdAt": "2026-10-21T04:21:47.830Z"
+ },
+ "sessions": {
+  "items": [
+   {
+    "id": 29,
+    "device": "Samsung SM-A546E",
+    "platform": "Android 14",
+    "city": null,
+    "country": null,
+    "ip": "::ffff:127.0.•••.1",
+    "createdAt": "2026-10-21T04:42:56.779Z",
+    "lastSeenAt": "2026-10-21T04:42:56.961Z",
+    "current": true,
+    "revoked": false,
+    "status": "normal",
+    "suspicious": false
+   },
+   {
+    "id": 28,
+    "device": "Chrome · Windows",
+    "platform": "Android 14",
+    "city": null,
+    "country": null,
+    "ip": "::ffff:127.0.•••.1",
+    "createdAt": "2026-10-21T04:42:56.704Z",
+    "lastSeenAt": "2026-10-21T04:42:56.704Z",
+    "current": false,
+    "revoked": false,
+    "status": "normal",
+    "suspicious": false
+   },
+   {
+    "id": 27,
+    "device": "Samsung SM-A546E",
+    "platform": "Android 14",
+    "city": null,
+    "country": null,
+    "ip": "::ffff:127.0.•••.1",
+    "createdAt": "2026-10-21T04:42:56.628Z",
+    "lastSeenAt": "2026-10-21T04:42:56.628Z",
+    "current": false,
+    "revoked": false,
+    "status": "normal",
+    "suspicious": false
+   },
+   {
+    "id": 26,
+    "device": "Galaxy A54",
+    "platform": "Android 14",
+    "city": null,
+    "country": null,
+    "ip": "::ffff:127.0.•••.1",
+    "createdAt": "2026-10-21T04:42:56.419Z",
+    "lastSeenAt": "2026-10-21T04:42:56.427Z",
+    "current": false,
+    "revoked": true,
+    "status": "normal",
+    "suspicious": false
+   },
+   {
+    "id": 25,
+    "device": "Chrome · Windows mvhmm6oj",
+    "platform": "Android 14",
+    "city": null,
+    "country": null,
+    "ip": "::ffff:127.0.•••.1",
+    "createdAt": "2026-10-21T04:42:56.113Z",
+    "lastSeenAt": "2026-10-21T04:42:56.175Z",
+    "current": false,
+    "revoked": true,
+    "status": "denied",
+    "suspicious": false
+   },
+   {
+    "id": 24,
+    "device": "Galaxy A54",
+    "platform": "Android 14",
+    "city": null,
+    "country": null,
+    "ip": "::ffff:127.0.•••.1",
+    "createdAt": "2026-10-21T04:42:56.025Z",
+    "lastSeenAt": "2026-10-21T04:42:56.183Z",
+    "current": false,
+    "revoked": true,
+    "status": "normal",
+    "suspicious": false
+   },
+   {
+    "id": 18,
+    "device": "Samsung SM-A546E",
+    "platform": "Android 14",
+    "city": null,
+    "country": null,
+    "ip": "::ffff:127.0.•••.1",
+    "createdAt": "2026-10-21T04:40:52.391Z",
+    "lastSeenAt": "2026-10-21T04:40:53.696Z",
+    "current": false,
+    "revoked": true,
+    "status": "normal",
+    "suspicious": false
+   },
+   {
+    "id": 17,
+    "device": "Chrome · Windows",
+    "platform": "Android 14",
+    "city": null,
+    "country": null,
+    "ip": "::ffff:127.0.•••.1",
+    "createdAt": "2026-10-21T04:40:52.315Z",
+    "lastSeenAt": "2026-10-21T04:40:52.315Z",
+    "current": false,
+    "revoked": true,
+    "status": "normal",
+    "suspicious": false
+   },
+   {
+    "id": 16,
+    "device": "Samsung SM-A546E",
+    "platform": "Android 14",
+    "city": null,
+    "country": null,
+    "ip": "::ffff:127.0.•••.1",
+    "createdAt": "2026-10-21T04:40:52.219Z",
+    "lastSeenAt": "2026-10-21T04:40:52.219Z",
+    "current": false,
+    "revoked": true,
+    "status": "normal",
+    "suspicious": false
+   },
+   {
+    "id": 13,
+    "device": "Samsung SM-A546E",
+    "platform": "Android 14",
+    "city": null,
+    "country": null,
+    "ip": "::ffff:127.0.•••.1",
+    "createdAt": "2026-10-21T04:40:21.377Z",
+    "lastSeenAt": "2026-10-21T04:40:22.257Z",
+    "current": false,
+    "revoked": true,
+    "status": "normal",
+    "suspicious": false
+   },
+   {
+    "id": 12,
+    "device": "Chrome · Windows",
+    "platform": "Android 14",
+    "city": null,
+    "country": null,
+    "ip": "::ffff:127.0.•••.1",
+    "createdAt": "2026-10-21T04:40:21.287Z",
+    "lastSeenAt": "2026-10-21T04:40:21.287Z",
+    "current": false,
+    "revoked": true,
+    "status": "normal",
+    "suspicious": false
+   },
+   {
+    "id": 11,
+    "device": "Samsung SM-A546E",
+    "platform": "Android 14",
+    "city": null,
+    "country": null,
+    "ip": "::ffff:127.0.•••.1",
+    "createdAt": "2026-10-21T04:40:21.164Z",
+    "lastSeenAt": "2026-10-21T04:40:21.164Z",
+    "current": false,
+    "revoked": true,
+    "status": "normal",
+    "suspicious": false
+   },
+   {
+    "id": 10,
+    "device": "Galaxy A54",
+    "platform": "Android 14",
+    "city": null,
+    "country": null,
+    "ip": "::ffff:127.0.•••.1",
+    "createdAt": "2026-10-21T04:23:09.412Z",
+    "lastSeenAt": "2026-10-21T04:23:09.417Z",
+    "current": false,
+    "revoked": true,
+    "status": "normal",
+    "suspicious": false
+   },
+   {
+    "id": 9,
+    "device": "Chrome · Windows mvhlwpxm",
+    "platform": "Android 14",
+    "city": null,
+    "country": null,
+    "ip": "::ffff:127.0.•••.1",
+    "createdAt": "2026-10-21T04:23:09.161Z",
+    "lastSeenAt": "2026-10-21T04:23:09.193Z",
+    "current": false,
+    "revoked": true,
+    "status": "denied",
+    "suspicious": false
+   },
+   {
+    "id": 8,
+    "device": "Galaxy A54",
+    "platform": "Android 14",
+    "city": null,
+    "country": null,
+    "ip": "::ffff:127.0.•••.1",
+    "createdAt": "2026-10-21T04:23:09.091Z",
+    "lastSeenAt": "2026-10-21T04:23:09.197Z",
+    "current": false,
+    "revoked": true,
+    "status": "normal",
+    "suspicious": false
+   },
+   {
+    "id": 4,
+    "device": "Galaxy A54",
+    "platform": "Android 14",
+    "city": null,
+    "country": null,
+    "ip": "::ffff:127.0.•••.1",
+    "createdAt": "2026-10-21T04:22:44.413Z",
+    "lastSeenAt": "2026-10-21T04:22:44.483Z",
+    "current": false,
+    "revoked": true,
+    "status": "normal",
+    "suspicious": false
+   }
+  ],
+  "suspiciousCount": 0,
+  "alertEmail": "hut•••@gmail.com",
+  "loginAlert": true
+ },
+ "noise_levels": {
+  "levels": [
+   {
+    "key": "quiet",
+    "min": 0,
+    "max": 40,
+    "label": "Yên tĩnh",
+    "example": "Như thư viện, phòng ngủ",
+    "tone": "normal"
+   },
+   {
+    "key": "normal",
+    "min": 40,
+    "max": 60,
+    "label": "Bình thường",
+    "example": "Như trò chuyện bình thường",
+    "tone": "normal"
+   },
+   {
+    "key": "moderate",
+    "min": 60,
+    "max": 75,
+    "label": "Hơi ồn",
+    "example": "Như văn phòng đông người",
+    "tone": "normal"
+   },
+   {
+    "key": "loud",
+    "min": 75,
+    "max": 85,
+    "label": "Ồn",
+    "example": "Như đường phố đông xe",
+    "tone": "warn"
+   },
+   {
+    "key": "very_loud",
+    "min": 85,
+    "max": 200,
+    "label": "Quá ồn",
+    "example": "Như đường phố giờ cao điểm",
+    "tone": "danger"
+   }
+  ],
+  "scale": {
+   "min": 30,
+   "max": 120,
+   "warn": 85
+  },
+  "warnText": "Trên 85 dB nghe lâu có thể hại tai."
+ },
+ "dash_staff": {
+  "products": 7,
+  "categories": 3,
+  "myEditsToday": 6,
+  "recentActivities": [
+   {
+    "id": 17,
+    "action": "update",
+    "title": "Sửa giá Giáo trình Flutter",
+    "detail": "120.000đ → 99.000đ",
+    "createdAt": "2026-10-21T04:42:54.952Z"
+   },
+   {
+    "id": 16,
+    "action": "create",
+    "title": "Thêm Giáo trình Flutter",
+    "detail": "Sách & Truyện",
+    "createdAt": "2026-10-21T04:42:54.938Z"
+   },
+   {
+    "id": 10,
+    "action": "update",
+    "title": "Sửa giá Giáo trình Flutter",
+    "detail": "120.000đ → 99.000đ",
+    "createdAt": "2026-10-21T04:23:06.877Z"
+   },
+   {
+    "id": 9,
+    "action": "create",
+    "title": "Thêm Giáo trình Flutter",
+    "detail": "Sách & Truyện",
+    "createdAt": "2026-10-21T04:23:06.862Z"
+   },
+   {
+    "id": 4,
+    "action": "update",
+    "title": "Sửa giá Giáo trình Flutter",
+    "detail": "120.000đ → 99.000đ",
+    "createdAt": "2026-10-21T04:22:42.578Z"
+   }
+  ]
+ },
+ "dash_admin": {
+  "users": {
+   "total": 6,
+   "Admin": 1,
+   "Staff": 4,
+   "User": 1
+  },
+  "products": 7,
+  "categories": 3,
+  "recentLogins": [
+   {
+    "user_id": 1,
+    "fullName": "Nguyễn Chí Nhân",
+    "role": "Admin",
+    "device": "Xiaomi 2201117TG",
+    "platform": "Android 14",
+    "city": null,
+    "createdAt": "2026-10-21T04:42:56.926Z"
+   },
+   {
+    "user_id": 2,
+    "fullName": "Lê Hoàng Phúc",
+    "role": "Staff",
+    "device": "Samsung SM-S918B",
+    "platform": "Android 14",
+    "city": null,
+    "createdAt": "2026-10-21T04:42:56.854Z"
+   },
+   {
+    "user_id": 3,
+    "fullName": "Trần Bảo Ngọc",
+    "role": "User",
+    "device": "Samsung SM-A546E",
+    "platform": "Android 14",
+    "city": null,
+    "createdAt": "2026-10-21T04:42:56.779Z"
+   },
+   {
+    "user_id": 6,
+    "fullName": "Khách Test",
+    "role": "Staff",
+    "device": "Galaxy A54",
+    "platform": "Android 14",
+    "city": null,
+    "createdAt": "2026-10-21T04:42:54.651Z"
+   },
+   {
+    "user_id": 5,
+    "fullName": "Khách Test",
+    "role": "Staff",
+    "device": "Galaxy A54",
+    "platform": "Android 14",
+    "city": null,
+    "createdAt": "2026-10-21T04:23:06.588Z"
+   }
+  ]
+ },
+ "users": {
+  "items": [
+   {
+    "id": 1,
+    "username": "chinhan",
+    "fullName": "Nguyễn Chí Nhân",
+    "email": "hutech.vn.online@gmail.com",
+    "role": "Admin",
+    "emailConfirmed": true,
+    "loginAlert": true,
+    "createdAt": "2026-10-21T04:21:47.707Z",
+    "isMe": true
+   },
+   {
+    "id": 2,
+    "username": "phuc",
+    "fullName": "Lê Hoàng Phúc",
+    "email": "hutech.vn.online@gmail.com",
+    "role": "Staff",
+    "emailConfirmed": true,
+    "loginAlert": true,
+    "createdAt": "2026-10-21T04:21:47.770Z",
+    "isMe": false
+   },
+   {
+    "id": 4,
+    "username": "khmvhlw77s",
+    "fullName": "Khách Test",
+    "email": "test@example.com",
+    "role": "Staff",
+    "emailConfirmed": true,
+    "loginAlert": true,
+    "createdAt": "2026-10-21T04:22:41.951Z",
+    "isMe": false
+   },
+   {
+    "id": 5,
+    "username": "khmvhlwpxm",
+    "fullName": "Khách Test",
+    "email": "test@example.com",
+    "role": "Staff",
+    "emailConfirmed": true,
+    "loginAlert": true,
+    "createdAt": "2026-10-21T04:23:06.236Z",
+    "isMe": false
+   },
+   {
+    "id": 6,
+    "username": "khmvhmm6oj",
+    "fullName": "Khách Test",
+    "email": "test@example.com",
+    "role": "Staff",
+    "emailConfirmed": true,
+    "loginAlert": true,
+    "createdAt": "2026-10-21T04:42:54.335Z",
+    "isMe": false
+   },
+   {
+    "id": 3,
+    "username": "baongoc",
+    "fullName": "Trần Bảo Ngọc",
+    "email": "hutech.vn.online@gmail.com",
+    "role": "User",
+    "emailConfirmed": true,
+    "loginAlert": true,
+    "createdAt": "2026-10-21T04:21:47.830Z",
+    "isMe": false
+   }
+  ],
+  "counts": {
+   "all": 6,
+   "Admin": 1,
+   "Staff": 4,
+   "User": 1
+  }
+ },
+ "translate": {
+  "text": "EMERGENCY EXIT\nNO SMOKING IN THIS AREA\n2ND FLOOR · LIBRARY",
+  "translated": "LỐI THOÁT KHẨN CẤP\nKHÔNG HÚT THUỐC Ở KHU VỰC NÀY\nTẦNG 2 · THƯ VIỆN",
+  "source": "en",
+  "sourceName": "Tiếng Anh",
+  "target": "vi",
+  "targetName": "Tiếng Việt",
+  "lines": 3,
+  "ms": 985
+ },
+ "location": {
+  "lat": 10.80182,
+  "lng": 106.71481,
+  "coords": "10.80182, 106.71481",
+  "accuracy": 8,
+  "accuracyText": "Chính xác ±8 m",
+  "accurate": true,
+  "place": "Hẻm 479 Điện Biên Phủ",
+  "address": "Phường Thạnh Mỹ Tây, Thành phố Hồ Chí Minh",
+  "mapsUrl": "https://maps.google.com/?q=10.80182,106.71481",
+  "shareText": "📍 Mình đang ở Hẻm 479 Điện Biên Phủ, Phường Thạnh Mỹ Tây, Thành phố Hồ Chí Minh\nhttps://maps.google.com/?q=10.80182,106.71481"
+ }
+}

@@ -1,0 +1,27 @@
+# Đồ cũ (Sang6) chỉ để tham khảo, không đưa lên repo
+_old_sang6/
+
+# Node / Vercel
+node_modules/
+.env
+.env.*
+!.env.example
+.vercel/
+
+# Flutter / Dart
+.dart_tool/
+build/
+.flutter-plugins
+.flutter-plugins-dependencies
+*.iml
+.idea/
+android/.gradle/
+**/android/local.properties
+**/android/app/debug
+**/android/app/profile
+**/android/app/release
+**/ios/Flutter/Generated.xcconfig
+**/ios/Flutter/flutter_export_environment.sh
+**/ios/Pods/
+**/ios/.symlinks/
+.DS_Store
