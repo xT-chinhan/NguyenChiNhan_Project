@@ -1,5 +1,5 @@
-CHÍ NHÂN STORE · NGUYỄN CHÍ NHÂN
-Đồ án Lập trình di động · Checklist chức năng
+NGUYỄN CHÍ NHÂN
+Checklist chức năng
 =====================================================
 
 Tải APK : https://github.com/xT-chinhan/NguyenChiNhan_Project/releases/latest

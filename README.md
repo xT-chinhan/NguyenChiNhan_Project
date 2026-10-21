@@ -1,8 +1,6 @@
 <div align="center">
 
-# Chí Nhân Store
-
-**Đồ án Lập trình di động · Nguyễn Chí Nhân**
+# Nguyễn Chí Nhân
 
 ![Flutter](https://img.shields.io/badge/Flutter-3.47-111?logo=flutter&logoColor=white)
 ![Node.js](https://img.shields.io/badge/Node.js-Express-111?logo=nodedotjs&logoColor=white)
