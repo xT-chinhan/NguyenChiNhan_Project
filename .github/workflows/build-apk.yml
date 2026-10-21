@@ -1,0 +1,56 @@
+# Build APK app Chí Nhân Store và đăng lên GitHub Releases
+name: Build APK
+
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  apk:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: nguyen_chi_nhan_app
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: 3.47.7
+          channel: stable
+          cache: true
+      - run: flutter pub get
+      - run: flutter analyze
+      - run: flutter test
+      - run: flutter build apk --release
+      - name: Đổi tên APK
+        run: cp build/app/outputs/flutter-apk/app-release.apk ChiNhanStore-NguyenChiNhan.apk
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ChiNhanStore-apk
+          path: nguyen_chi_nhan_app/ChiNhanStore-NguyenChiNhan.apk
+      - name: Đăng Release
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: nguyen_chi_nhan_app/ChiNhanStore-NguyenChiNhan.apk
+          body: |
+            **Chí Nhân Store** · Đồ án Lập trình di động · Nguyễn Chí Nhân
+
+            Tải `ChiNhanStore-NguyenChiNhan.apk` về điện thoại Android và cài (cho phép cài từ nguồn không xác định).
+            API: https://nguyenchinhan-webapi.vercel.app/swagger
+
+            | Vai trò | Tên đăng nhập | Mật khẩu |
+            |---|---|---|
+            | Quản trị | chinhan | Admin@123 |
+            | Nhân viên | phuc | Staff@123 |
+            | Khách hàng | baongoc | User@123 |
+
+            Mã OTP gửi về email của tài khoản. Có thể tự đăng ký tài khoản mới bằng email của mình.
