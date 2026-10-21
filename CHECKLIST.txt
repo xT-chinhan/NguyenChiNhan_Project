@@ -1,0 +1,86 @@
+CHÍ NHÂN STORE · NGUYỄN CHÍ NHÂN
+Đồ án Lập trình di động · Checklist chức năng
+=====================================================
+
+Tải APK : https://github.com/xT-chinhan/NguyenChiNhan_Project/releases/latest
+Web API : https://nguyenchinhan-webapi.vercel.app/swagger
+Mã nguồn: https://github.com/xT-chinhan/NguyenChiNhan_Project
+
+
+TÀI KHOẢN (OTP gửi về hutech.vn.online@gmail.com)
+-----------------------------------------------------
+Quản trị    chinhan   Admin@123
+Nhân viên   phuc      Staff@123
+Khách hàng  baongoc   User@123
+
+
+1. ĐĂNG KÝ QUA EMAIL
+-----------------------------------------------------
+[x] Đăng ký: họ tên, tên đăng nhập, email, mật khẩu
+[x] Gửi mã OTP 6 số về email để kích hoạt
+[x] Chặn đăng nhập khi email chưa xác thực
+
+
+2. ĐĂNG NHẬP · TÊN + MẬT KHẨU + OTP
+-----------------------------------------------------
+[x] Bước 1: tên đăng nhập + mật khẩu
+[x] Bước 2: OTP email (5 phút, sai tối đa 3 lần, gửi lại sau 45 giây)
+[x] Quên mật khẩu / đặt mật khẩu mới bằng OTP
+[x] Đổi mật khẩu, đăng xuất, tự hết phiên khi bị thu hồi
+
+
+3. PHÂN QUYỀN
+-----------------------------------------------------
+[x] Quản trị  -> trang quản trị (5 tab)
+[x] Nhân viên -> Dashboard nhân viên (5 tab)
+[x] Khách hàng -> Cửa hàng (3 tab)
+[x] API kiểm tra quyền trên từng chức năng (JWT + vai trò)
+
+
+4. CRUD
+-----------------------------------------------------
+[x] Danh mục: thêm / sửa / xóa (sản phẩm giữ lại)
+[x] Sản phẩm: thêm / sửa (Nhân viên + Admin), xóa (Admin)
+[x] Người dùng: thêm / đổi vai trò / xóa (Admin)
+[x] Tìm kiếm, lọc danh mục, sắp xếp giá
+[x] Dashboard: thống kê + lịch sử hoạt động
+
+
+5. BA CHỨC NĂNG THUYẾT TRÌNH
+-----------------------------------------------------
+[x] f. Dịch realtime bằng camera + dịch ảnh chụp / ảnh chọn
+[x] d. Đo tiếng ồn (dB realtime, cảnh báo > 85 dB, lưu lần đo)
+[x] b. Chia sẻ vị trí (GPS -> địa chỉ -> link Google Maps)
+
+
+6. TÍNH NĂNG MỚI · EMAIL CẢNH BÁO ĐĂNG NHẬP
+-----------------------------------------------------
+[x] Email báo mỗi lần đăng nhập: thời gian, thiết bị, vị trí, IP
+[x] Lịch sử đăng nhập, đánh dấu thiết bị lạ
+[x] "Không phải tôi": đăng xuất mọi thiết bị, gửi mã đặt lại, báo Admin
+[x] Bật / tắt cảnh báo trong Tài khoản
+
+
++ CHẤM CÔNG BẰNG GPS
+-----------------------------------------------------
+[x] Vào ca / Tan ca mỗi ngày 1 lần, sau 08:00 là trễ
+[x] Phải ở trong bán kính cửa hàng (mặc định 100 m)
+[x] Chặn vị trí giả lập, GPS sai số lớn, ở ngoài khu vực
+[x] Bảng công tháng: ngày công, tổng giờ, số lần trễ
+[x] Admin: xem chấm công theo ngày, đặt mốc + bán kính
+
+
+7. GIAO DIỆN
+-----------------------------------------------------
+[x] Thiết kế mockup trước (41 màn), code theo mockup
+[x] Sáng / tối, skeleton khi tải, trạng thái rỗng / mất mạng
+[x] Font Be Vietnam Pro, icon Lucide
+
+
+KỸ THUẬT
+-----------------------------------------------------
+[x] Web API: Node.js (Express) · NguyenChiNhan_WebAPI
+[x] CSDL: PostgreSQL (Neon) · nguyenchinhan_db
+[x] App: Flutter · nguyen_chi_nhan_app (chỉ giao diện, mọi xử lý ở API)
+[x] Deploy Vercel, APK build tự động trên GitHub Actions
+[x] Test API 91/91, flutter analyze sạch

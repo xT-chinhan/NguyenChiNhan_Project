@@ -1,42 +1,57 @@
-# Chí Nhân Store · Nguyễn Chí Nhân
+<div align="center">
 
-Đồ án Lập trình di động. **App Flutter chỉ là giao diện, mọi nghiệp vụ nằm ở Web API.**
+# Chí Nhân Store
 
-| Thành phần | Thư mục | Công nghệ |
+**Đồ án Lập trình di động · Nguyễn Chí Nhân**
+
+![Flutter](https://img.shields.io/badge/Flutter-3.47-111?logo=flutter&logoColor=white)
+![Node.js](https://img.shields.io/badge/Node.js-Express-111?logo=nodedotjs&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Neon-111?logo=postgresql&logoColor=white)
+![Vercel](https://img.shields.io/badge/API-Vercel-111?logo=vercel&logoColor=white)
+
+[**Tải APK**](https://github.com/xT-chinhan/NguyenChiNhan_Project/releases/latest) · [Web API](https://nguyenchinhan-webapi.vercel.app/swagger) · [Hướng dẫn](HUONG_DAN.md) · [Checklist](CHECKLIST.txt)
+
+<img src="design/mockup/shots/01-dang-nhap.png" width="160"> <img src="design/mockup/shots/10-kh-cua-hang.png" width="160"> <img src="design/mockup/shots/70-cc-chua-vao-ca.png" width="160"> <img src="design/mockup/shots/40-ad-tong-quan.png" width="160">
+
+</div>
+
+## Tài khoản
+
+| Vai trò | Tên đăng nhập | Mật khẩu |
 |---|---|---|
-| Web API | `NguyenChiNhan_WebAPI/` | Node.js (Express 5) · deploy Vercel · Swagger `/swagger` |
-| Cơ sở dữ liệu | `nguyenchinhan_db` | PostgreSQL (Neon trên Vercel / local cổng 5433) |
-| App mobile | `nguyen_chi_nhan_app/` | Flutter 3.47 · Android / iOS |
-| Mockup | `design/mockup/` | 34 màn, mở `index.html` |
+| Quản trị | `chinhan` | `Admin@123` |
+| Nhân viên | `phuc` | `Staff@123` |
+| Khách hàng | `baongoc` | `User@123` |
 
-## Tài khoản mẫu (seed lần đầu, OTP gửi về email seed)
-| Vai trò | Tên đăng nhập | Mật khẩu | Vào trang |
-|---|---|---|---|
-| Quản trị | `chinhan` | `Admin@123` | Tổng quan · Danh mục · Sản phẩm · Người dùng · Tài khoản |
-| Nhân viên | `phuc` | `Staff@123` | Tổng quan · Sản phẩm · Tiện ích · Tài khoản |
-| Khách hàng | `baongoc` | `User@123` | Cửa hàng · Tiện ích · Tài khoản |
+> OTP gửi về `hutech.vn.online@gmail.com`. Muốn tự nhận mã: **Tạo tài khoản mới** bằng email của bạn.
 
-## Đối chiếu yêu cầu
-| # | Yêu cầu | Làm ở |
-|---|---|---|
-| 1 | Đăng ký qua email | `POST /api/auth/register` → OTP email → `/verify-email` |
-| 2 | Đăng nhập tên + mật khẩu + OTP | `/auth/login` (gửi OTP) → `/auth/login/verify` (JWT) |
-| 3 | Phân quyền Admin / Nhân viên / Khách | JWT `role`, middleware `auth('Admin','Staff')`, app chọn trang theo role |
-| 4 | CRUD | Danh mục, Sản phẩm, Người dùng (+ lịch sử hoạt động) |
-| 5 | 3 chức năng | f Dịch realtime/ảnh chụp · d Đo tiếng ồn · b Chia sẻ vị trí (`/api/tools/*`) |
-| 6 | Tính năng mới | Email cảnh báo đăng nhập + “Không phải tôi” khóa tài khoản, báo Admin |
-| + | Chấm công (nhánh `feature/cham-cong`) | `/api/attendance/*`: Vào ca / Tan ca bằng GPS trong bán kính cửa hàng; API tính khoảng cách, chặn vị trí giả / GPS sai số > 150 m, đi trễ sau 08:00; Admin đổi mốc + bán kính |
-| 7 | Giao diện | Theo mockup đã duyệt, sáng/tối, skeleton, trạng thái rỗng/mất mạng |
+## Chức năng
+
+- [x] **Đăng ký qua email** · OTP kích hoạt
+- [x] **Đăng nhập** · tên + mật khẩu + OTP email
+- [x] **Phân quyền** · Quản trị / Nhân viên / Khách hàng
+- [x] **CRUD** · Danh mục · Sản phẩm · Người dùng
+- [x] **Dịch realtime** · camera + ảnh chụp
+- [x] **Đo tiếng ồn** · dB realtime, cảnh báo > 85 dB
+- [x] **Chia sẻ vị trí** · GPS → link Google Maps
+- [x] **Email cảnh báo đăng nhập** · “Không phải tôi” khóa tài khoản *(tính năng mới)*
+- [x] **Chấm công GPS** · vào / tan ca trong bán kính cửa hàng
+- [x] **Giao diện** · theo mockup, sáng / tối
+
+## Cấu trúc
+
+```
+NguyenChiNhan_WebAPI/   Web API Node.js · CSDL nguyenchinhan_db
+nguyen_chi_nhan_app/    App Flutter (chỉ giao diện)
+design/mockup/          41 màn thiết kế
+```
 
 ## Chạy
+
 ```bash
-# API local (Postgres 5433)
-cd NguyenChiNhan_WebAPI && cp .env.example .env && npm install && npm run dev
-npm test        # E2E toàn bộ API (cần MAIL_DEV=1)
+# API
+cd NguyenChiNhan_WebAPI && npm install && npm run dev   # npm test: 91 bước E2E
 
 # App
-cd nguyen_chi_nhan_app && flutter pub get
-flutter run                                              # dùng API trên Vercel
-flutter run --dart-define=API_URL=http://10.0.2.2:5055   # dùng API local từ máy ảo Android
-flutter test                                             # dựng các màn với dữ liệu thật, so ảnh
+cd nguyen_chi_nhan_app && flutter pub get && flutter run
 ```
