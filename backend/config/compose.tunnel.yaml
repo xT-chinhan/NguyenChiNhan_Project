@@ -1,0 +1,5 @@
+services:
+  api:
+    environment:
+      # Only the local Docker gateway relays Cloudflare's HTTPS scheme headers.
+      FORWARDED_ALLOW_IPS: ${NAV_TUNNEL_PROXY_IPS:?Configure the local gateway first}

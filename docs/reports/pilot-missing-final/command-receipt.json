@@ -1,0 +1,14 @@
+{
+  "command": [
+    "python",
+    "-m",
+    "navcore.cli",
+    "evaluate",
+    "--ground-truth",
+    "backend/tests/fixtures/real/ground_truth.json",
+    "--report-dir",
+    "docs/reports/pilot-missing-final"
+  ],
+  "exit_code": 2,
+  "reason": "No independent pilot bundle, annotations, manifest or replay traces supplied"
+}

@@ -1,0 +1,13 @@
+{
+  "evidence_kind": "fresh_source_copy_empty_postgresql",
+  "source_sha256": "e3f00d6f727378bfd8cbade748418f78813d917190a78042af900d73e877786c",
+  "copied_source_sha256": "e3f00d6f727378bfd8cbade748418f78813d917190a78042af900d73e877786c",
+  "dependencies": "existing pinned CPU virtualenv; copied src selected by PYTHONPATH",
+  "database": "navcore_freshcopy_v2_20261021_test",
+  "database_initial_state": "created empty for this run",
+  "model_artifacts": "existing verified local artifacts",
+  "exit_code": 0,
+  "limitations": [
+    "Fresh source and empty DB; dependency installation separately covered by Docker locked build"
+  ]
+}

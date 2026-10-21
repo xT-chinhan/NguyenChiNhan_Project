@@ -1,0 +1,46 @@
+services:
+  db:
+    image: postgres:16-alpine@sha256:721873c34ceb9f8d8fc265984940dc982404c105f19ad51be9fdc5970a6080ea
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:?Run bootstrap-dev}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Run bootstrap-dev}
+      POSTGRES_DB: ${POSTGRES_DB:?Run bootstrap-dev}
+    ports:
+      - "127.0.0.1:55439:5432"
+    volumes:
+      - navcore-dev-db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      interval: 2s
+      timeout: 2s
+      retries: 15
+  api:
+    image: navcore-local:cpu
+    build:
+      context: ..
+      dockerfile: Dockerfile
+    environment:
+      NAV_ENV: development
+      NAV_DB_URL: postgresql+psycopg://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}
+      NAV_ADMIN_TOKEN: ${NAV_ADMIN_TOKEN:?Run bootstrap-dev}
+      NAV_MODEL_DIR: /models
+      NAV_VISION_DEVICE: cpu
+      NAV_LOG_LEVEL: INFO
+      WEB_CONCURRENCY: "1"
+    ports:
+      - "127.0.0.1:8095:8095"
+    volumes:
+      - ../models:/models:ro
+    read_only: true
+    tmpfs:
+      - /tmp
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    depends_on:
+      db:
+        condition: service_healthy
+volumes:
+  navcore-dev-db:
+    name: navcore-dev-db

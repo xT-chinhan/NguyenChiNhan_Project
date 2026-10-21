@@ -1,0 +1,37 @@
+{
+  "created_at": "2026-10-21T09:43:21.553206+00:00",
+  "authorization": "User explicitly requested temporary Cloudflare domain for phone server test",
+  "url": "https://act-personal-costa-costa.trycloudflare.com/mobile",
+  "origin": "http://127.0.0.1:8095",
+  "pid": 965079,
+  "proxy_trust": "127.0.0.1,172.20.0.1",
+  "public_http": {
+    "/mobile": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8"
+    },
+    "/health/ready": {
+      "status": 200,
+      "content_type": "application/json"
+    }
+  },
+  "browser_report": "backend/output/cloudflare-mobile/browser-debug/report.json",
+  "verification": "PASS public HTTPS, browser camera to authenticated WSS to real model result; pause/resume/stop",
+  "initial_attempt": "First smoke received no fresh result within timeout; removed its dedicated test session, subsequent instrumented run passed. No TTL/deadline changes.",
+  "device": {
+    "device_id": "044e0def-c2e0-4ed1-881d-77065c32ae2c",
+    "expires_at": "2026-10-22T09:41:23.256112+00:00"
+  },
+  "limitations": [
+    "Temporary URL requires this computer, API container and tunnel to stay running",
+    "Physical phone camera and speech not yet verified",
+    "Only published demo route; no surveyed user location route"
+  ],
+  "source_sha256": {
+    "backend/config/compose.tunnel.yaml": "bec87cf5448a6d30aff6a00ee3c8d3be80e7937494db5ba534138957c58b5573",
+    "backend/config/compose.yaml": "60f0297db8dbb7f07567022e2a40b30249773ad7e185948278bf318adefb3fb0",
+    "backend/src/navcore/api/mobile.py": "f0e9f874d55bd8412c7f1b1f70537b8ad1a6987c387a171d94de6c530d0eb8e3",
+    "backend/src/navcore/web/client.js": "e7415975709833851714aba3e3741116061109f32e78ce644e069df546157fba",
+    "backend/src/navcore/web/guard.js": "10f00fa7120c8ebbfd32991682e112cffef01ea69780804b4b8d7a2de859e581"
+  }
+}

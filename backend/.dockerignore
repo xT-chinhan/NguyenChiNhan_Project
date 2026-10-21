@@ -1,0 +1,11 @@
+**
+!pyproject.toml
+!uv.lock
+!src/
+!src/navcore/
+!src/navcore/**
+src/**/__pycache__/
+src/**/*.pyc
+**/.env
+**/*.env
+**/credentials/

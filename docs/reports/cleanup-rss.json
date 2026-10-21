@@ -1,0 +1,19 @@
+{
+  "evidence_kind": "synthetic_runtime_cleanup",
+  "warmup_sessions": 50,
+  "measured_sessions": 500,
+  "rss_before_bytes": 154095616,
+  "rss_after_bytes": 154603520,
+  "rss_increase_bytes": 507904,
+  "registry_entries_after": 0,
+  "limitations": [
+    "No model allocator/WS traffic in this focused RSS check"
+  ],
+  "inputs": {
+    "source_sha256": "e3f00d6f727378bfd8cbade748418f78813d917190a78042af900d73e877786c",
+    "uv_lock_sha256": "e5237ceae0a978461b5506a176913b47fd3f282cca9e089d530e97515958613c",
+    "model_manifest_sha256": "4d0c48ad5902221d9bae9e50be21b232eacbfc313ce55b0d669b54eb7d63cac7",
+    "policy_sha256": "fa3f3c2d70be7d49bbedf5f85f48966500d585886473ceee1913c3ebff54c8a2",
+    "dataset_manifest_sha256": null
+  }
+}

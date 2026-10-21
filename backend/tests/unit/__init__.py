@@ -1,0 +1,1 @@
+"""Pure and adapter tests."""

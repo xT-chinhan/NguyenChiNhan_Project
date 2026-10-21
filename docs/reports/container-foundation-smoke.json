@@ -1,0 +1,29 @@
+{
+  "live": {
+    "status": 200,
+    "body": {
+      "status": "alive"
+    }
+  },
+  "ready": {
+    "status": 200,
+    "body": {
+      "status": "ready"
+    }
+  },
+  "image_id": "sha256:48f279c5a29e7294d6c4a2eb581c71be862aa3512ed19603d3ea946a7394f5f5",
+  "user": "10001:10001",
+  "readonly_rootfs": true,
+  "model_mount_readonly": true,
+  "ports": {
+    "8095/tcp": [
+      {
+        "HostIp": "127.0.0.1",
+        "HostPort": "8095"
+      }
+    ]
+  },
+  "limitations": [
+    "Pre-runtime integration image; rebuild required after T09/T10 integration"
+  ]
+}

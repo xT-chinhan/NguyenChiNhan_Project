@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "policy_sha256": "fa3f3c2d70be7d49bbedf5f85f48966500d585886473ceee1913c3ebff54c8a2",
+  "baseline": {
+    "request_deadline_ms": 1000,
+    "watchdog_interval_ms": 100,
+    "max_request_rate_hz": 5,
+    "model_slot_wait_ms": 100,
+    "max_active_sessions": 4,
+    "track_max_age_ms": 1000,
+    "track_iou_threshold": 0.3,
+    "track_confirm_hits": 3,
+    "waypoint_confirm_hits": 3,
+    "waypoint_confirm_window_ms": 1500,
+    "match_threshold_straight": 0.88,
+    "match_threshold_turn_or_final": 0.92,
+    "match_margin": 0.04,
+    "reference_ambiguity_limit": 0.97,
+    "heading_max_error_deg": 25,
+    "heading_max_accuracy_deg": 20,
+    "localization_lost_ms": 15000,
+    "initial_localization_timeout_ms": 15000,
+    "detection_confidence_min": 0.38,
+    "rgb_notice_confidence_min": 0.5,
+    "obstacle_notice_cooldown_ms": 3000,
+    "navigation_repeat_cooldown_ms": 5000
+  }
+}

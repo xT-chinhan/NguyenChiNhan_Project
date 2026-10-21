@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "purpose": "CPU performance only; no independent navigation acceptance",
+  "raw_url": "https://webdiis.unizar.es/~glopez/Media/Ada.flv",
+  "raw_sha256": "8ac1563c9e979d74cf0e937c9eef493c7af6277d7759ec0a86847ee9b51187e8",
+  "derived_source_sha256": "bd7dc9206db7704738a7ccb7c595d33d0edce223aa89dfab89bcd54f32c9d2bd",
+  "transform": "ffmpeg pad=640:480:(ow-iw)/2:(oh-ih)/2:black; H264 CRF20; no audio",
+  "prepared": {
+    "schema_version": 1,
+    "source_sha256": "bd7dc9206db7704738a7ccb7c595d33d0edce223aa89dfab89bcd54f32c9d2bd",
+    "duration_ms": 182700.0,
+    "source_start_pts_ms": 0.0,
+    "pts_origin": "normalized_source_start",
+    "fps": 5,
+    "width_limit": 640,
+    "height_limit": 480,
+    "audio": false,
+    "upright": true,
+    "frames_sha256": "24338927cf231cf5909ce7b2ec82b6899058c718a61a479a9df7d3bc4e067a85",
+    "samples": 914
+  },
+  "limitations": [
+    "Same source recording as smoke references, not independent route data",
+    "Looped pixels for load test; fresh client timestamps represent replay decode times",
+    "Black padding emulates640x480 input geometry without inventing independent captures"
+  ]
+}

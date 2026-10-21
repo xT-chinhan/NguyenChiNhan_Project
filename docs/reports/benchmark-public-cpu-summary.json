@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-10-21T07:14:41.942089+00:00",
+  "evidence_kind": "public_recorded_rgb_cpu_performance",
+  "source_sha256": "e3f00d6f727378bfd8cbade748418f78813d917190a78042af900d73e877786c",
+  "workloads": [
+    {
+      "sessions": 1,
+      "report": "benchmark-public-cpu-1/benchmark-333aea9f-4262-4e89-a404-2ffca826b356.json",
+      "report_sha256": "db3f4e3d6aff671b3018cb423706029bdfc50878e890560b1070ecbe55637a3d",
+      "performance_status": "PASS",
+      "counts": {
+        "frames_expired": 0,
+        "frames_received": 917,
+        "frames_rejected": 0,
+        "frames_requested": 917,
+        "frames_sent": 917,
+        "frames_unresolved": 0,
+        "http_ping_failures": 0,
+        "instructions_dropped": 0,
+        "instructions_presented": 59,
+        "instructions_received": 59,
+        "stale_instruction_proposals": 0,
+        "stale_instructions_presented": 0,
+        "stale_results_received": 0
+      },
+      "rejection_fraction": 0.0,
+      "accepted_results_per_second": 3.0566666666666666,
+      "latency_ms": {
+        "count": 917,
+        "p50": 262.40886399955343,
+        "p95": 493.9303169994673,
+        "p99": 647.2374189997936
+      },
+      "loop_lag_p95_ms": 3.6029479997523595,
+      "rss_peak_mib": 893.02734375
+    },
+    {
+      "sessions": 4,
+      "report": "benchmark-public-cpu-4/benchmark-7277c3d6-f514-4bfa-94f7-b8cbb2454f51.json",
+      "report_sha256": "3930b445dea637216757ae7a0b5314883c9ee3d2db85dec2ec9cab80945cdb72",
+      "performance_status": "MEASURED_CAPACITY",
+      "counts": {
+        "frames_expired": 0,
+        "frames_received": 956,
+        "frames_rejected": 3627,
+        "frames_requested": 4583,
+        "frames_sent": 4583,
+        "frames_unresolved": 0,
+        "http_ping_failures": 0,
+        "instructions_dropped": 0,
+        "instructions_presented": 200,
+        "instructions_received": 200,
+        "stale_instruction_proposals": 0,
+        "stale_instructions_presented": 0,
+        "stale_results_received": 0
+      },
+      "rejection_fraction": 0.7914030111280821,
+      "accepted_results_per_second": 3.1866666666666665,
+      "latency_ms": {
+        "count": 956,
+        "p50": 373.52077499963343,
+        "p95": 632.7629859997614,
+        "p99": 756.2948989998404
+      },
+      "loop_lag_p95_ms": 4.208444999676431,
+      "rss_peak_mib": 983.3515625
+    }
+  ],
+  "recommendation": "One active RGB user on this CPU baseline; four concurrent users have severe worker contention",
+  "gates": {
+    "G3": "BLOCKED_DATA",
+    "G4": "BLOCKED_DATA"
+  },
+  "limitations": [
+    "Same recording references/query, no independent navigation labels",
+    "Accepted-result latency excludes rejected images; rejection_fraction includes all requests",
+    "Four-session MEASURED_CAPACITY means measured freshness/capacity, not four-user navigation readiness",
+    "No live-camera/mobile-network/audio or GPU performance evaluation"
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "evidence_kind": "required_input_inventory",
+  "status": "BLOCKED_DATA",
+  "execution_performed": false,
+  "inputs": {
+    "source_sha256": "e3f00d6f727378bfd8cbade748418f78813d917190a78042af900d73e877786c",
+    "uv_lock_sha256": "e5237ceae0a978461b5506a176913b47fd3f282cca9e089d530e97515958613c",
+    "model_manifest_sha256": "4d0c48ad5902221d9bae9e50be21b232eacbfc313ce55b0d669b54eb7d63cac7",
+    "policy_sha256": "fa3f3c2d70be7d49bbedf5f85f48966500d585886473ceee1913c3ebff54c8a2",
+    "dataset_manifest_sha256": null
+  },
+  "workloads": [
+    {
+      "sessions": 1,
+      "warmup_seconds": 30,
+      "measure_seconds": 300,
+      "samples": null,
+      "latency_ms": {
+        "p50": null,
+        "p95": null,
+        "p99": null
+      },
+      "status": "NOT_RUN"
+    },
+    {
+      "sessions": 4,
+      "warmup_seconds": 30,
+      "measure_seconds": 300,
+      "samples": null,
+      "latency_ms": {
+        "p50": null,
+        "p95": null,
+        "p99": null
+      },
+      "status": "NOT_RUN"
+    }
+  ],
+  "reasons": [
+    "No eligible independent4-checkpoint/12-reference pilot with annotated queries",
+    "Public Ada same-recording smoke bundle is explicitly excluded from route acceptance"
+  ],
+  "code_validation": "test_benchmark/test_benchmark_freshness passed in final326-test suite",
+  "separate_public_smoke_report": "public-video-zaragoza.json",
+  "scope": "Independent-route acceptance only; public performance workload has now been measured",
+  "separate_public_performance_report": "benchmark-public-cpu-summary.json"
+}

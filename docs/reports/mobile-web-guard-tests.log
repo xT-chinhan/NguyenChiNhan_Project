@@ -1,0 +1,11 @@
+✔ capture age and receipt lifetime are independent strict bounds (1.390015ms)
+✔ only matching fresh results reset watchdog; heartbeat cannot reset it (0.452488ms)
+✔ duplicate and manual repeat cannot extend original earliest deadline (1.241412ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 110.241123

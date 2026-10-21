@@ -1,0 +1,64 @@
+{
+  "created_at": "2026-10-21T10:10:16.682597+00:00",
+  "authorization": "User requested using first hallway video for field test",
+  "status": "published_for_supervised_field_trial",
+  "resources": {
+    "map_id": "75bf34ad-9dc3-4dc1-8e65-f8c3517ac6c3",
+    "from_place_id": "9cf0b8aa-a234-4456-9846-eca628ab6b09",
+    "to_place_id": "33ee7572-d73b-4b01-bc8d-abce385bbe48",
+    "route_id": "9b6db9eb-4d69-4bd3-9081-2fb3544c5402"
+  },
+  "phone_url": "https://act-personal-costa-costa.trycloudflare.com/mobile?map=75bf34ad-9dc3-4dc1-8e65-f8c3517ac6c3&from=9cf0b8aa-a234-4456-9846-eca628ab6b09&to=33ee7572-d73b-4b01-bc8d-abce385bbe48",
+  "guide_url": "https://act-personal-costa-costa.trycloudflare.com/mobile/corridor-guide.html",
+  "scope": "Straight corridor from video seconds5→13.8; stop before stairwell",
+  "references": 6,
+  "checkpoints": 2,
+  "image": "sha256:9754cfc6b79d58f8024b285a250c7b06af09f438815cc7059a07cf3a8b6c7b94",
+  "instruction_check": [
+    "CONTINUE_STRAIGHT",
+    "ARRIVED"
+  ],
+  "browser_check": "PASS",
+  "tests": "31 route/bundle unit tests and3 browser guard tests PASS",
+  "source_files_sha256": {
+    "backend/src/navcore/api/mobile.py": "609b569338fcf16883d00a4f51c252cd4298f70cbc69a2011360ae565a673995",
+    "backend/src/navcore/web/client.js": "6dd529bb6ad46f4a1b3e2f1ca1f930621c8bdeca9f2908eab0d05c1ff2abc5cb",
+    "backend/src/navcore/web/corridor-guide.html": "8d8f51c4acb565daa598772d246e51256789aa7155e4ca931ffb3337e50fe3bc",
+    "backend/src/navcore/web/corridor-start.jpg": "f0a06c219fa6f3eb3455166249544cf727098543fbd507acfcff88ef8cb024d1",
+    "backend/src/navcore/web/corridor-end.jpg": "24aa110d03f4661b72f383dcec93966a897aaff149e7ac9c1f53bd67311dfdda",
+    "backend/pyproject.toml": "b15e17fd45d9bf2361ea789dba6d6f2a99774f2a56b3dc82742290a163967919",
+    "backend/uv.lock": "e5237ceae0a978461b5506a176913b47fd3f282cca9e089d530e97515958613c"
+  },
+  "provenance": {
+    "source_path": "/home/chinhan/Downloads/2758876741140513705.mp4",
+    "source_sha256": "e63b2ae5116a50552c1addd39dff4bffbebe018b32a74501024d6d54cbd177ec",
+    "reference_seconds": [
+      [
+        5.0,
+        5.4,
+        5.8
+      ],
+      [
+        13.0,
+        13.4,
+        13.8
+      ]
+    ],
+    "route_scope": "straight corridor only; stop before stairwell turn",
+    "excluded_seconds": [
+      15,
+      29.766667
+    ],
+    "label_provenance": "assistant visual annotation, not independently human-labelled ground truth",
+    "evaluation_limit": "Same source replay checks plumbing only; phone revisit remains independent field test",
+    "policy_changed": false
+  },
+  "limitations": [
+    "Same-recording 6-frame check only proves plumbing, not route accuracy on new live walk",
+    "Field test and physical speech output not yet verified",
+    "No heading sensor validation; hold upright in same direction as references",
+    "3fresh hits in1500ms; CPU/network latencies near500–840ms can prevent confirmation",
+    "15s localization timeout remains; stop/resume on held or lost status",
+    "No stair navigation or distance measurement; model and thresholds unchanged"
+  ]
+}

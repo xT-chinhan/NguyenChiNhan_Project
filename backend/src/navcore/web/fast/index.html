@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="vi"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<meta name="theme-color" content="#05140f">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="NAVI">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="manifest" href="/fast/manifest.webmanifest">
+<link rel="icon" href="/fast/icon-192.png">
+<link rel="apple-touch-icon" href="/fast/icon-192.png">
+<link rel="stylesheet" href="/fast/app.css">
+<title>NAVI</title>
+<script type="module" src="/fast/app.js"></script>
+</head>
+<body>
+<div id="cam" aria-hidden="true">
+  <video id="video" autoplay muted playsinline></video>
+  <canvas id="overlay"></canvas>
+</div>
+
+<p id="caption" class="caption" aria-live="assertive"></p>
+
+<button id="menuBtn" class="menu-btn" aria-label="Mở menu" hidden>
+  <svg viewBox="0 0 24 24" width="22" height="22"><circle cx="12" cy="5" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="12" cy="19" r="2"/></svg>
+</button>
+
+<section id="home" class="home">
+  <div class="brand"><span class="logo"></span>NAVI</div>
+  <button id="startBtn" class="start" disabled aria-label="Bắt đầu">
+    <span class="ring"></span>
+    <svg viewBox="0 0 24 24" width="64" height="64"><path d="M8 5v14l11-7z"/></svg>
+  </button>
+  <p id="homeText" class="home-text">Đang tải mô hình…</p>
+  <p class="home-hint">Giữ điện thoại trước ngực, camera sau hướng về phía trước.<br>Nhấn giữ màn hình để tạm dừng.</p>
+</section>
+
+<div id="sheetBg" class="sheet-bg" hidden></div>
+<section id="sheet" class="sheet" role="dialog" aria-label="Menu" hidden>
+  <div class="grab"></div>
+  <button id="pauseBtn" class="primary">Tạm dừng</button>
+  <div class="row"><span>Giọng nói</span><label class="sw"><input type="checkbox" id="optVoice"><i></i></label></div>
+  <div class="row"><span>Rung</span><label class="sw"><input type="checkbox" id="optVibrate"><i></i></label></div>
+  <div class="row"><span>Hiện khung vật thể</span><label class="sw"><input type="checkbox" id="optBoxes"><i></i></label></div>
+  <div class="row col"><span>Độ nhạy</span>
+    <div class="seg" id="optSens"><button data-v="low">Thấp</button><button data-v="mid">Vừa</button><button data-v="high">Cao</button></div></div>
+  <div class="row col"><span>Tốc độ đọc</span>
+    <div class="seg" id="optRate"><button data-v="0.95">Chậm</button><button data-v="1.1">Vừa</button><button data-v="1.3">Nhanh</button></div></div>
+  <p id="perf" class="perf"></p>
+  <button id="closeBtn" class="ghost">Đóng</button>
+</section>
+</body></html>

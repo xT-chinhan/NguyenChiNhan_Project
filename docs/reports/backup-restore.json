@@ -1,0 +1,64 @@
+{
+  "kind": "postgres16-backup-restore",
+  "source_database": "navcore_test",
+  "target_database": "navcore_restore_20261021_test",
+  "source": {
+    "maps": {
+      "rows": 1,
+      "sha256": "c3779cd2286823d40a6427f7d7644deb7c5719a7da9deda97b068d74f286123f"
+    },
+    "places": {
+      "rows": 2,
+      "sha256": "4420ca5834fecfdbca25eb907aa3f28c11bc2f115fb291ac89e65bd7df147338"
+    },
+    "routes": {
+      "rows": 1,
+      "sha256": "bbdde906948586593449897b1d97d85d9a62e6cc4af1b5f7c33683895b6d8b4d"
+    },
+    "checkpoints": {
+      "rows": 1,
+      "sha256": "cd330d022d94202688517f623f07752fd6249c752a4644dc17b11f550f2e039b"
+    },
+    "reference_images": {
+      "rows": 3,
+      "sha256": "dd8cc38253a112025db0f7840ced07aad431ea3cda8d5b29c751186bd8054a39"
+    },
+    "devices": {
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "migration": "0001_catalog_devices"
+  },
+  "restored": {
+    "maps": {
+      "rows": 1,
+      "sha256": "c3779cd2286823d40a6427f7d7644deb7c5719a7da9deda97b068d74f286123f"
+    },
+    "places": {
+      "rows": 2,
+      "sha256": "4420ca5834fecfdbca25eb907aa3f28c11bc2f115fb291ac89e65bd7df147338"
+    },
+    "routes": {
+      "rows": 1,
+      "sha256": "bbdde906948586593449897b1d97d85d9a62e6cc4af1b5f7c33683895b6d8b4d"
+    },
+    "checkpoints": {
+      "rows": 1,
+      "sha256": "cd330d022d94202688517f623f07752fd6249c752a4644dc17b11f550f2e039b"
+    },
+    "reference_images": {
+      "rows": 3,
+      "sha256": "dd8cc38253a112025db0f7840ced07aad431ea3cda8d5b29c751186bd8054a39"
+    },
+    "devices": {
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "migration": "0001_catalog_devices"
+  },
+  "equal": true,
+  "scope": "isolated test container only",
+  "limitations": [
+    "Small test fixture catalog; source rows SHA256 only, no raw bytes in report; dev untouched"
+  ]
+}

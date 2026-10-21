@@ -1,0 +1,33 @@
+{
+  "command": [
+    "/home/chinhan/projects/blind-navigation-combine/backend/.venv/bin/python3",
+    "-m",
+    "navcore.cli",
+    "benchmark",
+    "--device-env-dir",
+    "backend/config/benchmark-devices",
+    "--route-id",
+    "446ea14e-b6c4-4814-9ae4-2daaddd508aa",
+    "--frames-jsonl",
+    "backend/output/public-video/zaragoza-ada/benchmark-frames/frames.jsonl",
+    "--model-dir",
+    "/home/chinhan/projects/blind-navigation-combine/backend/models",
+    "--sessions",
+    "4",
+    "--warmup-seconds",
+    "30",
+    "--duration-seconds",
+    "300",
+    "--server-receipt",
+    "docs/reports/server-benchmark-public.json",
+    "--backend-pid",
+    "250065",
+    "--profile",
+    "cpu",
+    "--report-dir",
+    "docs/reports/benchmark-public-cpu-4"
+  ],
+  "exit_code": 0,
+  "elapsed_seconds": 330.9942214390003,
+  "scope": "public single-recording performance; G3/G4 not inferred"
+}

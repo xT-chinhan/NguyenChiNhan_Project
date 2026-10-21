@@ -1,0 +1,22 @@
+{
+  "status": "PASS",
+  "viewport": [
+    390,
+    844
+  ],
+  "camera": "Chromium synthetic camera",
+  "backend": "real models and PostgreSQL, published smoke route",
+  "checks": [
+    "page loads",
+    "token cleared from input, no browser storage",
+    "maps/places/routes select",
+    "browser WS message authentication",
+    "fresh camera result through backend",
+    "pause/resume/stop",
+    "camera released on stop",
+    "no browser runtime errors"
+  ],
+  "limitations": [
+    "Synthetic browser camera; no physical phone or speech output verified"
+  ]
+}

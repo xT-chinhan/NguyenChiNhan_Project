@@ -1,0 +1,60 @@
+[build-system]
+requires = ["setuptools==84.2.1"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "navigation-core"
+version = "0.1.0"
+description = "Indoor navigation core with bounded frame freshness"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+  "fastapi==0.156.4", "pydantic==2.14.1", "uvicorn[standard]==0.54.0",
+  "python-multipart==0.0.32", "Pillow==13.0.0", "numpy==1.26.4",
+  "opencv-python-headless==4.11.0.86", "transformers==4.56.0",
+  "onnxruntime==1.31.0", "SQLAlchemy==2.1.5", "psycopg[binary]==3.3.6",
+  "alembic==1.20.0", "httpx==0.28.1", "websockets==17.3", "anyio==4.15.1",
+]
+
+[project.optional-dependencies]
+cpu = ["torch==2.13.0", "torchvision==0.28.0"]
+cuda = ["torch==2.13.0", "torchvision==0.28.0"]
+
+[dependency-groups]
+dev = ["pytest==9.1.1", "pytest-asyncio==1.4.0", "ruff==0.17.1"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+navcore = ["web/*.html", "web/*.js", "web/*.css", "web/*.jpg"]
+
+[tool.uv]
+conflicts = [[{extra = "cpu"}, {extra = "cuda"}]]
+environments = ["sys_platform == 'linux' and platform_machine == 'x86_64'"]
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
+
+[[tool.uv.index]]
+name = "pytorch-cu126"
+url = "https://download.pytorch.org/whl/cu126"
+explicit = true
+
+[tool.uv.sources]
+torch = [{index = "pytorch-cpu", extra = "cpu"}, {index = "pytorch-cu126", extra = "cuda"}]
+torchvision = [{index = "pytorch-cpu", extra = "cpu"}, {index = "pytorch-cu126", extra = "cuda"}]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src", "."]
+asyncio_mode = "auto"
+markers = ["model: requires verified real model artifacts", "postgres: requires isolated PostgreSQL test database"]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I"]

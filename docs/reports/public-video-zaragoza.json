@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "evidence_kind": "public_single_recording_network_smoke",
+  "adapter_kind": "real_models_local_attestation",
+  "source": {
+    "schema_version": 1,
+    "retrieved_at": "2026-10-21T06:33:57.395799+00:00",
+    "source_page": "https://webdiis.unizar.es/~glopez/dataset.html",
+    "dataset_record": "https://zenodo.org/records/6322990",
+    "url": "https://webdiis.unizar.es/~glopez/Media/Ada.flv",
+    "relative_path": "backend/output/public-video/zaragoza-ada/Ada.flv",
+    "bytes": 24235020,
+    "sha256": "8ac1563c9e979d74cf0e937c9eef493c7af6277d7759ec0a86847ee9b51187e8",
+    "content_type": "video/x-flv",
+    "purpose": "public indoor RGB pipeline test; not independent route acceptance",
+    "redistribution": "not performed"
+  },
+  "download_bytes": 24235020,
+  "duration_ms": 182753.0,
+  "prepared_samples": 914,
+  "video_dimensions": [
+    572,
+    428
+  ],
+  "input_fps": 30,
+  "prepared_fps": 5,
+  "mp4": {
+    "path": "backend/output/public-video/zaragoza-ada/ada-indoor-rgb.mp4",
+    "sha256": "4e8654759822bb0ec6e8f2e5bb1f01f06cdf9ee9a1bdcb8842accf4327dcfdaf",
+    "bytes": 9193241,
+    "audio": false,
+    "role": "viewing copy; replay uses original FLV-derived frames"
+  },
+  "inputs": {
+    "source_sha256": "e3f00d6f727378bfd8cbade748418f78813d917190a78042af900d73e877786c",
+    "uv_lock_sha256": "e5237ceae0a978461b5506a176913b47fd3f282cca9e089d530e97515958613c",
+    "model_manifest_sha256": "4d0c48ad5902221d9bae9e50be21b232eacbfc313ce55b0d669b54eb7d63cac7",
+    "policy_sha256": "fa3f3c2d70be7d49bbedf5f85f48966500d585886473ceee1913c3ebff54c8a2",
+    "dataset_manifest_sha256": null
+  },
+  "server_receipt_sha256": "e6e1553aa9bff12583d6c149baa3f58f9bc73c56850c1c1ef62fb14b8605cdab",
+  "container_image_id": "sha256:747d8abf71978823a700167785cc3010a0d99012d9aa42b5ac4e1c250e2d58fa",
+  "trace_sha256": "87c303267bed733e0d1af71b0afbd9ff5a4bc650ab5e4b811eb0edb17d22abd4",
+  "counts": {
+    "run_start": 1,
+    "capture_request": 490,
+    "frame_sent": 490,
+    "frame_result": 489,
+    "status": 37,
+    "instruction_received": 35,
+    "instruction_presented": 35,
+    "run_end": 1,
+    "stale_instructions_presented": 0
+  },
+  "states": {
+    "localizing": 2,
+    "navigating": 54,
+    "lost": 433
+  },
+  "presented_codes": {
+    "CONTINUE_STRAIGHT": 1,
+    "HOLD_POSITION": 33,
+    "OBJECT_AHEAD": 1
+  },
+  "last_confirmed_seq": 0,
+  "latency_ms": {
+    "p50": 267.0,
+    "p95": 617.5999999999999,
+    "p99": 720.3200000000002
+  },
+  "lost_reminder_fix": {
+    "initial_recording_hold_presentations": 500,
+    "final_hold_presentations": 33,
+    "minimum_final_spacing_ms": 5015,
+    "configured_cooldown_ms": 5000,
+    "initial_trace_client_source_sha256": "0c625ea34150ee3cd3d61e75f80c895735b24e82944b34dcd9d7a70419e88946"
+  },
+  "run_end": {
+    "type": "run_end",
+    "reason": "stream_ended",
+    "route_success_asserted": false,
+    "elapsed_ms": 182807,
+    "source_exhausted": true
+  },
+  "gates": {
+    "G3": "BLOCKED_DATA",
+    "G4": "BLOCKED_DATA",
+    "G5": "NOT_RUN"
+  },
+  "navigation_accuracy": null,
+  "perception_precision": null,
+  "perception_recall": null,
+  "limitations": [
+    "Same recording supplies smoke references and query; not an independent pilot",
+    "Checkpoint actions are smoke placeholders, not human navigation labels",
+    "No audio/TTS, no RGB-D hardware and no distance/TTC measurement",
+    "One local182.753s replay, not standard30+300s1/4-session benchmark",
+    "Development tests ran during part of replay; timing is descriptive, not dedicated capacity acceptance",
+    "Web FLV is a compressed572x428 RGB preview, not raw640x480 RGB-D rosbag data"
+  ]
+}

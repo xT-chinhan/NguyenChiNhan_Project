@@ -1,0 +1,4 @@
+{"frame_seq": 3, "checkpoint": 0, "code": "CONTINUE_STRAIGHT", "state": "navigating", "ack_before_next": true}
+{"frame_seq": 6, "checkpoint": 1, "code": "TURN_LEFT", "state": "navigating", "ack_before_next": true}
+{"frame_seq": 9, "checkpoint": 2, "code": "TURN_RIGHT", "state": "navigating", "ack_before_next": true}
+{"frame_seq": 12, "checkpoint": 3, "code": "ARRIVED", "state": "completed", "ack_before_next": false}

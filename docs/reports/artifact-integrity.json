@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "checked_at": "2026-10-21T07:15:06.325990+00:00",
+  "status": "PASS",
+  "source_sha256": "e3f00d6f727378bfd8cbade748418f78813d917190a78042af900d73e877786c",
+  "checks": [
+    "all final source receipts equal current source snapshot",
+    "server receipt binds exact final replay trace bytes",
+    "readiness JSON/Markdown gates agree",
+    "all declared evidence files exist and JSON artifacts parse",
+    "no project or upstream .git directories",
+    "private env files0600; actual private values absent from reports",
+    "126 Python source/test/script/migration files below500 lines",
+    "MP4 is valid H264572x428,no audio,182.7s"
+  ],
+  "sha256": {
+    "build-inputs.json": "c36ae57d52312ff351d9159ec3185ba85ca64e72c456bcd996d91674baf47670",
+    "verification.json": "4844fbd850719a4c1df880c9741831cd222c5dc1a92efb80d7f9819ab88b3bb4",
+    "fresh-copy.json": "7e5f490f3a1e8b23efdb1776ce55035ed7fdcc5b182113b5d98305254f097887",
+    "fresh-copy-tests.xml": "b582caf5f946bcd63c25f407ee98bba921d1af3d421597f4f58b5df915c75f73",
+    "container-final.json": "70215f2dbafa857977c86bb0b3df733d1c510665995ab6fc62867c56d9a8239f",
+    "server-public-video.json": "e6e1553aa9bff12583d6c149baa3f58f9bc73c56850c1c1ef62fb14b8605cdab",
+    "model-smoke.json": "3396bf343463770f29cc8201de0eb5efee217dbbc6e24287ef73dd5a715530d0",
+    "public-video-zaragoza.json": "f1800e207428194f2687036b28d7f72b963a94c26e0880a265f5af40b2937cb3",
+    "public-video-zaragoza.md": "4021027d1d0e64d240fb2aad8f056798f710ef42eb1ed32684a403ca7727b5c5",
+    "backend-readiness.json": "548b2372a31e72b57422bf40f13138c40f4dd06ec8266b5fbf3e1d09842d0e19",
+    "backend-readiness.md": "2f668b1c8c845078d4b6c3d13b693639c7096f7ea3a8234c48506792d1d67c04",
+    "requirements-matrix.md": "3bc5b1b44044c3da05d3699202b72da57a5758ba7bb88fdaca4516aed109367c",
+    "contracts/openapi.json": "92a6bcad154446a4efbf6d07dd31fe3f24b8a2cd9ef5269d2fcc5673a025a773",
+    "contracts/websocket.json": "3132382bf80d7a295813ed97a72f32abc446114c765921e152ec005d469365b7",
+    "contracts/policy.json": "6c27b13f984f6f5ee92ba65baa436ec67ccdfa7586551ec084ff51e54495b762",
+    "contracts/models.json": "4d0c48ad5902221d9bae9e50be21b232eacbfc313ce55b0d669b54eb7d63cac7",
+    "benchmark-public-cpu-summary.json": "3c493371a83aa30014c3871a13c2f248bdc67cd08a5c934929c93249e6eb0f4f",
+    "benchmark-public-cpu-summary.md": "035f399779dd4c4922746ce6043844c3b1d7141291ace39751843377601722be",
+    "benchmark-input-public.json": "852132025d096fb8c35e607728260b6ea9986a5194a8ff9e9042aa073327b17c",
+    "server-benchmark-public.json": "b05cecc597bc61392241b84c714bd4aef674c52ce75b7ddf7f159a041ba7d385",
+    "benchmark-public-cpu-1/benchmark-333aea9f-4262-4e89-a404-2ffca826b356.json": "db3f4e3d6aff671b3018cb423706029bdfc50878e890560b1070ecbe55637a3d",
+    "benchmark-public-cpu-1/invocation.json": "3fef2456952838a07d57f4eefea8e42eb55f9d837c64e3ff744af8645a88e732",
+    "benchmark-public-cpu-4/invocation.json": "911602c55df3932c295c647ac332f63cf6f01e00f75cd9e05e2d06a874c4d54f",
+    "benchmark-public-cpu-4/benchmark-7277c3d6-f514-4bfa-94f7-b8cbb2454f51.json": "3930b445dea637216757ae7a0b5314883c9ee3d2db85dec2ec9cab80945cdb72"
+  }
+}
